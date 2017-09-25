@@ -1,0 +1,63 @@
+.top{
+  height:0.9rem;
+  background:#000000;
+  width:100%;
+  margin-bottom:0.05rem;
+}
+.top img{
+  height:0.5rem;
+  margin-top:0.3rem;
+  margin-left:0.3rem;
+  float:left;
+  margin-right:1.2rem;
+}
+.top .top_nav{
+  float:left;
+  height:0.5rem;
+  line-height:0.5rem;
+  margin-top: 0.2rem;
+}
+.top .top_nav a{
+  font-size:0.2rem;
+  color:#FFF;
+  display:inline-block;
+  float:left;
+  padding:0 0.2rem;
+  margin-right:1.2rem;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.top .top_nav a:focus, .top .top_nav a:hover {
+   text-decoration: none !important;
+}
+
+
+.top .top_nav a.on{
+  border-bottom:0.08rem solid #1792e5;
+}
+
+.top_right{
+  width:5rem;
+  height:auto;
+  overflow:hidden;
+  float:right;
+  margin-right:0.3rem;
+}
+.top_right select{
+  width:95%;
+  height:0.55rem;
+  margin-top:0.275rem;
+  background:#262626;
+  color:#fff;
+  padding-left:5%;
+  border:none;
+  outline:none
+}
+.top_right select option{
+  height:0.55rem;
+  line-height:0.55rem;
+  border:none;
+  outline:none
+}
