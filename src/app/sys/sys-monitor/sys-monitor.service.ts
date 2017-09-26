@@ -10,7 +10,7 @@ export class SysMonitorService {
 
   public getUserInfo(json: any):Observable<any>{
 
-    return this.http.post(Const.BACKEND_API_ROOT_URL + '/admin/dashboard/getUserInfo',{})
+    return this.http.post(Const.BACKEND_API_ROOT_URL + '/wholesale_dashboard/getUserInfo',{})
       .map((res: Response) => {
         return res.json();
       });
@@ -18,11 +18,18 @@ export class SysMonitorService {
 
     public getTradeOrderInfo(json: any):Observable<any>{
 
-        return this.http.post(Const.BACKEND_API_ROOT_URL + '/admin/dashboard/getTradeOrderInfo',{})
+        return this.http.post(Const.BACKEND_API_ROOT_URL + '/wholesale_dashboard/getTradeOrderInfo',{})
             .map((res: Response) => {
                 return res.json();
             });
     }
 
+  public login(json: any):Observable<any>{
+
+    return this.http.post(Const.BACKEND_API_ROOT_URL + '/reg/employee/login',json)
+      .map((res: Response) => {
+        return res.json();
+      });
+  }
 
 }

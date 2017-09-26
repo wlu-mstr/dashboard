@@ -8,11 +8,20 @@ import * as Const from '../../config/const';
 export class PlatformService {
   constructor(public http: Http) { }
 
-  public getInfo(json: any):Observable<any>{
+  public getPlatformInfo(json: any):Observable<any>{
 
-    return this.http.post(Const.BACKEND_API_ROOT_URL + '/admin/dashboard/getPlatformInfo',{})
+    return this.http.post(Const.BACKEND_API_ROOT_URL + '/wholesale_dashboard/getPlatformInfo',{})
       .map((res: Response) => {
         return res.json();
       });
   }
+
+  public login(json: any):Observable<any>{
+
+    return this.http.post(Const.BACKEND_API_ROOT_URL + '/reg/employee/login',json)
+      .map((res: Response) => {
+        return res.json();
+      });
+  }
+
 }
