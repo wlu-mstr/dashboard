@@ -16,6 +16,7 @@ export class PlatformService {
       });
   }
 
+
   public login(json: any):Observable<any>{
 
     return this.http.post(Const.BACKEND_API_ROOT_URL + '/reg/employee/login',json)
@@ -23,5 +24,4 @@ export class PlatformService {
         return res.json();
       });
   }
-
 }

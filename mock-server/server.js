@@ -16,7 +16,7 @@ app.use('/*', function (req, res, next) {
   next();
 })
 
-app.post('/wholesale_dashboard/getUserInfo',function(req,res){
+app.post('/admin/dashboard/getUserInfo',function(req,res){
   var result;
   result = {
     "location":
@@ -114,7 +114,7 @@ app.post('/wholesale_dashboard/getUserInfo',function(req,res){
   res.json(result);
 });
 
-app.post('/wholesale_dashboard/getTradeOrderInfo',function(req,res){
+app.post('/admin/dashboard/getTradeOrderInfo',function(req,res){
   var result;
   result = {
     "trade": {
@@ -241,7 +241,7 @@ app.post('/wholesale_dashboard/getTradeOrderInfo',function(req,res){
 });
 
 
-app.post('/wholesale_dashboard/getPlatformInfo',function(req,res){
+app.post('/admin/dashboard/getPlatformInfo',function(req,res){
   var result = {
     "host": {
       "cur": 140,

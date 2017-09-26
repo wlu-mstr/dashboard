@@ -20,6 +20,7 @@
   overflow:hidden;
   background:#404040;
   float:left;
+  position: relative;
 }
 
 .left-user{
@@ -43,19 +44,6 @@
 .content .center{
   width:9rem;
 }
-
-.checkbox{
-  position: absolute;
-  padding-left: 0.1rem;
-  padding-top: 0.3rem;
-}
-
-.checkbox2{
-  position: absolute;
-  padding-left: 0.1rem;
-  padding-top: 0.4rem;
-}
-
 
 .content .right{
   width:6rem;
@@ -131,4 +119,44 @@
   height:1.2rem;
 }
 
-
+.radio-wrapper{
+  text-align: center;
+  margin-top: 0.05rem;
+}
+.radio-icon{
+  width: 0.2rem;
+  height: 0.2rem;
+  border-radius: 50%;
+  border: 1px solid #FAFAFA;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 0.08rem;
+  cursor: pointer;
+}
+.radio-checked{
+  &:after{
+    content: '';
+    background: #3398DB;
+    width: 0.12rem;
+    height: 0.12rem;
+    display: block;
+    border-radius: 50%;
+    position: relative;
+    top: 0.03rem;
+    left: 0.03rem;
+  }
+}
+.radio-txt{
+  margin-right: 0.1rem;
+  font-size: 0.13rem;
+  color:#FAFAFA;
+  vertical-align: middle;
+}
+.checkbox-wrapper{
+  color: #C0C0C0;
+  position: absolute;
+  top: 0.6rem;
+  font-size: 0.2rem;
+  left: 0.1rem;
+  z-index: 9999;
+}

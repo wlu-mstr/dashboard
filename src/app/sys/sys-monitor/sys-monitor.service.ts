@@ -6,7 +6,7 @@ import * as Const from '../../config/const';
 
 @Injectable()
 export class SysMonitorService {
-    constructor(public http: Http) { }
+  constructor(public http: Http) { }
 
   public getUserInfo(json: any):Observable<any>{
 
@@ -16,13 +16,13 @@ export class SysMonitorService {
       });
   }
 
-    public getTradeOrderInfo(json: any):Observable<any>{
+  public getTradeOrderInfo(json: any):Observable<any>{
 
-        return this.http.post(Const.BACKEND_API_ROOT_URL + '/wholesale_dashboard/getTradeOrderInfo',{})
-            .map((res: Response) => {
-                return res.json();
-            });
-    }
+    return this.http.post(Const.BACKEND_API_ROOT_URL + '/wholesale_dashboard/getTradeOrderInfo',{})
+      .map((res: Response) => {
+        return res.json();
+      });
+  }
 
   public login(json: any):Observable<any>{
 
@@ -30,6 +30,27 @@ export class SysMonitorService {
       .map((res: Response) => {
         return res.json();
       });
+  }
+
+  public getMonthKey(idx: number):String{
+    let monthKey = 'total';
+    switch(idx){
+      case 0:
+        monthKey = 'total';
+        break;
+      case 1:
+        monthKey = '1month';
+        break;
+      case 2:
+        monthKey = '3month';
+        break;
+      case 3:
+        monthKey = '6month';
+        break;
+      default:
+        monthKey = 'total';
+    }
+    return monthKey;
   }
 
 }

@@ -12,11 +12,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'project', pathMatch: 'full' },
       { path: 'project', component: SysMonitorComponent },
-      { path: 'platform', component: PlatformComponent },
-      { path: '00100009/v1.1.1/dashboard/#/project', component: SysMonitorComponent },
-      { path: '00100009/v1.1.1/dashboard/#/platform', component: PlatformComponent }
-
-
+      { path: 'platform', component: PlatformComponent }
     ]
   }
 ];

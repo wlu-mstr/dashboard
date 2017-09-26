@@ -19,7 +19,15 @@
 
     <div class="center user-layout">
       <div class="title">User Location</div>
-
+      <div class="checkbox-wrapper">
+          <div class="checkbox">
+              <label><input type="checkbox" checked (click)="selectCheckBox($event.target.checked,0)" />Hot Port</label>
+          </div>
+          <div class="checkbox">
+              <label><input type="checkbox" checked (click)="selectCheckBox($event.target.checked,1)" />Data</label>
+          </div>
+          
+      </div>
       <echart *ngIf="hasPie4Chart" [chartType]="pie4Chart" class="chart"></echart>
 
     </div>
@@ -44,6 +52,12 @@
     </div>
 
     <div class="bottom-layout">
+      <div class="radio-wrapper">
+        <span class="radio-icon" [ngClass]="{'radio-checked':bar8ChartIdx==0}"(click)="setBar8Chart(0)"></span><span class="radio-txt">Total</span>
+        <span class="radio-icon" [ngClass]="{'radio-checked':bar8ChartIdx==1}"(click)="setBar8Chart(1)"></span><span class="radio-txt">1 Month</span>
+        <span class="radio-icon" [ngClass]="{'radio-checked':bar8ChartIdx==2}"(click)="setBar8Chart(2)"></span><span class="radio-txt">3 Months</span>
+        <span class="radio-icon" [ngClass]="{'radio-checked':bar8ChartIdx==3}"(click)="setBar8Chart(3)"></span><span class="radio-txt">6 Months</span>
+      </div>
       <echart *ngIf="hasBar8Chart"  [chartType]="bar8Chart" class="chart"></echart>
     </div>
 
@@ -52,6 +66,12 @@
     </div>
 
     <div class="bottom-layout">
+        <div class="radio-wrapper">
+          <span class="radio-icon" [ngClass]="{'radio-checked':bar10ChartIdx==0}"(click)="setBar10Chart(0)"></span><span class="radio-txt">Total</span>
+          <span class="radio-icon" [ngClass]="{'radio-checked':bar10ChartIdx==1}"(click)="setBar10Chart(1)"></span><span class="radio-txt">1 Month</span>
+          <span class="radio-icon" [ngClass]="{'radio-checked':bar10ChartIdx==2}"(click)="setBar10Chart(2)"></span><span class="radio-txt">3 Months</span>
+          <span class="radio-icon" [ngClass]="{'radio-checked':bar10ChartIdx==3}"(click)="setBar10Chart(3)"></span><span class="radio-txt">6 Months</span>
+        </div>
       <echart *ngIf="hasBar10Chart"  [chartType]="bar10Chart" class="chart"></echart>
     </div>
   </div>

@@ -10,39 +10,39 @@ import { PlatformService } from './platform.service';
 })
 export class PlatformComponent implements OnInit {
 
-    public chart1 = {};
-    public chart2 = {};
-    public chart3 = {};
-    public chart4 = {};
-    public host: any;
-    public hostCur:any;
-    public hostTotal:any;
-    public hostPercent:any;
-    public cpu:any;
-    public cpuCur:any;
-    public cpuTotal:any;
-    public cpuPercent:any;
-    public memory:any;
-    public memoryCur:any;
-    public memoryTotal:any;
-    public memoryPercent:any;
-    public pv:any;
+  public chart1 = {};
+  public chart2 = {};
+  public chart3 = {};
+  public chart4 = {};
+  public host: any;
+  public hostCur:any;
+  public hostTotal:any;
+  public hostPercent:any;
+  public cpu:any;
+  public cpuCur:any;
+  public cpuTotal:any;
+  public cpuPercent:any;
+  public memory:any;
+  public memoryCur:any;
+  public memoryTotal:any;
+  public memoryPercent:any;
+  public pv:any;
 
-    public pageVisit: string;
-    public dataVolumn: string;
-    public hasPieChart: boolean;
-    public hasBarChart: boolean;
-    public hasLineChart: boolean;
+  public pageVisit: string;
+  public dataVolumn: string;
+  public hasPieChart: boolean;
+  public hasBarChart: boolean;
+  public hasLineChart: boolean;
 
-    constructor(public platformService: PlatformService) {
-    }
+  constructor(public platformService: PlatformService) {
+  }
 
 
   ngOnInit() {
 
-      this.hasPieChart = false;
-      this.hasBarChart = false;
-      this.hasLineChart = false;
+    this.hasPieChart = false;
+    this.hasBarChart = false;
+    this.hasLineChart = false;
 
     let param = {
       company_account: 'test2017',
@@ -65,52 +65,70 @@ export class PlatformComponent implements OnInit {
 
   }
 
+
   refresh(){
     this.platformService.getPlatformInfo({}).subscribe(
         res => {
-
-        let result =  res.retbody.getPlatformInfo;
-
+        res = res.retbody.getPlatformInfo;
         this.hasPieChart = true;
         this.hasBarChart = true;
         this.hasLineChart = true;
 
-        this.host = result.host;
-        this.hostCur = result.host.cur;
-        this.hostTotal = result.host.total;
-        this.hostPercent = result.host.percent;
-        this.cpu = result.CPU;
-        this.cpuCur = result.CPU.cur;
-        this.cpuTotal = result.CPU.total;
-        this.cpuPercent = result.CPU.percent;
-        this.memory = result.memory;
-        this.memoryCur = result.memory.cur;
-        this.memoryTotal = result.memory.total;
-        this.memoryPercent = result.memory.percent;
-        this.pageVisit = result.pv.today;
-        this.dataVolumn = result.dataVolumn;
-
+        this.host = res.host;
+        this.hostCur = res.host.usage;
+        this.hostTotal = res.host.total;
+        this.hostPercent = res.host.percent;
+        this.cpu = res.CPU;
+        this.cpuCur = res.CPU.usage;
+        this.cpuTotal = res.CPU.total;
+        this.cpuPercent = res.CPU.percent;
+        this.memory = res.Memory;
+        this.memoryCur = res.Memory.usage;
+        this.memoryTotal = res.Memory.total;
+        this.memoryPercent = res.Memory.percent;
+        this.pageVisit = res.pv.today;
+        this.dataVolumn = res.DataVolume;
+          if(this.host.total === '0'){
+            this.host.total = 1;
+          }
         let option1 = {
           series: [{
             type: 'liquidFill',
-            data: [this.host.cur/this.host.total]
-          }]
+            data: [Number(this.host.usage)/Number(this.host.total)],
+            outline: {
+              show: false
+            }
+          }],
+
         };
         this.chart1 = option1;
 
+          if(this.cpu.total === '0'){
+            this.cpu.total = 1;
+          }
         let option2 = {
           series: [{
             type: 'liquidFill',
-            data: [this.cpu.cur/this.cpu.total]
-          }]
+            data: [Number(this.cpu.usage)/Number(this.cpu.total)],
+            outline: {
+              show: false
+            }
+          }],
         };
         this.chart2 = option2;
+          if(this.memory.total === '0'){
+            this.memory.total = 1;
+          }
 
         let option3 = {
           series: [{
             type: 'liquidFill',
-            data: [this.memory.cur/this.memory.total]
-          }]
+            data: [Number(this.memory.usage)/Number(this.memory.total)],
+            outline: {
+              show: false
+            },
+          }],
+
         };
         this.chart3 = option3;
 
@@ -125,16 +143,37 @@ export class PlatformComponent implements OnInit {
             trigger: 'axis'
           },
           xAxis: {
+            axisLabel: {color: '#808080'},
+            axisLine: {show: false},
+            axisTick: {show: false},
+            nameTextStyle: {
+              //color:'#fff',
+
+            },
+            /*axisLabel: {
+             interval: 0,
+             rotate: 30
+             },*/
             type: 'category',
             boundaryGap: false,
-            data: ['1', '2', '3', '4', '5', '6', '7','8','9','10','11','12']
+            data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
+            //data:arr3
           },
-          yAxis: {
-            type: 'value',
-            axisLabel: {
-              formatter: '{value} 次'
+
+          yAxis : [
+            {
+              axisLine: {show: false},
+              axisTick: {show: false},
+              type : 'value',
+              //name : '%',
+              axisLabel : {
+                formatter: '{value}',
+                textStyle: {
+                  color: '#808080'
+                }
+              }
             }
-          },
+          ],
           series: [
             {
               name: '访问量',
@@ -144,6 +183,11 @@ export class PlatformComponent implements OnInit {
 
           ]
         };
+
+
+
+
+
 
       },
         error => {
