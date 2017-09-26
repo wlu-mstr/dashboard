@@ -79,10 +79,10 @@ export class PlatformComponent implements OnInit {
         this.hostCur = result.host.cur;
         this.hostTotal = result.host.total;
         this.hostPercent = result.host.percent;
-        this.cpu = result.cpu;
-        this.cpuCur = result.cpu.cur;
-        this.cpuTotal = result.cpu.total;
-        this.cpuPercent = result.cpu.percent;
+        this.cpu = result.CPU;
+        this.cpuCur = result.CPU.cur;
+        this.cpuTotal = result.CPU.total;
+        this.cpuPercent = result.CPU.percent;
         this.memory = result.memory;
         this.memoryCur = result.memory.cur;
         this.memoryTotal = result.memory.total;
