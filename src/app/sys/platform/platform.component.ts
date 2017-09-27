@@ -178,12 +178,6 @@ export class PlatformComponent implements OnInit {
 
           ]
         };
-
-
-
-
-
-
       },
         error => {
         console.log('22222');
@@ -191,9 +185,10 @@ export class PlatformComponent implements OnInit {
     );
   }
 
+  // 百分数转成小数
   toPoint(percent){
-  var str=percent.replace("%","");
-  str= str/100;
-  return str;
-}
+      var str=percent.replace("%","");
+      str= str/100;
+      return str;
+  }
 }
