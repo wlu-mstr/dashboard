@@ -860,7 +860,7 @@ export class SysMonitorComponent implements OnInit {
           coordinateSystem: 'geo',
           data: convertData(data),
           symbolSize: function (val) {
-            return val[2] / 10;
+            return val[2] / 30;
           },
           label: {
             normal: {
