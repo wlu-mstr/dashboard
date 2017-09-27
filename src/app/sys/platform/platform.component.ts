@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { PlatformService } from './platform.service';
 
+declare var echarts;
+
 @Component({
   selector: 'platform',
   templateUrl: './platform.component.html',
@@ -92,7 +94,20 @@ export class PlatformComponent implements OnInit {
         let option1 = {
           series: [{
             type: 'liquidFill',
-            data: [this.toPoint(this.hostPercent)],
+            data: [{
+              value: this.toPoint(this.hostPercent),
+              itemStyle: {
+                normal: {
+                  color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    offset: 0,
+                    color: '#D1E9FA'
+                  }, {
+                    offset: 1,
+                    color: '#1792E5'
+                  }])
+                }
+              }
+            }],
             outline: {
               show: false
             }
@@ -107,7 +122,25 @@ export class PlatformComponent implements OnInit {
         let option2 = {
           series: [{
             type: 'liquidFill',
-            data: [this.toPoint(this.cpuPercent)],
+            label: {
+              normal: {
+                color:'#000000'
+              }
+            },
+            data: [{
+              value: this.toPoint(this.cpuPercent),
+              itemStyle: {
+                normal: {
+                  color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    offset: 0,
+                    color: '#D1E9FA'
+                  }, {
+                    offset: 1,
+                    color: '#1792E5'
+                  }])
+                }
+              }
+            }],
             outline: {
               show: false
             }
@@ -118,7 +151,20 @@ export class PlatformComponent implements OnInit {
         let option3 = {
           series: [{
             type: 'liquidFill',
-            data: [this.toPoint(this.memoryPercent)],
+            data: [{
+              value: this.toPoint(this.memoryPercent),
+              itemStyle: {
+                normal: {
+                  color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    offset: 0,
+                    color: '#D1E9FA'
+                  }, {
+                    offset: 1,
+                    color: '#1792E5'
+                  }])
+                }
+              }
+            }],
             outline: {
               show: false
             },

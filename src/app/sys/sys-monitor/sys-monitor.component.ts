@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { SysMonitorService } from './sys-monitor.service';
 
+declare var echarts;
+
 @Component({
   selector: 'sys-monitor',
   templateUrl: './sys-monitor.component.html',
