@@ -88,13 +88,11 @@ export class PlatformComponent implements OnInit {
         this.memoryPercent = res.Memory.percent;
         this.pageVisit = res.pv.today;
         this.dataVolumn = res.DataVolume;
-          if(this.host.total === '0'){
-            this.host.total = 1;
-          }
+
         let option1 = {
           series: [{
             type: 'liquidFill',
-            data: [Number(this.host.usage)/Number(this.host.total)],
+            data: [this.toPoint(this.hostPercent)],
             outline: {
               show: false
             }
@@ -109,21 +107,18 @@ export class PlatformComponent implements OnInit {
         let option2 = {
           series: [{
             type: 'liquidFill',
-            data: [Number(this.cpu.usage)/Number(this.cpu.total)],
+            data: [this.toPoint(this.cpuPercent)],
             outline: {
               show: false
             }
           }],
         };
         this.chart2 = option2;
-          if(this.memory.total === '0'){
-            this.memory.total = 1;
-          }
 
         let option3 = {
           series: [{
             type: 'liquidFill',
-            data: [Number(this.memory.usage)/Number(this.memory.total)],
+            data: [this.toPoint(this.memoryPercent)],
             outline: {
               show: false
             },
@@ -195,4 +190,10 @@ export class PlatformComponent implements OnInit {
         console.log(error); }
     );
   }
+
+  toPoint(percent){
+  var str=percent.replace("%","");
+  str= str/100;
+  return str;
+}
 }
