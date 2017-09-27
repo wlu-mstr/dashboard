@@ -5,11 +5,10 @@
     <a routerLink="/project" [ngClass]="{'on':showuser == true}" (click)="changepage()">PROJECT</a>
     <a routerLink="/platform" [ngClass]="{'on':showuser != true}" (click)="changepage()">PLATFORM</a>
   </div>
-  <!--<div class="top_right">-->
-  <!--<select name="">-->
-  <!--<option value="0">DIVCSS5</option>-->
-  <!--<option value="1">DIVCSS5</option>-->
-  <!--</select>-->
-  <!--</div>-->
+  <div class="top_right">
+  <select name="">
+  <option value="0">WholeSales</option>
+  </select>
+  </div>
 </div>
 <router-outlet></router-outlet>

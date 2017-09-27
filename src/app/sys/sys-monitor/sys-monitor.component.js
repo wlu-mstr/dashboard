@@ -1,401 +1,448 @@
-//import { Component, OnInit } from '@angular/core';
+var express = require('express');
+var app = express();
+var port = 3000;
+var cors = require('cors');
+var bodyParser = require('body-parser');
+app.use(cors());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use(bodyParser.json());
+app.use('/*', function (req, res, next) {
+    res.header("authentication", "eyJhbGciOiJIUzI1NiJ9.eyJsLWxldiI6IkhtYWNTSEEyNTYiLCJpc3MiOiJjNjA0NGU4YS01ODQ0LTExZTYtODY2My1hMDk5OWIwOGE3N2IiLCJleHAiOjE0OTEwMzMxMDIsImp0aSI6ImUwNDcyNGJmLWU0ODAtNGVkZS1iY2IxLTM3NjY0ZWFhYmFmNiJ9.5VnZ4nRpqKv6NC2QfggkjetTm2zAVVj5zZkPteHjBrQ");
+    next();
+});
+app.post('/admin/dashboard/getUserInfo', function (req, res) {
+    var result;
+    // result = {
+    //   "location":
+    //     [
+    //       {name: '拉萨', value: 24},
+    //       {name: '上海', value: 25},
+    //       {name: '福州', value: 29},
+    //       {name: '南宁', value: 37},
+    //       {name: '广州', value: 38},
+    //       {name: '太原', value: 39},
+    //       {name: '昆明', value: 39},
+    //       {name: '海口', value: 44},
+    //       {name: '沈阳', value: 50},
+    //       {name: '长春', value: 51},
+    //       {name: '银川', value: 52},
+    //       {name: '南昌', value: 54},
+    //       {name: '西宁', value: 57},
+    //       {name: '呼和浩特', value: 58},
+    //       {name: '成都', value: 58},
+    //       {name: '西安', value: 61},
+    //       {name: '重庆', value: 66},
+    //       {name: '南京', value: 67},
+    //       {name: '贵阳', value: 71},
+    //       {name: '北京', value: 79},
+    //       {name: '乌鲁木齐', value: 84},
+    //       {name: '杭州', value: 84},
+    //       {name: '济南', value: 92},
+    //       {name: '兰州', value: 99},
+    //       {name: '天津', value: 105},
+    //       {name: '郑州', value: 113},
+    //       {name: '哈尔滨', value: 114},
+    //       {name: '石家庄', value: 147},
+    //       {name: '长沙', value: 175},
+    //       {name: '合肥', value: 229},
+    //       {name: '武汉', value: 273}
+    //     ],
+    //   "userQty":['805','1300','3205','2300','43505'],
+    //   "activeUser":
+    //     [
+    //       {data: 'Jan1', value: 24},
+    //       {data: 'Jan2', value: 25},
+    //       {data: 'Jan3', value: 29},
+    //       {data: 'Jan4', value: 37},
+    //       {data: 'Jan5', value: 38},
+    //       {data: 'Jan6', value: 39},
+    //       {data: 'Jan7', value: 39},
+    //       {data: 'Jan8', value: 44},
+    //       {data: 'Jan9', value: 50},
+    //       {data: 'Jan10', value: 51},
+    //       {data: 'Jan11', value: 51},
+    //       {data: 'Jan12', value: 80},
+    //       /*{data: 'Jan7', value: 52},
+    //        {data: 'Jan7', value: 54},
+    //        {data: 'Jan7', value: 57},
+    //        {data: 'Jan7', value: 58},
+    //        {data: 'Jan7', value: 58},
+    //        {data: 'Jan7', value: 61},
+    //        {data: 'Jan7', value: 66},
+    //        {data: 'Jan7', value: 67},
+    //        {data: 'Jan7', value: 71},
+    //        {data: 'Jan7', value: 79},
+    //        {data: 'Jan7', value: 84},
+    //        {data: 'Jan7', value: 84},
+    //        {data: 'Jan7', value: 92},
+    //        {data: 'Jan7', value: 99},
+    //        {data: 'Jan7', value: 105},
+    //        {data: 'Jan7', value: 113},
+    //        {data: 'Jan7', value: 114},
+    //        {data: 'Jan7', value: 147},
+    //        {data: 'Jan7', value: 175},
+    //        {data: 'Jan7', value: 229},*/
+    //     ],
+    //   "RegisteredUser":
+    //     [
+    //       {data: 'Jan1', value: 14},
+    //       {data: 'Jan2', value: 55},
+    //       {data: 'Jan3', value: 19},
+    //       {data: 'Jan4', value: 17},
+    //       {data: 'Jan5', value: 21},
+    //       {data: 'Jan6', value: 39},
+    //       {data: 'Jan7', value: 3},
+    //       {data: 'Jan8', value: 14},
+    //       {data: 'Jan9', value: 50},
+    //       {data: 'Jan10', value: 11},
+    //       {data: 'Jan11', value: 21},
+    //       {data: 'Jan12', value: 51},
+    //     ],
+    // }
+    result = { "retbody": { "getUserInfo": { "userQty": ["0", "5", "165"], "location": [{ "name": "", "value": "23" }, { "name": "\u4e0a\u6d77\u5e02", "value": "502" }, { "name": "\u4e91\u5357\u7701", "value": "12" }, { "name": "\u5317\u4eac\u5e02", "value": "88" }, { "name": "\u5409\u6797\u7701", "value": "5" }, { "name": "\u56db\u5ddd\u7701", "value": "40" }, { "name": "\u5929\u6d25\u5e02", "value": "134" }, { "name": "\u5b89\u5fbd\u7701", "value": "2" }, { "name": "\u5c71\u4e1c\u7701", "value": "59" }, { "name": "\u5e7f\u4e1c\u7701", "value": "243" }, { "name": "\u5e7f\u897f\u58ee\u65cf\u81ea\u6cbb\u533a", "value": "4" }, { "name": "\u6c5f\u82cf\u7701", "value": "861" }, { "name": "\u6c5f\u897f\u7701", "value": "4" }, { "name": "\u6cb3\u5317\u7701", "value": "5" }, { "name": "\u6cb3\u5357\u7701", "value": "6" }, { "name": "\u6d59\u6c5f\u7701", "value": "463" }, { "name": "\u6e56\u5317\u7701", "value": "13" }, { "name": "\u6e56\u5357\u7701", "value": "37" }, { "name": "\u798f\u5efa\u7701", "value": "11" }, { "name": "\u8fbd\u5b81\u7701", "value": "17" }, { "name": "\u91cd\u5e86\u5e02", "value": "1" }, { "name": "\u9655\u897f\u7701", "value": "5" }, { "name": "\u9999\u6e2f\u7279\u522b\u884c\u653f\u533a", "value": "3" }], "activeUser": [{ "date": "1506297600.0", "value": "7" }, { "date": "1506384000.0", "value": "5" }], "RegisteredUser": [{ "date": "1505145873.29", "value": "1" }, { "date": "1505246647.72", "value": "1" }, { "date": "1504710123.4", "value": "1" }, { "date": "1505913157.06", "value": "1" }] } }, "message": "success", "retcode": 200 };
+    res.json(result);
+});
+app.post('/admin/dashboard/getTradeOrderInfo', function (req, res) {
+    var result;
+    // result = {
+    //   "trade": {
+    //     "tradeToday": '43,505',
+    //     "tradeNums": [
+    //       {data: 'Jan1', value: 114},
+    //       {data: 'Jan2', value: 125},
+    //       {data: 'Jan3', value: 119},
+    //       {data: 'Jan4', value: 37},
+    //       {data: 'Jan5', value: 38},
+    //       {data: 'Jan6', value: 59},
+    //       {data: 'Jan7', value: 39},
+    //       {data: 'Jan8', value: 14},
+    //       {data: 'Jan9', value: 50},
+    //       {data: 'Jan10', value: 11},
+    //       {data: 'Jan11', value: 21},
+    //       {data: 'Jan12', value: 51},
+    //     ],
+    //     "tradeTop":
+    //       [
+    //         { "total_price":12340000,
+    //           "total":[
+    //             {name:'Company1', percent:'82%', value:156},
+    //             {name:'Company2', percent:'62%', value:123},
+    //             {name:'Company3', percent:'32%', value:96},
+    //             {name:'Company4', percent:'12%', value:67},
+    //             {name:'Company5', percent:'2%', value:52}
+    //           ]
+    //         },
+    //         { "total_price":12340000,
+    //           "1month":[
+    //             {name:'Company1', percent:'82%', value:156},
+    //             {name:'Company2', percent:'62%', value:123},
+    //             {name:'Company3', percent:'32%', value:96},
+    //             {name:'Company4', percent:'12%', value:67},
+    //             {name:'Company5', percent:'2%', value:52}
+    //           ]
+    //         },
+    //         { "total_price":12340000,
+    //           "3month":[
+    //             {name:'Company1', percent:'82%', value:156},
+    //             {name:'Company2', percent:'62%', value:123},
+    //             {name:'Company3', percent:'32%', value:96},
+    //             {name:'Company4', percent:'12%', value:67},
+    //             {name:'Company5', percent:'2%', value:52}
+    //           ]
+    //         },
+    //         { "total_price":12340000,
+    //           "6month":[
+    //             {name:'Company1', percent:'82%', value:156},
+    //             {name:'Company2', percent:'62%', value:123},
+    //             {name:'Company3', percent:'32%', value:96},
+    //             {name:'Company4', percent:'12%', value:67},
+    //             {name:'Company5', percent:'2%', value:52}
+    //           ]
+    //         },
+    //       ],
+    //   },
+    //   "order": {
+    //     "orderToday": '13,505',
+    //     "orderNums": [
+    //       {data: 'Jan1', value: 114},
+    //       {data: 'Jan2', value: 125},
+    //       {data: 'Jan3', value: 109},
+    //       {data: 'Jan4', value: 307},
+    //       {data: 'Jan5', value: 380},
+    //       {data: 'Jan6', value: 509},
+    //       {data: 'Jan7', value: 439},
+    //       {data: 'Jan8', value: 514},
+    //       {data: 'Jan9', value: 550},
+    //       {data: 'Jan10', value: 611},
+    //       {data: 'Jan11', value: 621},
+    //       {data: 'Jan12', value: 651},
+    //     ],
+    //     "orderTop":
+    //       [
+    //         { "total_num":35005,
+    //           "total":[
+    //             {name:'Company1', percent:'72%', value:996},
+    //             {name:'Company2', percent:'62%', value:129},
+    //             {name:'Company3', percent:'42%', value:86},
+    //             {name:'Company4', percent:'32%', value:37},
+    //             {name:'Company5', percent:'22%', value:32}
+    //           ]
+    //         },
+    //         { "1month_price":12340000,
+    //           "1month":[
+    //             {name:'Company1', percent:'82%', value:156},
+    //             {name:'Company2', percent:'62%', value:123},
+    //             {name:'Company3', percent:'32%', value:96},
+    //             {name:'Company4', percent:'12%', value:67},
+    //             {name:'Company5', percent:'2%', value:52}
+    //           ]
+    //         },
+    //         { "total_num":12340000,
+    //           "3month":[
+    //             {name:'Company1', percent:'82%', value:156},
+    //             {name:'Company2', percent:'62%', value:123},
+    //             {name:'Company3', percent:'32%', value:96},
+    //             {name:'Company4', percent:'12%', value:67},
+    //             {name:'Company5', percent:'2%', value:52}
+    //           ]
+    //         },
+    //         { "total_num":12340000,
+    //           "6month":[
+    //             {name:'Company1', percent:'82%', value:156},
+    //             {name:'Company2', percent:'62%', value:123},
+    //             {name:'Company3', percent:'32%', value:96},
+    //             {name:'Company4', percent:'12%', value:67},
+    //             {name:'Company5', percent:'2%', value:52}
+    //           ]
+    //         },
+    //       ],
+    //   },
+    // }
+    result = { "retbody": { "getTradeOrderInfo": { "order": { "orderToday": "118", "orderNums": [{ "date": 1505520000.0, "value": "128" }, { "date": 1505606400.0, "value": "128" }, { "date": 1504828800.0, "value": "160" }, { "date": 1504310400.0, "value": "128" }, { "date": 1505433600.0, "value": "175" }, { "date": 1505260800.0, "value": "291" }, { "date": 1505347200.0, "value": "179" }, { "date": 1506124800.0, "value": "128" }, { "date": 1506384000.0, "value": "168" }, { "date": 1505952000.0, "value": "128" }, { "date": 1504224000.0, "value": "217" }, { "date": 1505174400.0, "value": "249" }, { "date": 1504915200.0, "value": "132" }, { "date": 1504742400.0, "value": "236" }, { "date": 1506297600.0, "value": "142" }, { "date": 1505779200.0, "value": "129" }, { "date": 1505001600.0, "value": "131" }, { "date": 1504483200.0, "value": "154" }, { "date": 1505865600.0, "value": "131" }, { "date": 1504396800.0, "value": "128" }, { "date": 1504656000.0, "value": "197" }, { "date": 1504569600.0, "value": "179" }, { "date": 1506470400.0, "value": "118" }, { "date": 1505088000.0, "value": "168" }, { "date": 1506211200.0, "value": "133" }, { "date": 1506038400.0, "value": "127" }, { "date": 1505692800.0, "value": "128" }], "orderTop": [{ "total": [{ "top": "1", "percent": "78%", "name": "test2017", "value": "14042" }, { "top": "2", "percent": "5%", "name": "jtest", "value": "1037" }, { "top": "3", "percent": "3%", "name": "demo", "value": "715" }, { "top": "4", "percent": "3%", "name": "\u676d\u5dde\u5a01\u8bfe\u4fe1\u606f", "value": "658" }, { "top": "5", "percent": "1%", "name": "gaoqing1", "value": "344" }], "total_num": "17'981" }, { "1month": [{ "top": "1", "percent": "86%", "name": "test2017", "value": "4557" }, { "top": "2", "percent": "6%", "name": "gaoqing1", "value": "338" }, { "top": "3", "percent": "2%", "name": "cjtest", "value": "134" }, { "top": "4", "percent": "1%", "name": "jtest", "value": "75" }, { "top": "5", "percent": "1%", "name": "alextest2", "value": "65" }], "total_num": "5'250" }, { "3month": [{ "top": "1", "percent": "85%", "name": "test2017", "value": "10065" }, { "top": "2", "percent": "5%", "name": "jtest", "value": "694" }, { "top": "3", "percent": "2%", "name": "gaoqing1", "value": "344" }, { "top": "4", "percent": "1%", "name": "alextest2", "value": "168" }, { "top": "5", "percent": "1%", "name": "cjtest", "value": "151" }], "total_num": "11'718" }, { "6month": [{ "top": "1", "percent": "82%", "name": "test2017", "value": "11629" }, { "top": "2", "percent": "7%", "name": "jtest", "value": "1037" }, { "top": "3", "percent": "2%", "name": "gaoqing1", "value": "344" }, { "top": "4", "percent": "2%", "name": "develop", "value": "303" }, { "top": "5", "percent": "1%", "name": "alextest2", "value": "168" }], "total_num": "14'124" }] }, "trade": { "tradeTop": [{ "total_price": "-6'222'819'183'388'223'000'000'000'000'000'000'001'623'036'821'091", "total": [{ "top": "1", "percent": "0%", "name": "jtest", "value": "354151105208" }, { "top": "2", "percent": "0%", "name": "gaoqing1", "value": "233630844" }, { "top": "3", "percent": "0%", "name": "Alexx", "value": "150904480" }, { "top": "4", "percent": "0%", "name": "ray826", "value": "70013778" }, { "top": "5", "percent": "0%", "name": "\u6d4b\u8bd5", "value": "5668473" }] }, { "total_price": "N'one", "1month": [{ "top": "1", "percent": "0%", "name": "ray826", "value": "70012149" }, { "top": "2", "percent": "0%", "name": "develop", "value": "45987" }, { "top": "3", "percent": "0%", "name": "cjtest", "value": "31916" }, { "top": "4", "percent": "0%", "name": "jtest", "value": "25266" }, { "top": "5", "percent": "0%", "name": "alextest2", "value": "2296" }] }, { "total_price": "N'one", "3month": [{ "top": "1", "percent": "0%", "name": "test2017", "value": "577710946" }, { "top": "2", "percent": "0%", "name": "gaoqing1", "value": "233630844" }, { "top": "3", "percent": "0%", "name": "jtest", "value": "103356421" }, { "top": "4", "percent": "0%", "name": "ray826", "value": "70013778" }, { "top": "5", "percent": "0%", "name": "develop", "value": "34597123" }] }, { "6month": [{ "top": "1", "percent": "0%", "name": "jtest", "value": "354151105208" }, { "top": "2", "percent": "0%", "name": "gaoqing1", "value": "233630844" }, { "top": "3", "percent": "0%", "name": "Alexx", "value": "150904480" }, { "top": "4", "percent": "0%", "name": "ray826", "value": "70013778" }, { "top": "5", "percent": "0%", "name": "demo", "value": "171386" }], "total_price": "N'one" }], "tradeNums": [{ "date": 1505520000.0, "value": "-8000" }, { "date": 1505606400.0, "value": "-8000" }, { "date": 1504828800.0, "value": "-5660" }, { "date": 1504310400.0, "value": "-8000" }, { "date": 1505433600.0, "value": "-4839" }, { "date": 1505260800.0, "value": "6863" }, { "date": 1505347200.0, "value": "-6330" }, { "date": 1506124800.0, "value": "-8000" }, { "date": 1506384000.0, "value": "30168" }, { "date": 1505952000.0, "value": "-8000" }, { "date": 1504224000.0, "value": "-110205" }, { "date": 1505174400.0, "value": "6431" }, { "date": 1504915200.0, "value": "-7600" }, { "date": 1504742400.0, "value": "-827897" }, { "date": 1506297600.0, "value": "10514" }, { "date": 1505779200.0, "value": "-7873" }, { "date": 1505001600.0, "value": "-7610" }, { "date": 1504483200.0, "value": "-8805" }, { "date": 1505865600.0, "value": "-7644" }, { "date": 1504396800.0, "value": "-8000" }, { "date": 1504656000.0, "value": "-18997" }, { "date": 1504569600.0, "value": "8908" }, { "date": 1506470400.0, "value": "-7824" }, { "date": 1505088000.0, "value": "615" }, { "date": 1506211200.0, "value": "-7985" }, { "date": 1506038400.0, "value": "-7915" }, { "date": 1505692800.0, "value": "-8000" }], "tradeToday": "-7'824" } } }, "message": "success", "retcode": 200 };
+    res.json(result);
+});
+app.post('/admin/dashboard/getPlatformInfo', function (req, res) {
+    var result = {
+        "host": {
+            "cur": 140,
+            "total": 200,
+            "perecnt": "70%"
+        },
+        "cpu": {
+            "cur": 4,
+            "total": 8,
+            "perecnt": "50%"
+        },
+        "memory": {
+            "cur": 23000,
+            "total": 100000,
+            "perecnt": "25%"
+        },
+        "pv": {
+            "today": "2000",
+            "lastMonth": [
+                { data: 'Jan1', value: 114 },
+                { data: 'Jan2', value: 125 },
+                { data: 'Jan3', value: 109 },
+                { data: 'Jan4', value: 307 },
+                { data: 'Jan5', value: 380 },
+                { data: 'Jan6', value: 509 },
+                { data: 'Jan7', value: 439 },
+                { data: 'Jan8', value: 514 },
+                { data: 'Jan9', value: 550 },
+                { data: 'Jan10', value: 611 },
+                { data: 'Jan11', value: 621 },
+                { data: 'Jan12', value: 651 },
+            ]
+        },
+        "dataVolumn": "63,500,500"
+    };
+    res.json(result);
+});
+//app.post('/admin/dashboard/getUserInfo',function(req,res){
+//  var result = {
+//    "map":
+//      [
+//        {name: '拉萨', value: 24},
+//        {name: '上海', value: 25},
+//        {name: '福州', value: 29},
+//        {name: '南宁', value: 37},
+//        {name: '广州', value: 38},
+//        {name: '太原', value: 39},
+//        {name: '昆明', value: 39},
+//        {name: '海口', value: 44},
+//        {name: '沈阳', value: 50},
+//        {name: '长春', value: 51},
+//        {name: '银川', value: 52},
+//        {name: '南昌', value: 54},
+//        {name: '西宁', value: 57},
+//        {name: '呼和浩特', value: 58},
+//        {name: '成都', value: 58},
+//        {name: '西安', value: 61},
+//        {name: '重庆', value: 66},
+//        {name: '南京', value: 67},
+//        {name: '贵阳', value: 71},
+//        {name: '北京', value: 79},
+//        {name: '乌鲁木齐', value: 84},
+//        {name: '杭州', value: 84},
+//        {name: '济南', value: 92},
+//        {name: '兰州', value: 99},
+//        {name: '天津', value: 105},
+//        {name: '郑州', value: 113},
+//        {name: '哈尔滨', value: 114},
+//        {name: '石家庄', value: 147},
+//        {name: '长沙', value: 175},
+//        {name: '合肥', value: 229},
+//        {name: '武汉', value: 273}
+//      ],
+//    "users": {
+//      "onlineUser": 805,
+//      "downlineUser": 1200,
+//      "activeUser": 3205,
+//      "unactiveUser": 2300,
+//      "registerUser": 1143500
+//    },
+//    "AcUser":
+//      [
+//        {data: 'Jan1', value: 24},
+//        {data: 'Jan2', value: 25},
+//        {data: 'Jan3', value: 29},
+//        {data: 'Jan4', value: 37},
+//        {data: 'Jan5', value: 38},
+//        {data: 'Jan6', value: 39},
+//        {data: 'Jan7', value: 39},
+//        {data: 'Jan8', value: 44},
+//        {data: 'Jan9', value: 50},
+//        {data: 'Jan10', value: 51},
+//        {data: 'Jan11', value: 51},
+//        {data: 'Jan12', value: 51},
+//        /*{data: 'Jan7', value: 52},
+//         {data: 'Jan7', value: 54},
+//         {data: 'Jan7', value: 57},
+//         {data: 'Jan7', value: 58},
+//         {data: 'Jan7', value: 58},
+//         {data: 'Jan7', value: 61},
+//         {data: 'Jan7', value: 66},
+//         {data: 'Jan7', value: 67},
+//         {data: 'Jan7', value: 71},
+//         {data: 'Jan7', value: 79},
+//         {data: 'Jan7', value: 84},
+//         {data: 'Jan7', value: 84},
+//         {data: 'Jan7', value: 92},
+//         {data: 'Jan7', value: 99},
+//         {data: 'Jan7', value: 105},
+//         {data: 'Jan7', value: 113},
+//         {data: 'Jan7', value: 114},
+//         {data: 'Jan7', value: 147},
+//         {data: 'Jan7', value: 175},
+//         {data: 'Jan7', value: 229},*/
 //
-//import { SysMonitorService } from './sys-monitor.service';
+//      ],
+//    "ReUser":
+//      [
+//        {data: 'Jan1', value: 14},
+//        {data: 'Jan2', value: 25},
+//        {data: 'Jan3', value: 19},
+//        {data: 'Jan4', value: 37},
+//        {data: 'Jan5', value: 38},
+//        {data: 'Jan6', value: 459},
+//        {data: 'Jan7', value: 439},
+//        {data: 'Jan8', value: 114},
+//        {data: 'Jan9', value: 650},
+//        {data: 'Jan10', value: 311},
+//        {data: 'Jan11', value: 321},
+//        {data: 'Jan12', value: 251},
 //
-//@Component({
-//  selector: 'sys-monitor',
-//  templateUrl: './sys-monitor.component.html',
-//  styleUrls: ['./sys-monitor.component.scss'],
-//    providers: [SysMonitorService]
-//})
-//export class SysMonitorComponent implements OnInit {
+//      ],
+//    "trade": {
+//      "tradeToday": '43,505',
+//      "tradeNums": [
+//        {data: 'Jan1', value: 114},
+//        {data: 'Jan2', value: 125},
+//        {data: 'Jan3', value: 119},
+//        {data: 'Jan4', value: 37},
+//        {data: 'Jan5', value: 38},
+//        {data: 'Jan6', value: 59},
+//        {data: 'Jan7', value: 39},
+//        {data: 'Jan8', value: 14},
+//        {data: 'Jan9', value: 50},
+//        {data: 'Jan10', value: 11},
+//        {data: 'Jan11', value: 21},
+//        {data: 'Jan12', value: 51},
+//      ],
+//    },
+//    "tradeTop":
+//    {
+//      total:'123400000',
+//      t1name:'CompanyXX',
+//      t1percent:'32%',
+//      t1value:'123,000,000',
+//      t2name:'CompanyXX',
+//      t2percent:'32%',
+//      t2value:'123,000,000',
+//      t3name:'CompanyXX',
+//      t3percent:'32%',
+//      t3value:'123,000,000',
+//      t4name:'CompanyXX',
+//      t4percent:'32%',
+//      t4value:'123,000,000',
+//      t5name:'CompanyXX',
+//      t5percent:'32%',
+//      t5value:'123,000,000'
 //
-//    public pieChart:any;
-//    public lineChart:any;
-//    public barChart:any;
-//    public hasPieChart : boolean;
-//    public hasBarChart: boolean;
-//    public hasLineChart: boolean;
+//    },
 //
-//    constructor(public sysMonitorService: SysMonitorService) {
-//    }
-//
-//
-//  ngOnInit() {
-//
-//      this.hasPieChart = false;
-//      this.hasBarChart = false;
-//      this.hasLineChart = false;
-//
-//      this.sysMonitorService.getInfo({}).subscribe(
-//              res => {
-//                  this.hasPieChart = true;
-//                  this.hasBarChart = true;
-//                  this.hasLineChart = true;
-//                  //this.pieChart = res.pieChart;
-//                  var data = res.map;
-//                  var geoCoordMap = {
-//                      '海门':[121.15,31.89],
-//                      '鄂尔多斯':[109.781327,39.608266],
-//                      '招远':[120.38,37.35],
-//                      '舟山':[122.207216,29.985295],
-//                      '齐齐哈尔':[123.97,47.33],
-//                      '盐城':[120.13,33.38],
-//                      '赤峰':[118.87,42.28],
-//                      '青岛':[120.33,36.07],
-//                      '乳山':[121.52,36.89],
-//                      '金昌':[102.188043,38.520089],
-//                      '泉州':[118.58,24.93],
-//                      '莱西':[120.53,36.86],
-//                      '日照':[119.46,35.42],
-//                      '胶南':[119.97,35.88],
-//                      '南通':[121.05,32.08],
-//                      '拉萨':[91.11,29.97],
-//                      '云浮':[112.02,22.93],
-//                      '梅州':[116.1,24.55],
-//                      '文登':[122.05,37.2],
-//                      '上海':[121.48,31.22],
-//                      '攀枝花':[101.718637,26.582347],
-//                      '威海':[122.1,37.5],
-//                      '承德':[117.93,40.97],
-//                      '厦门':[118.1,24.46],
-//                      '汕尾':[115.375279,22.786211],
-//                      '潮州':[116.63,23.68],
-//                      '丹东':[124.37,40.13],
-//                      '太仓':[121.1,31.45],
-//                      '曲靖':[103.79,25.51],
-//                      '烟台':[121.39,37.52],
-//                      '福州':[119.3,26.08],
-//                      '瓦房店':[121.979603,39.627114],
-//                      '即墨':[120.45,36.38],
-//                      '抚顺':[123.97,41.97],
-//                      '玉溪':[102.52,24.35],
-//                      '张家口':[114.87,40.82],
-//                      '阳泉':[113.57,37.85],
-//                      '莱州':[119.942327,37.177017],
-//                      '湖州':[120.1,30.86],
-//                      '汕头':[116.69,23.39],
-//                      '昆山':[120.95,31.39],
-//                      '宁波':[121.56,29.86],
-//                      '湛江':[110.359377,21.270708],
-//                      '揭阳':[116.35,23.55],
-//                      '荣成':[122.41,37.16],
-//                      '连云港':[119.16,34.59],
-//                      '葫芦岛':[120.836932,40.711052],
-//                      '常熟':[120.74,31.64],
-//                      '东莞':[113.75,23.04],
-//                      '河源':[114.68,23.73],
-//                      '淮安':[119.15,33.5],
-//                      '泰州':[119.9,32.49],
-//                      '南宁':[108.33,22.84],
-//                      '营口':[122.18,40.65],
-//                      '惠州':[114.4,23.09],
-//                      '江阴':[120.26,31.91],
-//                      '蓬莱':[120.75,37.8],
-//                      '韶关':[113.62,24.84],
-//                      '嘉峪关':[98.289152,39.77313],
-//                      '广州':[113.23,23.16],
-//                      '延安':[109.47,36.6],
-//                      '太原':[112.53,37.87],
-//                      '清远':[113.01,23.7],
-//                      '中山':[113.38,22.52],
-//                      '昆明':[102.73,25.04],
-//                      '寿光':[118.73,36.86],
-//                      '盘锦':[122.070714,41.119997],
-//                      '长治':[113.08,36.18],
-//                      '深圳':[114.07,22.62],
-//                      '珠海':[113.52,22.3],
-//                      '宿迁':[118.3,33.96],
-//                      '咸阳':[108.72,34.36],
-//                      '铜川':[109.11,35.09],
-//                      '平度':[119.97,36.77],
-//                      '佛山':[113.11,23.05],
-//                      '海口':[110.35,20.02],
-//                      '江门':[113.06,22.61],
-//                      '章丘':[117.53,36.72],
-//                      '肇庆':[112.44,23.05],
-//                      '大连':[121.62,38.92],
-//                      '临汾':[111.5,36.08],
-//                      '吴江':[120.63,31.16],
-//                      '石嘴山':[106.39,39.04],
-//                      '沈阳':[123.38,41.8],
-//                      '苏州':[120.62,31.32],
-//                      '茂名':[110.88,21.68],
-//                      '嘉兴':[120.76,30.77],
-//                      '长春':[125.35,43.88],
-//                      '胶州':[120.03336,36.264622],
-//                      '银川':[106.27,38.47],
-//                      '张家港':[120.555821,31.875428],
-//                      '三门峡':[111.19,34.76],
-//                      '锦州':[121.15,41.13],
-//                      '南昌':[115.89,28.68],
-//                      '柳州':[109.4,24.33],
-//                      '三亚':[109.511909,18.252847],
-//                      '自贡':[104.778442,29.33903],
-//                      '吉林':[126.57,43.87],
-//                      '阳江':[111.95,21.85],
-//                      '泸州':[105.39,28.91],
-//                      '西宁':[101.74,36.56],
-//                      '宜宾':[104.56,29.77],
-//                      '呼和浩特':[111.65,40.82],
-//                      '成都':[104.06,30.67],
-//                      '大同':[113.3,40.12],
-//                      '镇江':[119.44,32.2],
-//                      '桂林':[110.28,25.29],
-//                      '张家界':[110.479191,29.117096],
-//                      '宜兴':[119.82,31.36],
-//                      '北海':[109.12,21.49],
-//                      '西安':[108.95,34.27],
-//                      '金坛':[119.56,31.74],
-//                      '东营':[118.49,37.46],
-//                      '牡丹江':[129.58,44.6],
-//                      '遵义':[106.9,27.7],
-//                      '绍兴':[120.58,30.01],
-//                      '扬州':[119.42,32.39],
-//                      '常州':[119.95,31.79],
-//                      '潍坊':[119.1,36.62],
-//                      '重庆':[106.54,29.59],
-//                      '台州':[121.420757,28.656386],
-//                      '南京':[118.78,32.04],
-//                      '滨州':[118.03,37.36],
-//                      '贵阳':[106.71,26.57],
-//                      '无锡':[120.29,31.59],
-//                      '本溪':[123.73,41.3],
-//                      '克拉玛依':[84.77,45.59],
-//                      '渭南':[109.5,34.52],
-//                      '马鞍山':[118.48,31.56],
-//                      '宝鸡':[107.15,34.38],
-//                      '焦作':[113.21,35.24],
-//                      '句容':[119.16,31.95],
-//                      '北京':[116.46,39.92],
-//                      '徐州':[117.2,34.26],
-//                      '衡水':[115.72,37.72],
-//                      '包头':[110,40.58],
-//                      '绵阳':[104.73,31.48],
-//                      '乌鲁木齐':[87.68,43.77],
-//                      '枣庄':[117.57,34.86],
-//                      '杭州':[120.19,30.26],
-//                      '淄博':[118.05,36.78],
-//                      '鞍山':[122.85,41.12],
-//                      '溧阳':[119.48,31.43],
-//                      '库尔勒':[86.06,41.68],
-//                      '安阳':[114.35,36.1],
-//                      '开封':[114.35,34.79],
-//                      '济南':[117,36.65],
-//                      '德阳':[104.37,31.13],
-//                      '温州':[120.65,28.01],
-//                      '九江':[115.97,29.71],
-//                      '邯郸':[114.47,36.6],
-//                      '临安':[119.72,30.23],
-//                      '兰州':[103.73,36.03],
-//                      '沧州':[116.83,38.33],
-//                      '临沂':[118.35,35.05],
-//                      '南充':[106.110698,30.837793],
-//                      '天津':[117.2,39.13],
-//                      '富阳':[119.95,30.07],
-//                      '泰安':[117.13,36.18],
-//                      '诸暨':[120.23,29.71],
-//                      '郑州':[113.65,34.76],
-//                      '哈尔滨':[126.63,45.75],
-//                      '聊城':[115.97,36.45],
-//                      '芜湖':[118.38,31.33],
-//                      '唐山':[118.02,39.63],
-//                      '平顶山':[113.29,33.75],
-//                      '邢台':[114.48,37.05],
-//                      '德州':[116.29,37.45],
-//                      '济宁':[116.59,35.38],
-//                      '荆州':[112.239741,30.335165],
-//                      '宜昌':[111.3,30.7],
-//                      '义乌':[120.06,29.32],
-//                      '丽水':[119.92,28.45],
-//                      '洛阳':[112.44,34.7],
-//                      '秦皇岛':[119.57,39.95],
-//                      '株洲':[113.16,27.83],
-//                      '石家庄':[114.48,38.03],
-//                      '莱芜':[117.67,36.19],
-//                      '常德':[111.69,29.05],
-//                      '保定':[115.48,38.85],
-//                      '湘潭':[112.91,27.87],
-//                      '金华':[119.64,29.12],
-//                      '岳阳':[113.09,29.37],
-//                      '长沙':[113,28.21],
-//                      '衢州':[118.88,28.97],
-//                      '廊坊':[116.7,39.53],
-//                      '菏泽':[115.480656,35.23375],
-//                      '合肥':[117.27,31.86],
-//                      '武汉':[114.31,30.52],
-//                      '大庆':[125.03,46.58]
-//                  };
-//
-//                  var convertData = function (data) {
-//                      var res = [];
-//                      for (var i = 0; i < data.length; i++) {
-//                          var geoCoord = geoCoordMap[data[i].name];
-//                          if (geoCoord) {
-//                              res.push({
-//                                  name: data[i].name,
-//                                  value: geoCoord.concat(data[i].value)
-//                              });
-//                          }
-//                      }
-//                      return res;
-//                  };
-//
-//                  var option = {
-//                      //backgroundColor: '#404a59',
-//                      title: {
-//                          text: '',
-//                          subtext: '',
-//                          left: 'center',
-//                          textStyle: {
-//                              color: '#fff'
-//                          }
-//                      },
-//                      tooltip : {
-//                          trigger: 'item'
-//                      },
-//                      legend: {
-//                          orient: 'vertical',
-//                          y: 'bottom',
-//                          x:'right',
-//                          data:['pm2.5'],
-//                          textStyle: {
-//                              color: '#fff'
-//                          }
-//                      },
-//                      geo: {
-//                          map: 'china',
-//                          label: {
-//                              emphasis: {
-//                                  show: false
-//                              }
-//                          },
-//                          roam: true,
-//                          itemStyle: {
-//                              normal: {
-//                                  areaColor: '#323c48',
-//                                  borderColor: '#111'
-//                              },
-//                              emphasis: {
-//                                  areaColor: '#2a333d'
-//                              }
-//                          }
-//                      },
-//                      series : [
-//                          {
-//                              name: 'pm2.5',
-//                              type: 'scatter',
-//                              coordinateSystem: 'geo',
-//                              data: convertData(data),
-//                              symbolSize: function (val) {
-//                                  return val[2] / 10;
-//                              },
-//                              label: {
-//                                  normal: {
-//                                      formatter: '{b}',
-//                                      position: 'center',
-//                                      show: true
-//                                  },
-//                                  emphasis: {
-//                                      show: true
-//                                  }
-//                              },
-//                              itemStyle: {
-//                                  normal: {
-//                                      color: '#ddb926'
-//                                  }
-//                              }
-//                          }
-//                      ]
-//                  };
-//
-//                  this.pieChart = option;
-//
-//                  this.barChart = {
-//                  title: {
-//                      text: '',
-//                      subtext: '',
-//                      x: 'center'
-//                  },
-//                  color: ['#3398DB'],
-//                  tooltip: {
-//                      trigger: 'axis',
-//                      axisPointer: {            // 坐标轴指示器，坐标轴触发有效
-//                          type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-//                      },
-//                      formatter: "{b}月{a}:{c}"
-//                  },
-//                  grid: {
-//                      left: '3%',
-//                      right: '4%',
-//                      bottom: '3%',
-//                      containLabel: true
-//                  },
-//                  xAxis: [
-//                      {
-//                          type: 'category',
-//                          data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
-//                          axisTick: {
-//                              alignWithLabel: true
-//                          }
-//                      }
-//                  ],
-//                  yAxis: [
-//                      {
-//                          type: 'value'
-//                      }
-//                  ],
-//                  series: [
-//                      {
-//                          name: '访问量',
-//                          type: 'bar',
-//                          barWidth: '60%',
-//                          data: [10, 52, 200, 334, 390, 330, 220, 1000, 500, 444, 999, 11]
-//                      }
-//                  ]
-//              };
-//
-//              this.lineChart = {
-//                  title: {
-//                      text: '',
-//                      subtext: '',
-//                      x:"center"
-//                  },
-//                  tooltip: {
-//                      trigger: 'axis'
-//                  },
-//                  xAxis: {
-//                      type: 'category',
-//                      boundaryGap: false,
-//                      data: ['1', '2', '3', '4', '5', '6', '7','8','9','10','11','12']
-//                  },
-//                  yAxis: {
-//                      type: 'value',
-//                      axisLabel: {
-//                          formatter: '{value} 次'
-//                      }
-//                  },
-//                  series: [
-//                      {
-//                          name: '访问量',
-//                          type: 'line',
-//                          data: [11, 11, 15, 13, 12, 13, 10,123,100,99,66,199]
-//                      }
-//
-//                  ]
-//              };
-//
-//
-//
-//
-//
-//
-//          },
-//              error => {
-//              console.log('22222');
-//              console.log(error); }
-//      );
 //
 //  }
-//}
+//
+//
+//  res.json(result);
+//});
+//
+//
+//app.post('/getPlatform',function(req,res){
+//  var result = {
+//    "host": {
+//      "cur": 140,
+//      "total": 200,
+//      "percent":"70%"
+//    },
+//    "cpu": {
+//      "cur": 4,
+//      "total": 8,
+//      "percent":"50%"
+//    },
+//    "memory": {
+//      "cur": 23000,
+//      "total": 100000,
+//      "percent":"23%"
+//    },
+//    'pageVisit': "230,500",
+//     "dataVolumn":"63,500,500"
+//
+//  }
+//
+//
+//  res.json(result);
+//});
+//
+app.use(function (req, res, next) {
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
+});
+app.use(errorHandler);
+function errorHandler(err, req, res, next) {
+    var error = {
+        errorCode: "500",
+        errorMessage: "call api error"
+    };
+    res.status(500);
+    res.json(error);
+}
+app.listen(port, function () {
+    console.log('server start, listen on port ' + port);
+});
 //# sourceMappingURL=sys-monitor.component.js.map

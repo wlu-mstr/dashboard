@@ -109,17 +109,16 @@ export class SysMonitorComponent implements OnInit {
           //backgroundColor: '#404a59',
           title: {
             text: 'Online User',
-            subtext: userQty[0],
-            left: 120,
-            //center: ['60%', '55%'],
+            subtext: '  ' + userQty[0],
+            left: "50%",
             top: 'center',
             subtextStyle: {
-              fontSize: [15],
+              fontSize: [46],
               color: ['#FAFAFA '],
-
             },
+            itemGap:20,
             textStyle: {
-              fontSize: [7],
+              fontSize: [20],
               color: ['#FAFAFA '],
               fontWeight: ['lighter'],
             },
@@ -169,7 +168,7 @@ export class SysMonitorComponent implements OnInit {
                   }
                 },
                 {
-                  value: userQty[1],
+                  value: userQty[2],
                   name: 'Downline User',
                   label: {
                     normal: {
@@ -221,8 +220,8 @@ export class SysMonitorComponent implements OnInit {
           //backgroundColor: '#404a59',
           title: {
             text: 'Active User',
-            subtext: userQty[2],
-            left: 120,
+            subtext: '  ' +userQty[1],
+            left: "50%",
             top: 'center',
             //bottom:['550%'],
             /* padding: [
@@ -232,12 +231,13 @@ export class SysMonitorComponent implements OnInit {
              10, // 左
              ],*/
             subtextStyle: {
-              fontSize: [15],
+              fontSize: [46],
               color: ['#FAFAFA '],
 
             },
+            itemGap:20,
             textStyle: {
-              fontSize: [7],
+              fontSize: [20],
               color: ['#FAFAFA '],
               fontWeight: ['lighter'],
             },
@@ -263,7 +263,7 @@ export class SysMonitorComponent implements OnInit {
               //left: 'left',
               data: [
                 {
-                  value: userQty[2],
+                  value: userQty[1],
                   name: 'Active User',
                   tooltip: {
                     trigger: 'item',
@@ -287,7 +287,7 @@ export class SysMonitorComponent implements OnInit {
                   }
                 },
                 {
-                  value: userQty[3],
+                  value: userQty[2],
                   name: 'Unactive User',
                   label: {
                     normal: {
@@ -339,8 +339,8 @@ export class SysMonitorComponent implements OnInit {
           //backgroundColor: '#404a59',
           title: {
             text: 'Register User',
-            subtext: userQty[4],
-            left: 120,
+            subtext:' ' + userQty[2],
+            left: "50%",
             top: 'center',
             /* padding: [
              5,  // 上
@@ -349,12 +349,12 @@ export class SysMonitorComponent implements OnInit {
              10, // 左
              ],*/
             subtextStyle: {
-              fontSize: [15],
+              fontSize: [46],
               color: ['#FAFAFA '],
-
             },
+            itemGap:20,
             textStyle: {
-              fontSize: [7],
+              fontSize: [20],
               color: ['#FAFAFA '],
               fontWeight: ['lighter'],
             },
@@ -384,7 +384,7 @@ export class SysMonitorComponent implements OnInit {
                 //{value: 310, name: ''},
                 //{value: 234, name: ''},
                 {
-                  value: userQty[4],
+                  value: userQty[2],
                   name: 'Register User',
                   tooltip: {
                     trigger: 'item',
@@ -449,7 +449,8 @@ export class SysMonitorComponent implements OnInit {
 
         var arr1 = [];
         activeUser.forEach(function(item){
-          arr1.push(item.data)
+          let date = new Date(Number(item.date));
+          arr1.push((date.getMonth()+1) + '月' + date.getDate() + '日')
         })
         this.line5Chart = {
           title: {
@@ -469,9 +470,9 @@ export class SysMonitorComponent implements OnInit {
 
             },
             /*axisLabel: {
-              interval: 0,
-              rotate: 30
-            },*/
+             interval: 0,
+             rotate: 30
+             },*/
             type: 'category',
             boundaryGap: false,
             //data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
@@ -494,15 +495,30 @@ export class SysMonitorComponent implements OnInit {
           ],
           series: [
             {
-              name: '访问量',
+              name: '交易额',
               type: 'line',
               //data: [0, 1, 15, 13, 12, 13, 10,123,100,99,66,199]
-              data: activeUser
+              data: activeUser,
+              lineStyle:{
+                normal:{
+                  color:'#99ff00'
+                }
+              },
+              itemStyle:{
+                normal:{
+                  color:'#99ff00'
+                }
+              }
             }
 
           ]
         };
 
+        var line6Xdata = [];
+        RegisteredUser.forEach(function(item){
+          let date = new Date(Number(item.date));
+          line6Xdata.push((date.getMonth()+1) + '月' + date.getDate() + '日')
+        })
         this.line6Chart = {
           title: {
             text: '',
@@ -521,13 +537,13 @@ export class SysMonitorComponent implements OnInit {
 
             },
             /*axisLabel: {
-              interval: 0,
-              rotate: 30
-            },*/
+             interval: 0,
+             rotate: 30
+             },*/
             type: 'category',
             boundaryGap: false,
             //data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
-            data:arr1
+            data:line6Xdata
           },
 
           yAxis : [
@@ -546,10 +562,20 @@ export class SysMonitorComponent implements OnInit {
           ],
           series: [
             {
-              name: '访问量',
+              name: '交易量',
               type: 'line',
               //data: [0, 1, 15, 13, 12, 13, 10,123,100,99,66,199]
-              data: RegisteredUser
+              data: RegisteredUser,
+              lineStyle:{
+                normal:{
+                  color:'#99ff00'
+                }
+              },
+              itemStyle:{
+                normal:{
+                  color:'#99ff00'
+                }
+              }
             }
 
           ]
@@ -571,9 +597,13 @@ export class SysMonitorComponent implements OnInit {
         let trade = res.retbody.getTradeOrderInfo.trade;
         let tradeNums=res.retbody.getTradeOrderInfo.trade.tradeNums;
         var arr3 = [];
+        var tradeSeries = [];
         tradeNums.forEach(function(item){
-          arr3.push({value: item.data})
+          let date = new Date(Number(item.date.toString()));
+          arr3.push({value: (date.getMonth()+1) + '月' + date.getDate() + '日'});
+          tradeSeries.push(Number(item.value))
         })
+
         this.tradeOrderInfo = res.retbody.getTradeOrderInfo;
         this.setBar8Chart(0);
         this.setBar10Chart(0);
@@ -581,7 +611,7 @@ export class SysMonitorComponent implements OnInit {
         this.line7Chart = {
           title: {
             text: 'Today',
-            subtext: trade.tradeToday,
+            subtext: trade.tradeToday + " $",
             //bottom:['550%'],
             /* padding: [
              5,  // 上
@@ -599,23 +629,28 @@ export class SysMonitorComponent implements OnInit {
               color: ['#FAFAFA '],
               fontWeight: ['lighter'],
             },
-            x: 'center'
+            x: 'center',
+            top:30
+          },
+          grid:{
+            x:70,
+            top:90
           },
           tooltip: {
             trigger: 'axis'
           },
           xAxis: {
-            axisLabel: {color: '#808080'},
             axisLine: {show: false},
             axisTick: {show: false},
             nameTextStyle: {
               //color:'#fff',
 
             },
-            /*axisLabel: {
-              interval: 0,
-              rotate: 30
-            },*/
+            axisLabel: {
+              color: '#808080',
+              interval: 3,
+              rotate: -60,
+            },
             type: 'category',
             boundaryGap: false,
             //data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
@@ -638,10 +673,15 @@ export class SysMonitorComponent implements OnInit {
           ],
           series: [
             {
-              name: '访问量',
+              name: '交易量',
               type: 'line',
               //data: [0, 0, 0, 0, 0, 1, 1,12,10,9,6,9]
-              data: trade.tradeNums
+              data: tradeSeries,
+              lineStyle:{
+                normal:{
+                  color:'#ffd153'
+                }
+              }
             }
 
           ]
@@ -668,23 +708,28 @@ export class SysMonitorComponent implements OnInit {
               color: ['#FAFAFA '],
               fontWeight: ['lighter'],
             },
-            x: 'center'
+            x: 'center',
+            top:30,
+          },
+          grid:{
+            x:50,
+            top:90
           },
           tooltip: {
             trigger: 'axis'
           },
           xAxis: {
-            axisLabel: {color: '#808080'},
             axisLine: {show: false},
             axisTick: {show: false},
             nameTextStyle: {
               //color:'#fff',
 
             },
-            /*axisLabel: {
-              interval: 0,
-              rotate: 30
-            },*/
+            axisLabel: {
+              color: '#808080',
+              interval: 3,
+              rotate: -60,
+            },
             type: 'category',
             boundaryGap: false,
             //data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
@@ -707,11 +752,16 @@ export class SysMonitorComponent implements OnInit {
           ],
           series: [
             {
-              name: '访问量',
+              name: '交易量',
               type: 'line',
               //data: [0, 0, 0, 0, 0, 1, 1,12,10,9,6,9]
               //data:order.orderNums
-              data: this.tradeOrderInfo.order.orderNums
+              data: this.tradeOrderInfo.order.orderNums,
+              lineStyle:{
+                normal:{
+                  color:'#ff9900'
+                }
+              }
             }
 
           ]
@@ -824,7 +874,10 @@ export class SysMonitorComponent implements OnInit {
         }
       },
       tooltip: {
-        trigger: 'item'
+        trigger: 'item',
+        formatter:function (a,b,c) {
+          return a.name + ':' + a.value[2];
+        }
       },
       legend: {
         orient: 'vertical',
@@ -919,7 +972,7 @@ export class SysMonitorComponent implements OnInit {
         "textStyle": {
           "color": "#FFFFFF",
           "fontWeight": "bold",
-          "fontSize": 30
+          "fontSize": 10
         },
         "top": "4%",
         "left": 'center'
@@ -934,7 +987,8 @@ export class SysMonitorComponent implements OnInit {
         "left": "3%",
         "right": "10%",
         "bottom": "3%",
-        "containLabel": true
+        "containLabel": true,
+        "width":"80%"
       },
       "yAxis": [{
         "type": "category",
@@ -948,7 +1002,7 @@ export class SysMonitorComponent implements OnInit {
         },
         "axisLabel": {
           "textStyle": {
-            "color": "#ffb069"
+            "color": "#808080"
           }
         }
       }],
@@ -988,7 +1042,7 @@ export class SysMonitorComponent implements OnInit {
         },
         "itemStyle": {
           "normal": {
-            "color": "rgba(241,89,79,0.50)"
+            "color": "#ffd153"
           }
         }
       }]
@@ -1041,7 +1095,8 @@ export class SysMonitorComponent implements OnInit {
         "left": "3%",
         "right": "10%",
         "bottom": "3%",
-        "containLabel": true
+        "containLabel": true,
+        "width":"80%"
       },
       "yAxis": [{
         "type": "category",
@@ -1055,7 +1110,7 @@ export class SysMonitorComponent implements OnInit {
         },
         "axisLabel": {
           "textStyle": {
-            "color": "#ffb069"
+            "color": "#808080"
           }
         }
       }],
@@ -1095,7 +1150,7 @@ export class SysMonitorComponent implements OnInit {
         },
         "itemStyle": {
           "normal": {
-            "color": "rgba(241,89,79,0.50)"
+            "color": "#ff9900"
           }
         }
       }]
