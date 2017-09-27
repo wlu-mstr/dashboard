@@ -61,10 +61,12 @@
   <div class="bottom">
     <div class="bottom-left-layout">
       <div class="title">Page Visit</div>
+      <div class="title2">Today</div>
       <div class="bottom-left-layout1">
         <div class="today-data-volumn">{{pageVisit}}</div>
       </div>
       <div class="bottom-left-layout2">
+        <div class="title3">Recent One Month</div>
         <echart *ngIf="hasLineChart"  [chartType]="chart4" class="chart"></echart>
       </div>
     </div>

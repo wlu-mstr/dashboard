@@ -175,6 +175,10 @@ export class PlatformComponent implements OnInit {
 
 
         this.chart4 = {
+          //grid:{
+          //  x:70,
+          //  top:90
+          //},
           title: {
             text: '',
             subtext: '',
