@@ -19,15 +19,15 @@
 
     <div class="center user-layout">
       <div class="title">User Location</div>
-      <div class="checkbox-wrapper">
-        <div class="checkbox">
-          <label><input type="checkbox" checked (click)="selectCheckBox($event.target.checked,0)" />Hot Port</label>
-        </div>
-        <div class="checkbox">
-          <label><input type="checkbox" checked (click)="selectCheckBox($event.target.checked,1)" />Data</label>
-        </div>
+      <!--<div class="checkbox-wrapper">-->
+        <!--<div class="checkbox">-->
+          <!--<label><input type="checkbox" checked (click)="selectCheckBox($event.target.checked,0)" />Hot Port</label>-->
+        <!--</div>-->
+        <!--<div class="checkbox">-->
+          <!--<label><input type="checkbox" checked (click)="selectCheckBox($event.target.checked,1)" />Data</label>-->
+        <!--</div>-->
 
-      </div>
+      <!--</div>-->
       <echart *ngIf="hasPie4Chart" [chartType]="pie4Chart" class="chart"></echart>
 
     </div>
