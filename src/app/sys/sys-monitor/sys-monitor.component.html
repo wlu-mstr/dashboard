@@ -3,15 +3,27 @@
   <div class="first-line">
     <div class="left user-layout">
       <div class="left_1">
-        <div class="title">User Qty.</div>
+        <div class="title">User Quantity</div>
         <div class="left-user">
           <echart *ngIf="hasP1Chart" [chartType]="p1Chart" class="chart"></echart>
+          <div class="right-info">
+            <div class="txt">Online User</div>
+            <div class="num">{{userQty1}}</div>
+          </div>
         </div>
         <div class="left-user">
           <echart *ngIf="hasP2Chart" [chartType]="p2Chart" class="chart"></echart>
+          <div class="right-info">
+            <div class="txt">Active User</div>
+            <div class="num">{{userQty2}}</div>
+          </div>
         </div>
         <div class="left-user">
           <echart *ngIf="hasP3Chart" [chartType]="p3Chart" class="chart"></echart>
+          <div class="right-info">
+            <div class="txt">Registered User</div>
+            <div class="num">{{userQty3}}</div>
+          </div>
         </div>
       </div>
 
@@ -50,6 +62,7 @@
     <div class="bottom-layout">
       <div class="title">Trade Amount</div>
       <echart *ngIf="hasLine7Chart"  [chartType]="line7Chart" class="chart"></echart>
+      <div class="bottom-divider"></div>
     </div>
 
     <div class="bottom-layout">
@@ -63,8 +76,9 @@
     </div>
 
     <div class="bottom-layout">
-      <div class="title">Trade Amount</div>
+      <div class="title">Order Quantity</div>
       <echart *ngIf="hasLine9Chart"  [chartType]="line9Chart" class="chart"></echart>
+      <div class="bottom-divider"></div>
     </div>
 
     <div class="bottom-layout">
