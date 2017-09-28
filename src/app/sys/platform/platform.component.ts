@@ -238,7 +238,8 @@ export class PlatformComponent implements OnInit {
                   color:'#8bc9f2'
                 }
               },
-              data: orderSeries
+              data: orderSeries,
+              symbol: 'none'
             }
 
           ]

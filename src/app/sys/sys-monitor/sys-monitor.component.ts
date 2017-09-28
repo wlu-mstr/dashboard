@@ -447,7 +447,8 @@ export class SysMonitorComponent implements OnInit {
                 normal:{
                   color:'#99ff00'
                 }
-              }
+              },
+              symbol: 'none'
             }
 
           ]
@@ -514,7 +515,8 @@ export class SysMonitorComponent implements OnInit {
                 normal:{
                   color:'#99ff00'
                 }
-              }
+              },
+              symbol: 'none'
             }
 
           ]
@@ -618,7 +620,8 @@ export class SysMonitorComponent implements OnInit {
                 normal:{
                   color:'#ffd153'
                 }
-              }
+              },
+              symbol: 'none'
             }
 
           ]
@@ -707,7 +710,8 @@ export class SysMonitorComponent implements OnInit {
                 normal:{
                   color:'#ff9900'
                 }
-              }
+              },
+              symbol: 'none'
             }
 
           ]
