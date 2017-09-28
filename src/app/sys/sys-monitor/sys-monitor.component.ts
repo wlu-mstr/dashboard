@@ -856,7 +856,7 @@ export class SysMonitorComponent implements OnInit {
         if (geoCoord) {
           res.push({
             name: data[i].name,
-            value: geoCoord.concat(data[i].value),
+            value: geoCoord.concat(data[i].value).concat(data[i].top)
           });
         }
       }
@@ -913,19 +913,27 @@ export class SysMonitorComponent implements OnInit {
           coordinateSystem: 'geo',
           data: convertData(data),
           symbolSize: function (val) {
-            return val[2] / 30;
+            //if(val[3]===1 ){
+            //  return 60/3;
+            //} else if(val[3]===2){
+            //  return 34/3;
+            //}else if(val[3]===3){
+            //  return 24/3;
+            //}else if(val[3]===4){
+            //  return 14/3;
+            //} else {
+              return 0.001;
+            //}
           },
+          hoverAnimation: true,
           label: {
             normal: {
-              //formatter: '{b}',
               formatter: function (params) {
-                return params.name + '\n' +
-                  params.value[2];
+                return params.name + '\n'
+                  //+
+                  //params.value[2];
               },
-              /*formatter: ['{b}',
-               '{c}'
-               ].join('\n'),*/
-              position: 'center',
+              position: 'top',
               show: true
             },
             emphasis: {
@@ -934,7 +942,46 @@ export class SysMonitorComponent implements OnInit {
           },
           itemStyle: {
             normal: {
-              color: '#ddb926',
+              color: '#fff',
+            }
+          }
+        },
+        {
+          name: '',
+          type: 'scatter',
+          coordinateSystem: 'geo',
+          data: convertData(data),
+          symbolSize: function (val) {
+            if(val[3]===1 ){
+              return 60/2;
+            } else if(val[3]===2){
+              return 34/2;
+            }else if(val[3]===3){
+              return 24/2;
+            }else if(val[3]===4){
+              return 14/2;
+            } else {
+              return 0.001;
+            }
+            //return 0.1;
+          },
+          hoverAnimation: true,
+          label: {
+            normal: {
+              formatter: function (params) {
+                return params.value[2];
+              },
+              position: 'center',
+              show: true,
+              color:'#9d9d9d'
+            },
+            emphasis: {
+              show: true
+            }
+          },
+          itemStyle: {
+            normal: {
+              color: 'rgba(241,89,79,0.50)',
             }
           }
         }
