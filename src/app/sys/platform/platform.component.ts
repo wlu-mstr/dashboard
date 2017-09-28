@@ -69,6 +69,8 @@ export class PlatformComponent implements OnInit {
 
 
   refresh(){
+    let _self = this;
+
     this.platformService.getPlatformInfo({}).subscribe(
         res => {
         res = res.retbody.getPlatformInfo;
@@ -90,6 +92,7 @@ export class PlatformComponent implements OnInit {
         this.memoryPercent = res.Memory.percent;
         this.pageVisit = res.pv.today;
         this.dataVolumn = res.DataVolume;
+
 
         let option1 = {
           series: [{
@@ -173,12 +176,20 @@ export class PlatformComponent implements OnInit {
         };
         this.chart3 = option3;
 
+        let orderNums = res.pv.lastMonth;
+        var orderxAxis = [];
+        var orderSeries = [];
+        orderNums.forEach(function(item){
+          orderSeries.push(item.value.split("'").join(""));
+          var date = _self.platformService.monthInEn(item.date);
+          orderxAxis.push(date);
+        });
 
         this.chart4 = {
-          //grid:{
-          //  x:70,
-          //  top:90
-          //},
+          grid:{
+            x:100,
+            top:100
+          },
           title: {
             text: '',
             subtext: '',
@@ -193,7 +204,6 @@ export class PlatformComponent implements OnInit {
             axisTick: {show: false},
             nameTextStyle: {
               //color:'#fff',
-
             },
             /*axisLabel: {
              interval: 0,
@@ -201,7 +211,7 @@ export class PlatformComponent implements OnInit {
              },*/
             type: 'category',
             boundaryGap: false,
-            data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
+            data: orderxAxis
             //data:arr3
           },
 
@@ -221,16 +231,20 @@ export class PlatformComponent implements OnInit {
           ],
           series: [
             {
-              name: '访问量',
+              name: 'Page Visit',
               type: 'line',
-              data: [11, 11, 15, 13, 12, 13, 10,123,100,99,66,199]
+              lineStyle:{
+                normal:{
+                  color:'#8bc9f2'
+                }
+              },
+              data: orderSeries
             }
 
           ]
         };
       },
         error => {
-        console.log('22222');
         console.log(error); }
     );
   }

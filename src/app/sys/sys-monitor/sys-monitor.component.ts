@@ -309,7 +309,6 @@ export class SysMonitorComponent implements OnInit {
           legend: {
             orient: 'vertical',
             left: 'left',
-            //data: ['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
           },
           series: [
             {
@@ -435,7 +434,7 @@ export class SysMonitorComponent implements OnInit {
           ],
           series: [
             {
-              name: '交易额',
+              name: 'Active',
               type: 'line',
               //data: [0, 1, 15, 13, 12, 13, 10,123,100,99,66,199]
               data: activeUser,
@@ -502,7 +501,7 @@ export class SysMonitorComponent implements OnInit {
           ],
           series: [
             {
-              name: '交易量',
+              name: 'Registered',
               type: 'line',
               //data: [0, 1, 15, 13, 12, 13, 10,123,100,99,66,199]
               data: RegisteredUser,

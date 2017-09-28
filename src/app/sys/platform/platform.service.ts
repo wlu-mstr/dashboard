@@ -23,4 +23,10 @@ export class PlatformService {
         return res.json();
       });
   }
+
+  public monthInEn(timestamp: Date){
+    let date = new Date(Number(timestamp));
+    let months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Spt','Oct','Nov','Dec'];
+    return months[date.getMonth()] + '' + date.getDate();
+  }
 }
