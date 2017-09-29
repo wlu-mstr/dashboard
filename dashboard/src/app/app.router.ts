@@ -1,63 +1,69 @@
 import { Routes, RouterModule }  from '@angular/router';
 import { FullLayoutComponent } from './layouts/full-layout.component';
-import { WelcomeComponent } from './components/welcome/welcome.component';
 import { SellerBusinessComponent } from './components/seller-business/seller-business.component';
 import { CanActivateGuard } from './shared/routerControl/can-activate-guard';
 import { PhoneDetailsComponent } from './components/phone-details/phone-details.component';
 import { SearchDetailsComponent } from './components/search-details/search-details.component';
+import { WelcomeComponent } from './components/welcome/welcome.component';
+
+import { MyClusterComponent } from './components/my-cluster/my-cluster.component';
+
+import { IndexComponent } from './index/index.component';
+import { LoginComponent } from './pages/login.component';
+
 const rootRouterConfig: Routes = [
 
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'index',
     pathMatch: 'full'
+  },
+  {
+    path: 'index',
+    component: IndexComponent,
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
   },
   {
     path: 'content',
     component: FullLayoutComponent,
-    data: {
-      title: 'Home'
-    },
     canActivate: [CanActivateGuard],
     children: [
       {
         path: '',
-        component: WelcomeComponent,
-        data: {
-          title: '首页'
-        },
+        component: WelcomeComponent
       },
       {
         path: 'sellerList',
         component: SellerBusinessComponent,
-        data: {
-          title: '整体统计报表'
-        },
         canActivate: [CanActivateGuard],
-      },
+      }
+      ,
       {
         path: 'phoneDetails',
         component: PhoneDetailsComponent,
-        data: {
-          title: '来电明细报表'
-        },
         canActivate: [CanActivateGuard],
       },
       {
         path: 'SearchDetails',
         component: SearchDetailsComponent,
-        data: {
-          title: '查询情况报表'
-        },
+        canActivate: [CanActivateGuard],
+      },
+      {
+        path: 'mycluster',
+        component: MyClusterComponent,
         canActivate: [CanActivateGuard],
       }
     ]
-  },
-  {
-    path: 'login',
-    // redirectTo:'login',
-    loadChildren: 'app/pages/pages.module.ts#PagesModule'
   }
+  //,
+  //{
+  //  path: 'login',
+  //  // redirectTo:'login',
+  //  loadChildren: 'app/pages/pages.module.ts#PagesModule'
+  //}
 ];
 
 export const RootRouterModule = RouterModule.forRoot(rootRouterConfig);

@@ -33,18 +33,15 @@ import { FormatPhonePipe } from './shared/pipe/format-phone.pipe';
 
 
 import { SellerBusinessComponent } from './components/seller-business/seller-business.component';
-import { WelcomeComponent } from './components/welcome/welcome.component';
 import { AlertComponent } from './shared/alert/alert.component';
 
 import { CanActivateGuard } from './shared/routerControl/can-activate-guard';
 import { PhoneDetailsComponent } from './components/phone-details/phone-details.component';
 import { SearchDetailsComponent } from './components/search-details/search-details.component';
-
-
-
-
-
-
+import { WelcomeComponent } from './components/welcome/welcome.component';
+import { MyClusterComponent } from './components/my-cluster/my-cluster.component';
+import { IndexComponent } from './index/index.component';
+import { LoginComponent } from './pages/login.component';
 
 
 @NgModule({
@@ -61,14 +58,16 @@ import { SearchDetailsComponent } from './components/search-details/search-detai
     MaskComponent,
     SellerBusinessComponent,
 
-    WelcomeComponent,
     AlertComponent,
 
     SelectContactPipe,
     FormatPhonePipe,
-
+    IndexComponent,
+    LoginComponent,
+    WelcomeComponent,
     PhoneDetailsComponent,
     SearchDetailsComponent,
+    MyClusterComponent
   ],
   imports: [
     BrowserModule,

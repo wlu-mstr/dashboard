@@ -1,131 +1,265 @@
-<app-alert [message]="alertMessage" [type]="alertType" [number]="alertNumber"></app-alert>
-<app-mask [showModal]="showModal"></app-mask>
+<div class="app flex-row align-items-center">
 
-<div class="card">
-  <div class="card-header">
-    <strong>搜索条件</strong>
+
+  <div class="app-body">
+
+
+    <!-- Main content -->
+    <main class="main">
+
+      <!-- Breadcrumb -->
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">镜像中心</li>
+        <li class="breadcrumb-item active">基础镜像</li>
+      </ol>
+
+
+      <div class="container-fluid">
+
+        <div class="animated fadeIn">
+          <div class="row">
+            <div class="col-md-12 col-lg-12">
+              <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-expanded="true">通用镜像</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-expanded="false">JDK镜像</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#messages" role="tab" aria-controls="messages" aria-expanded="false">其他镜像</a>
+                </li>
+              </ul>
+
+              <div class="tab-content">
+                <div class="tab-pane active" id="home" role="tabpanel" aria-expanded="true">
+                  <table class="table">
+                    <thead>
+                    <tr>
+                      <th>镜像名称</th>
+                      <th>操作系统</th>
+                      <th>类型</th>
+                      <th>创建时间</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <td>centos 6.x 64</td>
+                      <td>centos 6.x 64</td>
+                      <td>通用镜像</td>
+                      <td>xxx.xxx.xxx</td>
+                    </tr>
+                    <tr>
+                      <td>centos 6.x 64</td>
+                      <td>centos 6.x 64</td>
+                      <td>通用镜像</td>
+                      <td>xxx.xxx.xxx</td>
+                    </tr>
+                    <tr>
+                      <td>centos 6.x 64</td>
+                      <td>centos 6.x 64</td>
+                      <td>通用镜像</td>
+                      <td>xxx.xxx.xxx</td>
+                    </tr>
+                    <tr>
+                      <td>centos 6.x 64</td>
+                      <td>centos 6.x 64</td>
+                      <td>通用镜像</td>
+                      <td>xxx.xxx.xxx</td>
+                    </tr>
+                    <tr>
+                      <td>centos 6.x 64</td>
+                      <td>centos 6.x 64</td>
+                      <td>通用镜像</td>
+                      <td>xxx.xxx.xxx</td>
+                    </tr>
+                    <tr>
+                      <td>debian 6.x 64</td>
+                      <td>debian 6.x 64</td>
+                      <td>通用镜像</td>
+                      <td>xxx.xxx.xxx</td>
+                    </tr>
+                    <tr>
+                      <td>ubuntu 6.x 64</td>
+                      <td>ubuntu 6.x 64</td>
+                      <td>通用镜像</td>
+                      <td>xxx.xxx.xxx</td>
+                    </tr>
+                    </tbody>
+                  </table>
+
+                  <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#">Prev</a>
+                    </li>
+                    <li class="page-item active">
+                      <a class="page-link" href="#">1</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">2</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">3</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">4</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">Next</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="tab-pane" id="profile" role="tabpanel" aria-expanded="false">
+                  <table class="table">
+                    <thead>
+                    <tr>
+                      <th>镜像名称</th>
+                      <th>操作系统</th>
+                      <th>JDK版本</th>
+                      <th>类型</th>
+                      <th>创建时间</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <td>centos 6.x 64</td>
+                      <td>centos 6.x 64</td>
+                      <td>6</td>
+                      <td>JDK镜像</td>
+                      <td>xxx.xxx.xxx</td>
+                    </tr>
+                    <tr>
+                      <td>centos 7.x 64</td>
+                      <td>centos 7.x 64</td>
+                      <td>6</td>
+                      <td>JDK镜像</td>
+                      <td>xxx.xxx.xxx</td>
+                    </tr>
+                    <tr>
+                      <td>debian 6.x 64</td>
+                      <td>debian 6.x 64</td>
+                      <td>6</td>
+                      <td>JDK镜像</td>
+                      <td>xxx.xxx.xxx</td>
+                    </tr>
+                    <tr>
+                      <td>ubuntu 6.x 64</td>
+                      <td>ubuntu 6.x 64</td>
+                      <td>6</td>
+                      <td>JDK镜像</td>
+                      <td>xxx.xxx.xxx</td>
+                    </tr>
+                    <tr>
+                      <td>centos 6.x 64</td>
+                      <td>centos 6.x 64</td>
+                      <td>8</td>
+                      <td>JDK镜像</td>
+                      <td>xxx.xxx.xxx</td>
+                    </tr>
+                    <tr>
+                      <td>centos 7.x 64</td>
+                      <td>centos 7.x 64</td>
+                      <td>8</td>
+                      <td>JDK镜像</td>
+                      <td>xxx.xxx.xxx</td>
+                    </tr>
+                    <tr>
+                      <td>debian 6.x 64</td>
+                      <td>debian 6.x 64</td>
+                      <td>8</td>
+                      <td>JDK镜像</td>
+                      <td>xxx.xxx.xxx</td>
+                    </tr>
+                    <tr>
+                      <td>ubuntu 6.x 64</td>
+                      <td>ubuntu 6.x 64</td>
+                      <td>8</td>
+                      <td>JDK镜像</td>
+                      <td>xxx.xxx.xxx</td>
+                    </tr>
+                    </tbody>
+                  </table>
+
+                  <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#">Prev</a>
+                    </li>
+                    <li class="page-item active">
+                      <a class="page-link" href="#">1</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">2</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">3</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">4</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">Next</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="tab-pane" id="messages" role="tabpanel" aria-expanded="false">
+                  <table class="table">
+                    <thead>
+                    <tr>
+                      <th>镜像名称</th>
+                      <th>操作系统</th>
+                      <th>类型</th>
+                      <th>创建时间</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <td>centos 6.x 64 with nginx</td>
+                      <td>centos 6.x 64</td>
+                      <td>其他镜像</td>
+                      <td>xxx.xxx.xxx</td>
+                    </tr>
+                    <tr>
+                      <td>centos 6.x 64 with ssh</td>
+                      <td>centos 6.x 64</td>
+                      <td>其他镜像</td>
+                      <td>xxx.xxx.xxx</td>
+                    </tr>
+                    <tr>
+                      <td>centos 6.x 64 with scp</td>
+                      <td>centos 6.x 64</td>
+                      <td>其他镜像</td>
+                      <td>xxx.xxx.xxx</td>
+                    </tr>
+
+                    </tbody>
+                  </table>
+
+                  <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#">Prev</a>
+                    </li>
+                    <li class="page-item active">
+                      <a class="page-link" href="#">1</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">2</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">3</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">4</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">Next</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+          </div>
+
+        </div>
+
+
+
+
+      </div>
+      <!-- /.conainer-fluid -->
+    </main>
+
   </div>
-  <div class="card-block">
-    <div class="search-left">
-      <div class="form-group row">
-        <div class="col-sm-6">
-          <div class="input-group">
-            <span class="input-group-btn">
-              <button type="button" class="btn btn-primary">查询时间<span>*</span></button>
-            </span>
-            <p-calendar [(ngModel)]="startTime" class="prime-no-mask form-control time-prime" showTime="true" placeholder="请选择开始时间" dateFormat="yy-mm-dd" [locale]="zh" [maxDate]="endTime"></p-calendar>
-            <button type="button" class="btn btn-default" >至</button>
-            <p-calendar [(ngModel)]="endTime" class="prime-no-mask form-control time-prime" showTime="true" placeholder="请选择结束时间" dateFormat="yy-mm-dd" [locale]="zh" [minDate]="startTime"></p-calendar>
-          </div>
-        </div>
-        <div class="col-sm-3">
-          <div class="input-group">
-            <span class="input-group-btn">
-              <button type="button" class="btn btn-primary">来电号码</button>
-            </span>
-            <input type="text"  class="form-control" [(ngModel)]="incomeNumber" placeholder="请输入">
-          </div>
-        </div>
-        <div class="col-sm-3">
-          <div class="input-group">
-            <span class="input-group-btn">
-              <button type="button" class="btn btn-primary">是否转人工</button>
-            </span>
-            <select class="form-control"  [(ngModel)]="manualFlag">
-              <option value="">全部</option>
-              <option value="1">是</option>
-              <option value="0">否</option>
-            </select>
-          </div>
-        </div>
-      </div>
-      <div class="form-group row">
-        <div class="col-sm-3">
-          <div class="input-group">
-            <span class="input-group-btn">
-              <button type="button" class="btn btn-primary">所选业务线</button>
-            </span>
-            <select class="form-control" [(ngModel)]="serviceType">
-              <option value="">全部</option>
-              <option value="001001">买单侠-手机分期</option>
-              <option value="001002">买单侠-现金贷</option>
-              <option value="002001">医美-医美"</option>
-              <option value="003001">直销商城-话费充值</option>
-              <option value="003002">直销商城-商城购物</option>
-              <option value="003003">直销商城-直销现金贷</option>
-              <option value="003004">直销商城-小金库</option>
-            </select>
-          </div>
-        </div>
-      </div>
-    </div>
 
-
-    <div class="search-right">
-      <div class="form-group row">
-        <div class="col-sm-12">
-          <button class="btn btn-primary" type="button" (click)="getSellerList()">筛选</button>
-        </div>
-      </div>
-      <div class="form-group row">
-        <div class="col-sm-12">
-          <button class="btn btn-primary" type="button" (click)="outSellerList()">导出SELLER列表</button>
-        </div>
-      </div>
-    </div>
-    <!--</form>-->
-  </div>
 
 </div>
-
-<div class="animated fadeIn">
-  <!--/.row-->
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="card">
-        <div class="card-block">
-          <!--<table class="table table-bordered" id="checkboxTable" appTableCheckbox-->
-          <!--(onChecked)="getCheckedIndexList($event)">-->
-          <table class="table table-bordered">
-            <thead>
-            <tr>
-              <!--<th class="col-sm-1 align-items-center"><input type="checkbox" /></th>-->
-              <th>来电号码</th>
-              <th>来电时间</th>
-              <th>与ivr交互时长</th>
-              <th>所选业务线</th>
-              <th>核身结果</th>
-              <th>查询类型</th>
-              <th>是否转人工</th>
-              <th>备注</th>
-              <!--<th>操作</th>-->
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let obj of objs">
-              <td>{{obj.incomeNumber}}</td>
-              <td>{{obj.incomeTime}}</td>
-              <td>{{obj.callDuration}}</td>
-              <td>{{obj.serviceType}}</td>
-              <td>{{obj.validateFlag}}</td>
-              <td>{{obj.subEventType}}</td>
-              <td>{{obj.manualFlag}}</td>
-              <td>{{obj.remark}}</td>
-            </tr>
-
-            </tbody>
-          </table>
-          <pagination [totalItems]="totalItems" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)"></pagination>
-        </div>
-
-      </div>
-    </div>
-    <!--/.col-->
-  </div>
-  <!--/.row-->
-</div>
-
-
 
 
 

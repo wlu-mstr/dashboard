@@ -21,52 +21,54 @@
         <nav class="sidebar-nav">
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="nav-link"  [routerLink]="['/content']"><i class="icon-home"></i> 主页</a>
+                    <a class="nav-link"  [routerLink]="['/content']"><i class="icon-home"></i> 总览</a>
                 </li>
                 <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
-                  <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-puzzle"></i>统计报表</a>
+                  <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-puzzle"></i>镜像中心</a>
                   <ul class="nav-dropdown-items">
                     <li class="nav-item">
-                      <a class="nav-link" routerLinkActive="active" [routerLink]="['/content/sellerList']"><i class="icon-star"></i>整体统计报表</a>
+                      <a class="nav-link" routerLinkActive="active" [routerLink]="['/content/sellerList']"><i class="icon-star"></i>我的镜像</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" routerLinkActive="active" [routerLink]="['/content/phoneDetails']" ><i class="icon-star"></i>来电明细报表</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" routerLinkActive="active" [routerLink]="['/content/SearchDetails']" ><i class="icon-star"></i>查询情况报表</a>
+                      <a class="nav-link" routerLinkActive="active" [routerLink]="['/content/phoneDetails']" ><i class="icon-star"></i>基础镜像</a>
                     </li>
                   </ul>
                 </li>
+              <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
+                <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-puzzle"></i>集群中心</a>
+                <ul class="nav-dropdown-items">
+                  <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/content/SearchDetails']"><i class="icon-star"></i>配置管理</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/content/mycluster']" ><i class="icon-star"></i>我的集群</a>
+                  </li>
+
+                </ul>
+              </li>
+              <li class="nav-item nav-dropdown" routerLinkActive="open" appNavDropdown>
+                <a class="nav-link nav-dropdown-toggle" href="#" appNavDropdownToggle><i class="icon-puzzle"></i>服务中心</a>
+                <ul class="nav-dropdown-items">
+                  <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/content/sellerList']"><i class="icon-star"></i>我的服务</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active" [routerLink]="['/content/phoneDetails']" ><i class="icon-star"></i>平台服务</a>
+                  </li>
+                </ul>
+              </li>
             </ul>
         </nav>
     </div>
 
     <!-- Main content -->
     <main class="main">
-
-        <!-- Breadcrumb -->
-        <!--<ol class="breadcrumb">-->
-            <!--&lt;!&ndash;<app-breadcrumbs></app-breadcrumbs>&ndash;&gt;-->
-          <!--<app-breadcrumbs></app-breadcrumbs>-->
-          <!--&lt;!&ndash; Breadcrumb Menu&ndash;&gt;-->
-          <!--&lt;!&ndash;<li class="breadcrumb-menu d-md-down-none">&ndash;&gt;-->
-            <!--&lt;!&ndash;<div class="btn-group" role="group" aria-label="Button group with nested dropdown">&ndash;&gt;-->
-              <!--&lt;!&ndash;<a class="btn btn-secondary" href="#"><i class="icon-speech"></i></a>&ndash;&gt;-->
-              <!--&lt;!&ndash;<a class="btn btn-secondary" [routerLink]="['/dashboard']"><i class="icon-graph"></i> &nbsp;Dashboard</a>&ndash;&gt;-->
-              <!--&lt;!&ndash;<a class="btn btn-secondary" href="#"><i class="icon-settings"></i> &nbsp;Settings</a>&ndash;&gt;-->
-            <!--&lt;!&ndash;</div>&ndash;&gt;-->
-          <!--&lt;!&ndash;</li>&ndash;&gt;-->
-        <!--</ol>-->
-
-        <!--<div class="container-fluid">-->
             <router-outlet></router-outlet>
-        <!--</div>-->
-        <!-- /.conainer-fluid -->
     </main>
 </div>
 
 <footer class="app-footer">
-    <a href="http://www.fenqi.im/" target="_blank">OmniPrime</a> &copy; 2017 上海秦苍信息科技有限公司
-    <span class="float-right">Powered by <a href="http://www.fenqi.im/" target="_blank">OmniPrime</a>
+    <a href="http://www.fenqi.im/" target="_blank">HoneyWell</a> &copy; 2017 有限公司
+    <span class="float-right">Powered by <a href="" target="_blank">HoneyWell</a>
     </span>
 </footer>
