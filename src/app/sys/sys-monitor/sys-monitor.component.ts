@@ -42,6 +42,11 @@ export class SysMonitorComponent implements OnInit {
   public userQty2:number;
   public userQty3:number;
 
+  public tradeToday:String;
+  public orderToday:String;
+  public totalPrice:String;
+  public totalNum:String;
+
   constructor(public sysMonitorService: SysMonitorService) {
   }
 
@@ -482,6 +487,7 @@ export class SysMonitorComponent implements OnInit {
         this.setBar10Chart(0);
 
         let trade = res.retbody.getTradeOrderInfo.trade;
+        this.tradeToday = trade.tradeToday + " ¥";
         let tradeNums=res.retbody.getTradeOrderInfo.trade.tradeNums;
         var tradexAxis = [];
         var tradeSeries = [];
@@ -491,25 +497,9 @@ export class SysMonitorComponent implements OnInit {
           tradexAxis.push(date);
         })
         this.line7Chart = {
-          title: {
-            text: 'Today',
-            subtext: trade.tradeToday + " ¥",
-            subtextStyle: {
-              fontSize: [20],
-              color: ['#FAFAFA '],
-
-            },
-            textStyle: {
-              fontSize: [10],
-              color: ['#FAFAFA '],
-              fontWeight: ['lighter'],
-            },
-            x: 'center',
-            top:30
-          },
           grid:{
             x:"20%",
-            top:"40%"
+            top:"45%"
           },
           tooltip: {
             trigger: 'axis'
@@ -557,6 +547,7 @@ export class SysMonitorComponent implements OnInit {
         };
 
         let orderNums=res.retbody.getTradeOrderInfo.order.orderNums;
+        this.orderToday = this.tradeOrderInfo.order.orderToday;
         var orderxAxis = [];
         var orderSeries = [];
         orderNums.forEach(function(item){
@@ -565,25 +556,9 @@ export class SysMonitorComponent implements OnInit {
           orderxAxis.push(date);
         })
         this.line9Chart = {
-          title: {
-            text: 'Today',
-            subtext: this.tradeOrderInfo.order.orderToday,
-            subtextStyle: {
-              fontSize: [20],
-              color: ['#FAFAFA '],
-
-            },
-            textStyle: {
-              fontSize: [10],
-              color: ['#FAFAFA '],
-              fontWeight: ['lighter'],
-            },
-            x: 'center',
-            top:30,
-          },
           grid:{
-            x:"15%",
-            top:"40%"
+            x:"20%",
+            top:"45%"
           },
           tooltip: {
             trigger: 'axis'
@@ -856,6 +831,10 @@ export class SysMonitorComponent implements OnInit {
     let monthKey = this.sysMonitorService.getMonthKey(idx).toString();
     let total = this.tradeOrderInfo.trade.tradeTop[idx][monthKey];
     let total_price = this.tradeOrderInfo.trade.tradeTop[idx].total_price;
+    this.totalPrice = total_price + " ¥";
+    if(this.totalPrice.length > 15){
+      this.totalPrice = this.totalPrice.substring(0,15)+"... ¥";
+    }
     var appusage_data = [
       {
         name: total[4].percent + " " + total[4].value,
@@ -875,16 +854,6 @@ export class SysMonitorComponent implements OnInit {
       }
     ];
     var option1 = {
-      "title": {
-        "text": total_price + " ¥",
-        "textStyle": {
-          "color": "#FFFFFF",
-          "fontWeight": "bold",
-          "fontSize": 20
-        },
-        "top": "5%",
-        "left": 'center'
-      },
       "tooltip": {
         "trigger": "axis",
         "axisPointer": { // 坐标轴指示器，坐标轴触发有效
@@ -892,10 +861,9 @@ export class SysMonitorComponent implements OnInit {
         }
       },
       "grid": {
-        "x": "6%",
-        "top":"20%",
-        "containLabel": true,
-        "width":"70%"
+        "left": "25%",
+        "top":"30%",
+        "width":"50%"
       },
       "yAxis": [{
         "type": "category",
@@ -963,6 +931,7 @@ export class SysMonitorComponent implements OnInit {
     let monthKey = this.sysMonitorService.getMonthKey(idx).toString();
     let order = this.tradeOrderInfo.order.orderTop[idx][monthKey];
     let total_num = this.tradeOrderInfo.order.orderTop[idx].total_num;
+    this.totalNum = total_num;
     var appusage_data10 = [
       {
         name: order[4].percent + " " + order[4].value,
@@ -983,16 +952,6 @@ export class SysMonitorComponent implements OnInit {
     ];
     //10-dishizhangtu
     var option10 = {
-      "title": {
-        "text": total_num,
-        "textStyle": {
-          "color": "#FFFFFF",
-          "fontWeight": "bold",
-          "fontSize": 20
-        },
-        "top": "5%",
-        "left": 'center'
-      },
       "tooltip": {
         "trigger": "axis",
         "axisPointer": { // 坐标轴指示器，坐标轴触发有效
@@ -1000,10 +959,9 @@ export class SysMonitorComponent implements OnInit {
         }
       },
       "grid": {
-        "x": "6%",
-        "top":"20%",
-        "containLabel": true,
-        "width":"70%"
+        "left": "25%",
+        "top":"30%",
+        "width":"50%"
       },
       "yAxis": [{
         "type": "category",

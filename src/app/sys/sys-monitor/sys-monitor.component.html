@@ -61,6 +61,10 @@
   <div class="bottom">
     <div class="bottom-layout">
       <div class="title">Trade Amount</div>
+      <div class="echarts-head">
+        <div class="txt">Today</div>
+        <div class="num">{{tradeToday}}</div>
+      </div>
       <echart *ngIf="hasLine7Chart"  [chartType]="line7Chart" class="chart"></echart>
       <div class="bottom-divider"></div>
     </div>
@@ -72,11 +76,18 @@
         <span class="radio-icon" [ngClass]="{'radio-checked':bar8ChartIdx==2}"(click)="setBar8Chart(2)"></span><span class="radio-txt">3 Months</span>
         <span class="radio-icon" [ngClass]="{'radio-checked':bar8ChartIdx==3}"(click)="setBar8Chart(3)"></span><span class="radio-txt">6 Months</span>
       </div>
+      <div class="echarts-head">
+        <div class="amount">{{totalPrice}}</div>
+      </div>
       <echart *ngIf="hasBar8Chart"  [chartType]="bar8Chart" class="chart"></echart>
     </div>
 
     <div class="bottom-layout">
       <div class="title">Order Quantity</div>
+      <div class="echarts-head">
+        <div class="txt">Today</div>
+        <div class="num">{{orderToday}}</div>
+      </div>
       <echart *ngIf="hasLine9Chart"  [chartType]="line9Chart" class="chart"></echart>
       <div class="bottom-divider"></div>
     </div>
@@ -87,6 +98,9 @@
         <span class="radio-icon" [ngClass]="{'radio-checked':bar10ChartIdx==1}"(click)="setBar10Chart(1)"></span><span class="radio-txt">1 Month</span>
         <span class="radio-icon" [ngClass]="{'radio-checked':bar10ChartIdx==2}"(click)="setBar10Chart(2)"></span><span class="radio-txt">3 Months</span>
         <span class="radio-icon" [ngClass]="{'radio-checked':bar10ChartIdx==3}"(click)="setBar10Chart(3)"></span><span class="radio-txt">6 Months</span>
+      </div>
+      <div class="echarts-head">
+        <div class="amount">{{totalNum}}</div>
       </div>
       <echart *ngIf="hasBar10Chart"  [chartType]="bar10Chart" class="chart"></echart>
     </div>

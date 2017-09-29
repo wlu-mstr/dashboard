@@ -138,7 +138,7 @@
 
 .radio-wrapper{
   text-align: center;
-  margin-top: 0.25rem;
+  margin-top: 0.15rem;
 }
 .radio-icon{
   width: 0.2rem;
@@ -176,4 +176,25 @@
   font-size: 0.2rem;
   left: 0.1rem;
   z-index: 9999;
+}
+.echarts-head{
+  position: absolute;
+  width: 100%;
+  left: 50%;
+  transform: translate(-50%,0);
+  top: 12%;
+  text-align: center;
+  .txt{
+    font-size: 0.2rem;
+    color:#c0c0c0;
+  }
+  .num{
+    font-size: 0.46rem;
+    color:#fff;
+  }
+  .amount{
+    margin-top: 4%;
+    font-size: 0.46rem;
+    color:#fff;
+  }
 }
