@@ -731,6 +731,7 @@ export class SysMonitorComponent implements OnInit {
             show: false
           }
         },
+        zoom: 1.3,
         roam: true,
         itemStyle: {
           normal: {
@@ -903,7 +904,7 @@ export class SysMonitorComponent implements OnInit {
       },
       "yAxis": [{
         "type": "category",
-        "data": ["Top5" + " " + total[4].name, "Top4" + " " + total[3].name, "Top3" + " " + total[2].name, "Top2" + " " + total[1].name, "Top1" + " " + total[0].name],
+        "data": [total[4].name, total[3].name, total[2].name, total[1].name,total[0].name],
         "axisLine": {
           "show": false
         },
@@ -1001,7 +1002,7 @@ export class SysMonitorComponent implements OnInit {
       },
       "yAxis": [{
         "type": "category",
-        "data": ["Top5" + " " + order[4].name, "Top4" + " " + order[3].name, "Top3" + " " + order[2].name, "Top2" + " " + order[1].name, "Top1" + " " + order[0].name],
+        "data": [order[4].name, order[3].name, order[2].name, order[1].name, order[0].name],
         "axisLine": {
           "show": false
         },
