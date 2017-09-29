@@ -128,6 +128,7 @@ export class PlatformComponent implements OnInit {
         let option2 = {
           series: [{
             type: 'liquidFill',
+
             label: {
               normal: {
                 color:'#000000',
