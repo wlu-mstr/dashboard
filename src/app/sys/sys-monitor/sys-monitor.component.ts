@@ -487,7 +487,7 @@ export class SysMonitorComponent implements OnInit {
         this.setBar10Chart(0);
 
         let trade = res.retbody.getTradeOrderInfo.trade;
-        this.tradeToday = trade.tradeToday + " ¥";
+        this.tradeToday = trade.tradeToday;
         let tradeNums=res.retbody.getTradeOrderInfo.trade.tradeNums;
         var tradexAxis = [];
         var tradeSeries = [];
@@ -498,8 +498,10 @@ export class SysMonitorComponent implements OnInit {
         })
         this.line7Chart = {
           grid:{
-            x:"20%",
-            top:"45%"
+            x:"4%",
+            top:"45%",
+            height:"45%",
+            containLabel:true
           },
           tooltip: {
             trigger: 'axis'
@@ -557,8 +559,10 @@ export class SysMonitorComponent implements OnInit {
         })
         this.line9Chart = {
           grid:{
-            x:"20%",
-            top:"45%"
+            x:"4%",
+            top:"45%",
+            height:"45%",
+            containLabel:true
           },
           tooltip: {
             trigger: 'axis'
@@ -868,9 +872,9 @@ export class SysMonitorComponent implements OnInit {
     let monthKey = this.sysMonitorService.getMonthKey(idx).toString();
     let total = this.tradeOrderInfo.trade.tradeTop[idx][monthKey];
     let total_price = this.tradeOrderInfo.trade.tradeTop[idx].total_price;
-    this.totalPrice = total_price + " ¥";
+    this.totalPrice = total_price;
     if(this.totalPrice.length > 15){
-      this.totalPrice = this.totalPrice.substring(0,15)+"... ¥";
+      this.totalPrice = this.totalPrice.substring(0,15)+"...";
     }
     var appusage_data = [
       {
@@ -898,9 +902,11 @@ export class SysMonitorComponent implements OnInit {
         }
       },
       "grid": {
-        "left": "25%",
+        "left": "4%",
         "top":"30%",
-        "width":"50%"
+        "width":"70%",
+        "height":"55%",
+        "containLabel":true,
       },
       "yAxis": [{
         "type": "category",
@@ -915,7 +921,7 @@ export class SysMonitorComponent implements OnInit {
         "axisLabel": {
           "textStyle": {
             "color": "#808080"
-          }
+          },
         }
       }],
       "xAxis": [{
@@ -935,11 +941,10 @@ export class SysMonitorComponent implements OnInit {
       }],
 
       "series": [{
-        "barWidth":'40%',
         "name": "Amount",
         "type": "bar",
         "data": appusage_data,
-        "barCategoryGap": "25%",
+        "barWidth":"60%",
         "label": {
           "normal": {
             "show": true,
@@ -996,9 +1001,11 @@ export class SysMonitorComponent implements OnInit {
         }
       },
       "grid": {
-        "left": "25%",
+        "left": "4%",
         "top":"30%",
-        "width":"50%"
+        "width":"70%",
+        "height":"55%",
+        "containLabel":true,
       },
       "yAxis": [{
         "type": "category",
@@ -1033,11 +1040,10 @@ export class SysMonitorComponent implements OnInit {
       }],
 
       "series": [{
-        "barWidth":"40%",
         "name": "Amount",
         "type": "bar",
         "data": appusage_data10,
-        "barCategoryGap": "25%",
+        "barWidth":"60%",
         "label": {
           "normal": {
             "show": true,

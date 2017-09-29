@@ -80,7 +80,7 @@
 }
 
 .content .bottom .bottom-layout{
-  width:24.4%;
+  width: 4.65rem;
   height:3.1rem;
   overflow:hidden;
   display: inline-block;
@@ -141,8 +141,8 @@
   margin-top: 0.15rem;
 }
 .radio-icon{
-  width: 0.2rem;
-  height: 0.2rem;
+  width: 0.24rem;
+  height: 0.24rem;
   border-radius: 50%;
   border: 1px solid #FAFAFA;
   display: inline-block;
@@ -153,21 +153,23 @@
 .radio-checked{
   &:after{
     content: '';
-    background: #3398DB;
-    width: 0.12rem;
-    height: 0.12rem;
+    background: #45a8ea;
+    width: 0.13rem;
+    height: 0.13rem;
     display: block;
     border-radius: 50%;
     position: relative;
-    top: 0.03rem;
-    left: 0.03rem;
+    top: 0.04rem;
+    left: 0.04rem;
   }
 }
 .radio-txt{
   margin-right: 0.1rem;
-  font-size: 0.13rem;
-  color:#FAFAFA;
+  font-size: 0.17rem;
+  color: #c0c0c0;
   vertical-align: middle;
+  position: relative;
+  top: 0.02rem;
 }
 .checkbox-wrapper{
   color: #C0C0C0;
@@ -196,5 +198,10 @@
     margin-top: 4%;
     font-size: 0.46rem;
     color:#fff;
+  }
+  .currency{
+    font-size: 0.3rem;
+    color:#c0c0c0;
+    margin-left: 0.3rem;
   }
 }
