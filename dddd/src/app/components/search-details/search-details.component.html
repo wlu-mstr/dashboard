@@ -1,0 +1,104 @@
+<app-alert [message]="alertMessage" [type]="alertType" [number]="alertNumber"></app-alert>
+<app-mask [showModal]="showModal"></app-mask>
+
+<div class="card">
+  <div class="card-header">
+    <strong>搜索条件</strong>
+  </div>
+  <div class="card-block">
+    <div class="search-left">
+      <div class="form-group row">
+        <div class="col-sm-6">
+          <div class="input-group">
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-primary">查询时间<span>*</span></button>
+            </span>
+            <p-calendar [(ngModel)]="startTime" class="prime-no-mask form-control time-prime" showTime="true" placeholder="请选择开始时间" dateFormat="yy-mm-dd" [locale]="zh" [maxDate]="endTime"></p-calendar>
+            <button type="button" class="btn btn-default" >至</button>
+            <p-calendar [(ngModel)]="endTime" class="prime-no-mask form-control time-prime" showTime="true" placeholder="请选择结束时间" dateFormat="yy-mm-dd" [locale]="zh" [minDate]="startTime"></p-calendar>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="input-group">
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-primary">来电号码</button>
+            </span>
+            <input type="text"  class="form-control" [(ngModel)]="incomeNumber" placeholder="请输入">
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="input-group">
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-primary">查询用户数</button>
+            </span>
+            <input type="text"  class="form-control" [(ngModel)]="searchCountNum" placeholder="请选择">
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="search-right">
+      <div class="form-group row">
+        <div class="col-sm-12">
+          <button class="btn btn-primary" type="button" (click)="getSellerList()">筛选</button>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-12">
+          <button class="btn btn-primary" type="button" (click)="outSellerList()">导出SELLER列表</button>
+        </div>
+      </div>
+    </div>
+    <!--</form>-->
+  </div>
+
+</div>
+
+<div class="animated fadeIn">
+  <!--/.row-->
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-block">
+          <!--<table class="table table-bordered" id="checkboxTable" appTableCheckbox-->
+          <!--(onChecked)="getCheckedIndexList($event)">-->
+          <table class="table table-bordered">
+            <thead>
+            <tr>
+              <!--<th class="col-sm-1 align-items-center"><input type="checkbox" /></th>-->
+              <th>来电号码</th>
+              <th>查询用户数</th>
+              <th>查询用户号码</th>
+              <!--<th>操作</th>-->
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let obj of objs"><!--  -->
+              <td>{{obj.incomeNumber}}</td>
+              <td>{{obj.searchPhoneCount}}</td>
+              <td><button class="btn btn-default" (click)="phoneDetails(obj.searchPhoneNumber)">详情</button></td>
+            </tr>
+
+            </tbody>
+          </table>
+          <pagination [totalItems]="totalItems" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)"></pagination>
+        </div>
+      </div>
+    </div>
+    <!--/.col-->
+  </div>
+  <!--/.row-->
+</div>
+
+<!--<p-dialog header="电话详情" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" width="300" (onAfterHide)="onDialogHide()">-->
+  <!--<p *ngIf="selectedPhones">{{selectedPhones}}</p>-->
+<!--</p-dialog>-->
+
+<p-dialog header="Godfather I" [(visible)]="displayDialog" modal="modal" width="300" [responsive]="true" (onAfterHide)="onDialogHide()">
+  <p *ngIf="selectedPhones" style="word-break:break-all">{{selectedPhones}}</p>
+</p-dialog>
+
+
+
+
