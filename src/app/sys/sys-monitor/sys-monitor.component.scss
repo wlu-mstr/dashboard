@@ -1,7 +1,7 @@
 .chart{
-    width:100%;
-    height:100%;
-    float:left;
+  width:100%;
+  height:100%;
+  float:left;
 }
 
 .title{
@@ -30,6 +30,23 @@
   overflow:hidden;
   background:#404040;
   float:left;
+  position: relative;
+  .right-info{
+    position: absolute;
+    width: 50%;
+    right: 0;
+    top: 40%;
+    height: 1rem;
+    text-align: center;
+    .txt{
+      font-size: 0.2rem;
+      color: #c0c0c0;
+    }
+    .num{
+      color:#fff;
+      font-size: 0.46rem;
+    }
+  }
 }
 
 .content{
@@ -70,9 +87,19 @@
   background:#404040;
   float:left;
   margin-top: 0.1rem;
+  position: relative;
+}
+.content .bottom .bottom-layout:nth-child(2){
   margin-right: 0.1rem;
 }
-
+.content .bottom .bottom-divider{
+  width: 1px;
+  height: 2.69rem;
+  background-color: #808080;
+  position: absolute;
+  right: 0;
+  top: 0.2rem;
+}
 .left_1{
   width:100%;
   height: 6.5rem;
@@ -80,16 +107,6 @@
   overflow:hidden;
   margin-bottom:0.1rem;
 }
-
-
-
-
-
-
-
-
-
-
 
 .left_1_cont {
   width:100%;
@@ -121,7 +138,7 @@
 
 .radio-wrapper{
   text-align: center;
-  margin-top: 0.05rem;
+  margin-top: 0.25rem;
 }
 .radio-icon{
   width: 0.2rem;

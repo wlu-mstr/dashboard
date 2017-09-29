@@ -3,15 +3,27 @@
   <div class="first-line">
     <div class="left user-layout">
       <div class="left_1">
-        <div class="title">User Qty.</div>
+        <div class="title">User Quantity</div>
         <div class="left-user">
           <echart *ngIf="hasP1Chart" [chartType]="p1Chart" class="chart"></echart>
+          <div class="right-info">
+            <div class="txt">Online User</div>
+            <div class="num">{{userQty1}}</div>
+          </div>
         </div>
         <div class="left-user">
           <echart *ngIf="hasP2Chart" [chartType]="p2Chart" class="chart"></echart>
+          <div class="right-info">
+            <div class="txt">Active User</div>
+            <div class="num">{{userQty2}}</div>
+          </div>
         </div>
         <div class="left-user">
           <echart *ngIf="hasP3Chart" [chartType]="p3Chart" class="chart"></echart>
+          <div class="right-info">
+            <div class="txt">Registered User</div>
+            <div class="num">{{userQty3}}</div>
+          </div>
         </div>
       </div>
 
@@ -19,15 +31,15 @@
 
     <div class="center user-layout">
       <div class="title">User Location</div>
-      <div class="checkbox-wrapper">
-          <div class="checkbox">
-              <label><input type="checkbox" checked (click)="selectCheckBox($event.target.checked,0)" />Hot Port</label>
-          </div>
-          <div class="checkbox">
-              <label><input type="checkbox" checked (click)="selectCheckBox($event.target.checked,1)" />Data</label>
-          </div>
-          
-      </div>
+      <!--<div class="checkbox-wrapper">-->
+        <!--<div class="checkbox">-->
+          <!--<label><input type="checkbox" checked (click)="selectCheckBox($event.target.checked,0)" />Hot Port</label>-->
+        <!--</div>-->
+        <!--<div class="checkbox">-->
+          <!--<label><input type="checkbox" checked (click)="selectCheckBox($event.target.checked,1)" />Data</label>-->
+        <!--</div>-->
+
+      <!--</div>-->
       <echart *ngIf="hasPie4Chart" [chartType]="pie4Chart" class="chart"></echart>
 
     </div>
@@ -48,7 +60,9 @@
 
   <div class="bottom">
     <div class="bottom-layout">
+      <div class="title">Trade Amount</div>
       <echart *ngIf="hasLine7Chart"  [chartType]="line7Chart" class="chart"></echart>
+      <div class="bottom-divider"></div>
     </div>
 
     <div class="bottom-layout">
@@ -62,95 +76,19 @@
     </div>
 
     <div class="bottom-layout">
+      <div class="title">Order Quantity</div>
       <echart *ngIf="hasLine9Chart"  [chartType]="line9Chart" class="chart"></echart>
+      <div class="bottom-divider"></div>
     </div>
 
     <div class="bottom-layout">
-        <div class="radio-wrapper">
-          <span class="radio-icon" [ngClass]="{'radio-checked':bar10ChartIdx==0}"(click)="setBar10Chart(0)"></span><span class="radio-txt">Total</span>
-          <span class="radio-icon" [ngClass]="{'radio-checked':bar10ChartIdx==1}"(click)="setBar10Chart(1)"></span><span class="radio-txt">1 Month</span>
-          <span class="radio-icon" [ngClass]="{'radio-checked':bar10ChartIdx==2}"(click)="setBar10Chart(2)"></span><span class="radio-txt">3 Months</span>
-          <span class="radio-icon" [ngClass]="{'radio-checked':bar10ChartIdx==3}"(click)="setBar10Chart(3)"></span><span class="radio-txt">6 Months</span>
-        </div>
+      <div class="radio-wrapper">
+        <span class="radio-icon" [ngClass]="{'radio-checked':bar10ChartIdx==0}"(click)="setBar10Chart(0)"></span><span class="radio-txt">Total</span>
+        <span class="radio-icon" [ngClass]="{'radio-checked':bar10ChartIdx==1}"(click)="setBar10Chart(1)"></span><span class="radio-txt">1 Month</span>
+        <span class="radio-icon" [ngClass]="{'radio-checked':bar10ChartIdx==2}"(click)="setBar10Chart(2)"></span><span class="radio-txt">3 Months</span>
+        <span class="radio-icon" [ngClass]="{'radio-checked':bar10ChartIdx==3}"(click)="setBar10Chart(3)"></span><span class="radio-txt">6 Months</span>
+      </div>
       <echart *ngIf="hasBar10Chart"  [chartType]="bar10Chart" class="chart"></echart>
     </div>
   </div>
 </div>
-
-
-
-
-
-<!--<div class="content">-->
-  <!--<div class="first-line">-->
-    <!--<div class="left user-layout">-->
-      <!--<div class="left_1">-->
-        <!--<div class="title">User Qty.</div>-->
-        <!--<div class="left-user">-->
-          <!--<echart *ngIf="hasChart1" [chartType]="chart1" class="chart"></echart>-->
-        <!--</div>-->
-        <!--<div class="left-user">-->
-          <!--<echart *ngIf="hasChart2" [chartType]="chart2" class="chart"></echart>-->
-        <!--</div>-->
-        <!--<div class="left-user">-->
-          <!--<echart *ngIf="hasChart3" [chartType]="chart3" class="chart"></echart>-->
-        <!--</div>-->
-        <!--&lt;!&ndash;<div class="left_1_cont">&ndash;&gt;-->
-          <!--&lt;!&ndash;<ul>&ndash;&gt;-->
-            <!--&lt;!&ndash;<li>&ndash;&gt;-->
-              <!--&lt;!&ndash;<echart *ngIf="hasPChart" [chartType]="pChart" class="nf-chart"></echart>&ndash;&gt;-->
-            <!--&lt;!&ndash;</li>&ndash;&gt;-->
-            <!--&lt;!&ndash;<li>&ndash;&gt;-->
-              <!--&lt;!&ndash;<echart *ngIf="hasP1Chart" [chartType]="p1Chart" class="nf-chart"></echart>&ndash;&gt;-->
-            <!--&lt;!&ndash;</li>&ndash;&gt;-->
-            <!--&lt;!&ndash;<li>&ndash;&gt;-->
-              <!--&lt;!&ndash;<echart *ngIf="hasP2Chart" [chartType]="p2Chart" class="nf-chart"></echart>&ndash;&gt;-->
-            <!--&lt;!&ndash;</li>&ndash;&gt;-->
-          <!--&lt;!&ndash;</ul>&ndash;&gt;-->
-        <!--&lt;!&ndash;</div>&ndash;&gt;-->
-      <!--</div>-->
-
-    <!--</div>-->
-
-    <!--<div class="center user-layout">-->
-      <!--<div class="title">User Location</div>-->
-      <!--<input class="checkbox" type="checkbox"  />aaa-->
-      <!--<input class="checkbox2" type="checkbox"  />bbb-->
-      <!--<echart *ngIf="hasPieChart" [chartType]="pieChart" class="chart"></echart>-->
-    <!--</div>-->
-
-    <!--<div class="right user-layout">-->
-      <!--<div class="active-user">-->
-        <!--<div class="title">Active User</div>-->
-        <!--<echart *ngIf="hasLineChart"  [chartType]="lineChart" class="chart"></echart>-->
-      <!--</div>-->
-
-      <!--<div class="active-user2">-->
-        <!--<div class="title">Registered User</div>-->
-        <!--<echart *ngIf="hasLineChart"  [chartType]="lineChart" class="chart"></echart>-->
-      <!--</div>-->
-    <!--</div>-->
-  <!--</div>-->
-
-
-  <!--<div class="bottom">-->
-    <!--<div class="bottom-layout">-->
-      <!--<echart *ngIf="hasLine1Chart"  [chartType]="line1Chart" class="chart"></echart>-->
-    <!--</div>-->
-
-    <!--<div class="bottom-layout">-->
-      <!--<echart *ngIf="hasBarChart"  [chartType]="barChart" class="ng-chart"></echart>-->
-    <!--</div>-->
-
-    <!--<div class="bottom-layout">-->
-      <!--<echart *ngIf="hasLine1Chart"  [chartType]="line1Chart" class="chart"></echart>-->
-    <!--</div>-->
-
-    <!--<div class="bottom-layout">-->
-      <!--<echart *ngIf="hasBarChart"  [chartType]="barChart" class="chart"></echart>-->
-    <!--</div>-->
-  <!--</div>-->
-<!--</div>-->
-
-
-

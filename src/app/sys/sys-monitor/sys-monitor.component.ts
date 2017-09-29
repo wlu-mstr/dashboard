@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { SysMonitorService } from './sys-monitor.service';
 
+declare var echarts;
+
 @Component({
   selector: 'sys-monitor',
   templateUrl: './sys-monitor.component.html',
@@ -35,6 +37,10 @@ export class SysMonitorComponent implements OnInit {
   public tradeOrderInfo:any;
   public bar8ChartIdx:number;
   public bar10ChartIdx:number;
+
+  public userQty1:number;
+  public userQty2:number;
+  public userQty3:number;
 
   constructor(public sysMonitorService: SysMonitorService) {
   }
@@ -72,19 +78,11 @@ export class SysMonitorComponent implements OnInit {
         console.log(error);
       }
     );
-
-    //this.refresh();
-    //let _this = this;
-    //setInterval(function () {
-    //  _this.refresh();
-    //}, 1000 * 60 * 60);
-
   }
 
   refresh()
   {
-    console.log('aaa')
-
+    let _self = this;
     this.sysMonitorService.getUserInfo({}).subscribe(
         res => {
 
@@ -97,6 +95,9 @@ export class SysMonitorComponent implements OnInit {
 
         let serveData = res.retbody.getUserInfo;
         let userQty = serveData.userQty;
+        this.userQty1 = userQty[0];
+        this.userQty2 = userQty[1];
+        this.userQty3 = userQty[2];
         let activeUser = serveData.activeUser;
         let RegisteredUser = serveData.RegisteredUser;
         this.p1Chart = {
@@ -112,25 +113,6 @@ export class SysMonitorComponent implements OnInit {
                 color: 'rgba(0,0 ,0 ,0 )'
               }
             }
-          },
-          //backgroundColor: '#404a59',
-          title: {
-            text: 'Online User',
-            subtext: userQty[0],
-            left: 120,
-            //center: ['60%', '55%'],
-            top: 'center',
-            subtextStyle: {
-              fontSize: [15],
-              color: ['#FAFAFA '],
-
-            },
-            textStyle: {
-              fontSize: [7],
-              color: ['#FAFAFA '],
-              fontWeight: ['lighter'],
-            },
-            x: 'center'
           },
           tooltip: {
             trigger: 'item',
@@ -176,8 +158,8 @@ export class SysMonitorComponent implements OnInit {
                   }
                 },
                 {
-                  value: userQty[1],
-                  name: 'Downline User',
+                  value: userQty[2],
+                  name: 'Offline User',
                   label: {
                     normal: {
                       show: false
@@ -225,31 +207,6 @@ export class SysMonitorComponent implements OnInit {
               }
             }
           },
-          //backgroundColor: '#404a59',
-          title: {
-            text: 'Active User',
-            subtext: userQty[2],
-            left: 120,
-            top: 'center',
-            //bottom:['550%'],
-            /* padding: [
-             5,  // 上
-             10, // 右
-             155,  // 下
-             10, // 左
-             ],*/
-            subtextStyle: {
-              fontSize: [15],
-              color: ['#FAFAFA '],
-
-            },
-            textStyle: {
-              fontSize: [7],
-              color: ['#FAFAFA '],
-              fontWeight: ['lighter'],
-            },
-            x: 'center'
-          },
           tooltip: {
             trigger: 'item',
             position: [7, 10],
@@ -270,7 +227,7 @@ export class SysMonitorComponent implements OnInit {
               //left: 'left',
               data: [
                 {
-                  value: userQty[2],
+                  value: userQty[1],
                   name: 'Active User',
                   tooltip: {
                     trigger: 'item',
@@ -294,8 +251,8 @@ export class SysMonitorComponent implements OnInit {
                   }
                 },
                 {
-                  value: userQty[3],
-                  name: 'Unactive User',
+                  value: userQty[2],
+                  name: 'NonActive User',
                   label: {
                     normal: {
                       show: false
@@ -343,30 +300,6 @@ export class SysMonitorComponent implements OnInit {
               }
             }
           },
-          //backgroundColor: '#404a59',
-          title: {
-            text: 'Register User',
-            subtext: userQty[4],
-            left: 120,
-            top: 'center',
-            /* padding: [
-             5,  // 上
-             10, // 右
-             155,  // 下
-             10, // 左
-             ],*/
-            subtextStyle: {
-              fontSize: [15],
-              color: ['#FAFAFA '],
-
-            },
-            textStyle: {
-              fontSize: [7],
-              color: ['#FAFAFA '],
-              fontWeight: ['lighter'],
-            },
-            x: 'center'
-          },
           tooltip: {
             trigger: 'item',
             //position: ['50%', '50%'],
@@ -376,7 +309,6 @@ export class SysMonitorComponent implements OnInit {
           legend: {
             orient: 'vertical',
             left: 'left',
-            //data: ['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
           },
           series: [
             {
@@ -391,8 +323,8 @@ export class SysMonitorComponent implements OnInit {
                 //{value: 310, name: ''},
                 //{value: 234, name: ''},
                 {
-                  value: userQty[4],
-                  name: 'Register User',
+                  value: userQty[2],
+                  name: 'Registered User',
                   tooltip: {
                     trigger: 'item',
                     position: [10, 10],
@@ -456,7 +388,8 @@ export class SysMonitorComponent implements OnInit {
 
         var arr1 = [];
         activeUser.forEach(function(item){
-          arr1.push(item.data)
+          var date = _self.sysMonitorService.monthInEn(item.date);
+          arr1.push(date);
         })
         this.line5Chart = {
           title: {
@@ -476,9 +409,9 @@ export class SysMonitorComponent implements OnInit {
 
             },
             /*axisLabel: {
-              interval: 0,
-              rotate: 30
-            },*/
+             interval: 0,
+             rotate: 30
+             },*/
             type: 'category',
             boundaryGap: false,
             //data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
@@ -501,15 +434,31 @@ export class SysMonitorComponent implements OnInit {
           ],
           series: [
             {
-              name: '访问量',
+              name: 'Active',
               type: 'line',
               //data: [0, 1, 15, 13, 12, 13, 10,123,100,99,66,199]
-              data: activeUser
+              data: activeUser,
+              lineStyle:{
+                normal:{
+                  color:'#99ff00'
+                }
+              },
+              itemStyle:{
+                normal:{
+                  color:'#99ff00'
+                }
+              },
+              symbol: 'none'
             }
 
           ]
         };
 
+        var line6Xdata = [];
+        RegisteredUser.forEach(function(item){
+          var date = _self.sysMonitorService.monthInEn(item.date);
+          line6Xdata.push(date);
+        })
         this.line6Chart = {
           title: {
             text: '',
@@ -528,13 +477,13 @@ export class SysMonitorComponent implements OnInit {
 
             },
             /*axisLabel: {
-              interval: 0,
-              rotate: 30
-            },*/
+             interval: 0,
+             rotate: 30
+             },*/
             type: 'category',
             boundaryGap: false,
             //data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
-            data:arr1
+            data:line6Xdata
           },
 
           yAxis : [
@@ -553,10 +502,21 @@ export class SysMonitorComponent implements OnInit {
           ],
           series: [
             {
-              name: '访问量',
+              name: 'Registered',
               type: 'line',
               //data: [0, 1, 15, 13, 12, 13, 10,123,100,99,66,199]
-              data: RegisteredUser
+              data: RegisteredUser,
+              lineStyle:{
+                normal:{
+                  color:'#99ff00'
+                }
+              },
+              itemStyle:{
+                normal:{
+                  color:'#99ff00'
+                }
+              },
+              symbol: 'none'
             }
 
           ]
@@ -574,81 +534,23 @@ export class SysMonitorComponent implements OnInit {
         this.hasBar8Chart = true;
         this.hasLine9Chart = true;
         this.hasBar10Chart = true;
-
-        let trade = res.retbody.getTradeOrderInfo.trade;
-        let tradeNums=res.retbody.getTradeOrderInfo.trade.tradeNums;
-        var arr3 = [];
-        tradeNums.forEach(function(item){
-          arr3.push({value: item.data})
-        })
         this.tradeOrderInfo = res.retbody.getTradeOrderInfo;
         this.setBar8Chart(0);
         this.setBar10Chart(0);
 
-        /* this.line5Chart = {
-         title: {
-         text: '',
-         subtext: '',
-         x:"center"
-         },
-         tooltip: {
-         trigger: 'axis'
-         },
-         xAxis: {
-         type: 'category',
-         boundaryGap: false,
-         data: ['1', '2', '3', '4', '5', '6', '7','8','9','10','11','12']
-         },
-         yAxis: {
-         type: 'value',
-         axisLabel: {
-         formatter: '{value} 次'
-         }
-         },
-         series: [
-         {
-         name: '访问量',
-         type: 'line',
-         //data: [0, 1, 15, 13, 12, 13, 10,123,100,99,66,199]
-         data:activeUser
-         }
-
-         ]
-         };
-         this.line6Chart= {
-         title: {
-         text: '',
-         subtext: '',
-         x:"center"
-         },
-         tooltip: {
-         trigger: 'axis'
-         },
-         xAxis: {
-         type: 'category',
-         boundaryGap: false,
-         data: ['1', '2', '3', '4', '5', '6', '7','8','9','10','11','12']
-         },
-         yAxis: {
-         type: 'value',
-         axisLabel: {
-         formatter: '{value} 次'
-         }
-         },
-         series: [
-         {
-         name: '访问量',
-         type: 'line',
-         //data: [0, 1, 15, 13, 12, 13, 10,123,100,99,66,199]
-         data:RegisteredUser
-         }
-
-         ]
-         };*/
+        let trade = res.retbody.getTradeOrderInfo.trade;
+        let tradeNums=res.retbody.getTradeOrderInfo.trade.tradeNums;
+        var tradexAxis = [];
+        var tradeSeries = [];
+        tradeNums.forEach(function(item){
+          tradeSeries.push(Number(item.value))
+          var date = _self.sysMonitorService.monthInEn(item.date);
+          tradexAxis.push(date);
+        })
         this.line7Chart = {
           title: {
             text: 'Today',
-            subtext: trade.tradeToday,
+            subtext: trade.tradeToday + " ¥",
             //bottom:['550%'],
             /* padding: [
              5,  // 上
@@ -666,27 +568,32 @@ export class SysMonitorComponent implements OnInit {
               color: ['#FAFAFA '],
               fontWeight: ['lighter'],
             },
-            x: 'center'
+            x: 'center',
+            top:30
+          },
+          grid:{
+            x:70,
+            top:90
           },
           tooltip: {
             trigger: 'axis'
           },
           xAxis: {
-            axisLabel: {color: '#808080'},
             axisLine: {show: false},
             axisTick: {show: false},
             nameTextStyle: {
               //color:'#fff',
 
             },
-            /*axisLabel: {
-              interval: 0,
-              rotate: 30
-            },*/
+            axisLabel: {
+              color: '#808080',
+              interval: 3,
+              rotate: -60,
+            },
             type: 'category',
             boundaryGap: false,
             //data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
-            data:arr3
+            data:tradexAxis
           },
 
           yAxis : [
@@ -705,14 +612,29 @@ export class SysMonitorComponent implements OnInit {
           ],
           series: [
             {
-              name: '访问量',
+              name: 'Trade Amount',
               type: 'line',
               //data: [0, 0, 0, 0, 0, 1, 1,12,10,9,6,9]
-              data: trade.tradeNums
+              data: tradeSeries,
+              lineStyle:{
+                normal:{
+                  color:'#ffd153'
+                }
+              },
+              symbol: 'none'
             }
 
           ]
         };
+
+        let orderNums=res.retbody.getTradeOrderInfo.order.orderNums;
+        var orderxAxis = [];
+        var orderSeries = [];
+        orderNums.forEach(function(item){
+          orderSeries.push(Number(item.value))
+          var date = _self.sysMonitorService.monthInEn(item.date);
+          orderxAxis.push(date);
+        })
         this.line9Chart = {
           title: {
             text: 'Today',
@@ -735,27 +657,32 @@ export class SysMonitorComponent implements OnInit {
               color: ['#FAFAFA '],
               fontWeight: ['lighter'],
             },
-            x: 'center'
+            x: 'center',
+            top:30,
+          },
+          grid:{
+            x:50,
+            top:90
           },
           tooltip: {
             trigger: 'axis'
           },
           xAxis: {
-            axisLabel: {color: '#808080'},
             axisLine: {show: false},
             axisTick: {show: false},
             nameTextStyle: {
               //color:'#fff',
 
             },
-            /*axisLabel: {
-              interval: 0,
-              rotate: 30
-            },*/
+            axisLabel: {
+              color: '#808080',
+              interval: 3,
+              rotate: -60,
+            },
             type: 'category',
             boundaryGap: false,
             //data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
-            data:arr3
+            data:orderxAxis
           },
 
           yAxis : [
@@ -774,11 +701,17 @@ export class SysMonitorComponent implements OnInit {
           ],
           series: [
             {
-              name: '访问量',
+              name: 'Order Quantity',
               type: 'line',
               //data: [0, 0, 0, 0, 0, 1, 1,12,10,9,6,9]
               //data:order.orderNums
-              data: this.tradeOrderInfo.order.orderNums
+              data: orderNums,
+              lineStyle:{
+                normal:{
+                  color:'#ff9900'
+                }
+              },
+              symbol: 'none'
             }
 
           ]
@@ -796,196 +729,74 @@ export class SysMonitorComponent implements OnInit {
   //绘制第4个图形-地图
   setPie4Chart(data:any){
     var geoCoordMap = {
-      '海门': [121.15, 31.89],
-      '鄂尔多斯': [109.781327, 39.608266],
-      '招远': [120.38, 37.35],
-      '舟山': [122.207216, 29.985295],
-      '齐齐哈尔': [123.97, 47.33],
-      '盐城': [120.13, 33.38],
-      '赤峰': [118.87, 42.28],
-      '青岛': [120.33, 36.07],
-      '乳山': [121.52, 36.89],
-      '金昌': [102.188043, 38.520089],
-      '泉州': [118.58, 24.93],
-      '莱西': [120.53, 36.86],
-      '日照': [119.46, 35.42],
-      '胶南': [119.97, 35.88],
-      '南通': [121.05, 32.08],
-      '拉萨': [91.11, 29.97],
-      '云浮': [112.02, 22.93],
-      '梅州': [116.1, 24.55],
-      '文登': [122.05, 37.2],
+      '西藏藏族自治区': [91.11, 29.97],
+      '西藏自治区': [91.11, 29.97],
+      '上海市': [121.48, 31.22],
+      '福建省': [119.3, 26.08],
+      '广西壮族自治区': [108.33, 22.84],
+      '广西自治区': [108.33, 22.84],
+      '广东省': [113.23, 23.16],
+      '山西省': [112.53, 37.87],
+      '云南省': [102.73, 25.04],
+      '海南省': [110.35, 20.02],
+      '辽宁省': [123.38, 41.8],
+      '吉林省': [125.35, 43.88],
+      '宁夏回族自治区': [106.27, 38.47],
+      '宁夏自治区': [106.27, 38.47],
+      '江西省': [115.89, 28.68],
+      '青海省': [101.74, 36.56],
+      '内蒙古自治区': [111.65, 40.82],
+      '四川省': [104.06, 30.67],
+      '陕西省': [108.95, 34.27],
+      '重庆市': [106.54, 29.59],
+      '江苏省': [118.78, 32.04],
+      '贵州省': [106.71, 26.57],
+      '北京市': [116.46, 39.92],
+      '新疆维吾尔族自治区': [87.68, 43.77],
+      '新疆自治区': [87.68, 43.77],
+      '浙江省': [120.19, 30.26],
+      '山东省': [117, 36.65],
+      '甘肃省': [103.73, 36.03],
+      '天津市': [117.2, 39.13],
+      '河南省': [113.65, 34.76],
+      '黑龙江省': [126.63, 45.75],
+      '河北省': [114.48, 38.03],
+      '湖南省': [113, 28.21],
+      '安徽省': [117.27, 31.86],
+      '湖北省': [114.31, 30.52],
+
+
+      '西藏': [91.11, 29.97],
       '上海': [121.48, 31.22],
-      '攀枝花': [101.718637, 26.582347],
-      '威海': [122.1, 37.5],
-      '承德': [117.93, 40.97],
-      '厦门': [118.1, 24.46],
-      '汕尾': [115.375279, 22.786211],
-      '潮州': [116.63, 23.68],
-      '丹东': [124.37, 40.13],
-      '太仓': [121.1, 31.45],
-      '曲靖': [103.79, 25.51],
-      '烟台': [121.39, 37.52],
-      '福州': [119.3, 26.08],
-      '瓦房店': [121.979603, 39.627114],
-      '即墨': [120.45, 36.38],
-      '抚顺': [123.97, 41.97],
-      '玉溪': [102.52, 24.35],
-      '张家口': [114.87, 40.82],
-      '阳泉': [113.57, 37.85],
-      '莱州': [119.942327, 37.177017],
-      '湖州': [120.1, 30.86],
-      '汕头': [116.69, 23.39],
-      '昆山': [120.95, 31.39],
-      '宁波': [121.56, 29.86],
-      '湛江': [110.359377, 21.270708],
-      '揭阳': [116.35, 23.55],
-      '荣成': [122.41, 37.16],
-      '连云港': [119.16, 34.59],
-      '葫芦岛': [120.836932, 40.711052],
-      '常熟': [120.74, 31.64],
-      '东莞': [113.75, 23.04],
-      '河源': [114.68, 23.73],
-      '淮安': [119.15, 33.5],
-      '泰州': [119.9, 32.49],
-      '南宁': [108.33, 22.84],
-      '营口': [122.18, 40.65],
-      '惠州': [114.4, 23.09],
-      '江阴': [120.26, 31.91],
-      '蓬莱': [120.75, 37.8],
-      '韶关': [113.62, 24.84],
-      '嘉峪关': [98.289152, 39.77313],
-      '广州': [113.23, 23.16],
-      '延安': [109.47, 36.6],
-      '太原': [112.53, 37.87],
-      '清远': [113.01, 23.7],
-      '中山': [113.38, 22.52],
-      '昆明': [102.73, 25.04],
-      '寿光': [118.73, 36.86],
-      '盘锦': [122.070714, 41.119997],
-      '长治': [113.08, 36.18],
-      '深圳': [114.07, 22.62],
-      '珠海': [113.52, 22.3],
-      '宿迁': [118.3, 33.96],
-      '咸阳': [108.72, 34.36],
-      '铜川': [109.11, 35.09],
-      '平度': [119.97, 36.77],
-      '佛山': [113.11, 23.05],
-      '海口': [110.35, 20.02],
-      '江门': [113.06, 22.61],
-      '章丘': [117.53, 36.72],
-      '肇庆': [112.44, 23.05],
-      '大连': [121.62, 38.92],
-      '临汾': [111.5, 36.08],
-      '吴江': [120.63, 31.16],
-      '石嘴山': [106.39, 39.04],
-      '沈阳': [123.38, 41.8],
-      '苏州': [120.62, 31.32],
-      '茂名': [110.88, 21.68],
-      '嘉兴': [120.76, 30.77],
-      '长春': [125.35, 43.88],
-      '胶州': [120.03336, 36.264622],
-      '银川': [106.27, 38.47],
-      '张家港': [120.555821, 31.875428],
-      '三门峡': [111.19, 34.76],
-      '锦州': [121.15, 41.13],
-      '南昌': [115.89, 28.68],
-      '柳州': [109.4, 24.33],
-      '三亚': [109.511909, 18.252847],
-      '自贡': [104.778442, 29.33903],
-      '吉林': [126.57, 43.87],
-      '阳江': [111.95, 21.85],
-      '泸州': [105.39, 28.91],
-      '西宁': [101.74, 36.56],
-      '宜宾': [104.56, 29.77],
-      '呼和浩特': [111.65, 40.82],
-      '成都': [104.06, 30.67],
-      '大同': [113.3, 40.12],
-      '镇江': [119.44, 32.2],
-      '桂林': [110.28, 25.29],
-      '张家界': [110.479191, 29.117096],
-      '宜兴': [119.82, 31.36],
-      '北海': [109.12, 21.49],
-      '西安': [108.95, 34.27],
-      '金坛': [119.56, 31.74],
-      '东营': [118.49, 37.46],
-      '牡丹江': [129.58, 44.6],
-      '遵义': [106.9, 27.7],
-      '绍兴': [120.58, 30.01],
-      '扬州': [119.42, 32.39],
-      '常州': [119.95, 31.79],
-      '潍坊': [119.1, 36.62],
+      '福建': [119.3, 26.08],
+      '广西': [108.33, 22.84],
+      '广东': [113.23, 23.16],
+      '山西': [112.53, 37.87],
+      '云南': [102.73, 25.04],
+      '海南': [110.35, 20.02],
+      '辽宁': [123.38, 41.8],
+      '吉林': [125.35, 43.88],
+      '宁夏': [106.27, 38.47],
+      '江西': [115.89, 28.68],
+      '青海': [101.74, 36.56],
+      '内蒙古': [111.65, 40.82],
+      '四川': [104.06, 30.67],
+      '陕西': [108.95, 34.27],
       '重庆': [106.54, 29.59],
-      '台州': [121.420757, 28.656386],
-      '南京': [118.78, 32.04],
-      '滨州': [118.03, 37.36],
-      '贵阳': [106.71, 26.57],
-      '无锡': [120.29, 31.59],
-      '本溪': [123.73, 41.3],
-      '克拉玛依': [84.77, 45.59],
-      '渭南': [109.5, 34.52],
-      '马鞍山': [118.48, 31.56],
-      '宝鸡': [107.15, 34.38],
-      '焦作': [113.21, 35.24],
-      '句容': [119.16, 31.95],
+      '江苏': [118.78, 32.04],
+      '贵州': [106.71, 26.57],
       '北京': [116.46, 39.92],
-      '徐州': [117.2, 34.26],
-      '衡水': [115.72, 37.72],
-      '包头': [110, 40.58],
-      '绵阳': [104.73, 31.48],
-      '乌鲁木齐': [87.68, 43.77],
-      '枣庄': [117.57, 34.86],
-      '杭州': [120.19, 30.26],
-      '淄博': [118.05, 36.78],
-      '鞍山': [122.85, 41.12],
-      '溧阳': [119.48, 31.43],
-      '库尔勒': [86.06, 41.68],
-      '安阳': [114.35, 36.1],
-      '开封': [114.35, 34.79],
-      '济南': [117, 36.65],
-      '德阳': [104.37, 31.13],
-      '温州': [120.65, 28.01],
-      '九江': [115.97, 29.71],
-      '邯郸': [114.47, 36.6],
-      '临安': [119.72, 30.23],
-      '兰州': [103.73, 36.03],
-      '沧州': [116.83, 38.33],
-      '临沂': [118.35, 35.05],
-      '南充': [106.110698, 30.837793],
+      '新疆': [87.68, 43.77],
+      '浙江': [120.19, 30.26],
+      '山东': [117, 36.65],
+      '甘肃': [103.73, 36.03],
       '天津': [117.2, 39.13],
-      '富阳': [119.95, 30.07],
-      '泰安': [117.13, 36.18],
-      '诸暨': [120.23, 29.71],
-      '郑州': [113.65, 34.76],
-      '哈尔滨': [126.63, 45.75],
-      '聊城': [115.97, 36.45],
-      '芜湖': [118.38, 31.33],
-      '唐山': [118.02, 39.63],
-      '平顶山': [113.29, 33.75],
-      '邢台': [114.48, 37.05],
-      '德州': [116.29, 37.45],
-      '济宁': [116.59, 35.38],
-      '荆州': [112.239741, 30.335165],
-      '宜昌': [111.3, 30.7],
-      '义乌': [120.06, 29.32],
-      '丽水': [119.92, 28.45],
-      '洛阳': [112.44, 34.7],
-      '秦皇岛': [119.57, 39.95],
-      '株洲': [113.16, 27.83],
-      '石家庄': [114.48, 38.03],
-      '莱芜': [117.67, 36.19],
-      '常德': [111.69, 29.05],
-      '保定': [115.48, 38.85],
-      '湘潭': [112.91, 27.87],
-      '金华': [119.64, 29.12],
-      '岳阳': [113.09, 29.37],
-      '长沙': [113, 28.21],
-      '衢州': [118.88, 28.97],
-      '廊坊': [116.7, 39.53],
-      '菏泽': [115.480656, 35.23375],
-      '合肥': [117.27, 31.86],
-      '武汉': [114.31, 30.52],
-      '大庆': [125.03, 46.58]
+      '河南': [113.65, 34.76],
+      '黑龙江': [126.63, 45.75],
+      '河北': [114.48, 38.03],
+      '湖南': [113, 28.21],
+      '安徽': [117.27, 31.86],
+      '湖北': [114.31, 30.52]
     };
 
     var convertData = function (data) {
@@ -995,7 +806,7 @@ export class SysMonitorComponent implements OnInit {
         if (geoCoord) {
           res.push({
             name: data[i].name,
-            value: geoCoord.concat(data[i].value),
+            value: geoCoord.concat(data[i].value).concat(data[i].top)
           });
         }
       }
@@ -1013,7 +824,10 @@ export class SysMonitorComponent implements OnInit {
         }
       },
       tooltip: {
-        trigger: 'item'
+        trigger: 'item',
+        formatter:function (a,b,c) {
+          return a.name + ':' + a.value[2];
+        }
       },
       legend: {
         orient: 'vertical',
@@ -1049,19 +863,27 @@ export class SysMonitorComponent implements OnInit {
           coordinateSystem: 'geo',
           data: convertData(data),
           symbolSize: function (val) {
-            return val[2] / 10;
+            //if(val[3]===1 ){
+            //  return 60/3;
+            //} else if(val[3]===2){
+            //  return 34/3;
+            //}else if(val[3]===3){
+            //  return 24/3;
+            //}else if(val[3]===4){
+            //  return 14/3;
+            //} else {
+              return 0.001;
+            //}
           },
+          hoverAnimation: true,
           label: {
             normal: {
-              //formatter: '{b}',
               formatter: function (params) {
-                return params.name + '\n' +
-                  params.value[2];
+                return params.name + '\n'
+                  //+
+                  //params.value[2];
               },
-              /*formatter: ['{b}',
-               '{c}'
-               ].join('\n'),*/
-              position: 'center',
+              position: 'top',
               show: true
             },
             emphasis: {
@@ -1070,7 +892,46 @@ export class SysMonitorComponent implements OnInit {
           },
           itemStyle: {
             normal: {
-              color: '#ddb926',
+              color: '#fff',
+            }
+          }
+        },
+        {
+          name: '',
+          type: 'scatter',
+          coordinateSystem: 'geo',
+          data: convertData(data),
+          symbolSize: function (val) {
+            if(val[3]===1 ){
+              return 60/2;
+            } else if(val[3]===2){
+              return 34/2;
+            }else if(val[3]===3){
+              return 24/2;
+            }else if(val[3]===4){
+              return 14/2;
+            } else {
+              return 0.001;
+            }
+            //return 0.1;
+          },
+          hoverAnimation: true,
+          label: {
+            normal: {
+              formatter: function (params) {
+                return params.value[2];
+              },
+              position: 'center',
+              show: true,
+              color:'#9d9d9d'
+            },
+            emphasis: {
+              show: true
+            }
+          },
+          itemStyle: {
+            normal: {
+              color: 'rgba(241,89,79,0.50)',
             }
           }
         }
@@ -1104,11 +965,11 @@ export class SysMonitorComponent implements OnInit {
     ];
     var option1 = {
       "title": {
-        "text": total_price,
+        "text": total_price + " ¥",
         "textStyle": {
           "color": "#FFFFFF",
           "fontWeight": "bold",
-          "fontSize": 30
+          "fontSize": 10
         },
         "top": "4%",
         "left": 'center'
@@ -1122,8 +983,9 @@ export class SysMonitorComponent implements OnInit {
       "grid": {
         "left": "3%",
         "right": "10%",
-        "bottom": "3%",
-        "containLabel": true
+        "bottom": "12%",
+        "containLabel": true,
+        "width":"80%"
       },
       "yAxis": [{
         "type": "category",
@@ -1137,7 +999,7 @@ export class SysMonitorComponent implements OnInit {
         },
         "axisLabel": {
           "textStyle": {
-            "color": "#ffb069"
+            "color": "#808080"
           }
         }
       }],
@@ -1158,10 +1020,11 @@ export class SysMonitorComponent implements OnInit {
       }],
 
       "series": [{
-        "name": "应用使用率",
+        "barWidth":'40%',
+        "name": "Amount",
         "type": "bar",
         "data": appusage_data,
-        "barCategoryGap": "35%",
+        "barCategoryGap": "20%",
         "label": {
           "normal": {
             "show": true,
@@ -1177,7 +1040,7 @@ export class SysMonitorComponent implements OnInit {
         },
         "itemStyle": {
           "normal": {
-            "color": "rgba(241,89,79,0.50)"
+            "color": "#ffd153"
           }
         }
       }]
@@ -1215,7 +1078,7 @@ export class SysMonitorComponent implements OnInit {
         "textStyle": {
           "color": "#FFFFFF",
           "fontWeight": "bold",
-          "fontSize": 30
+          "fontSize": 20
         },
         "top": "4%",
         "left": 'center'
@@ -1229,8 +1092,9 @@ export class SysMonitorComponent implements OnInit {
       "grid": {
         "left": "3%",
         "right": "10%",
-        "bottom": "3%",
-        "containLabel": true
+        "bottom": "12%",
+        "containLabel": true,
+        "width":"80%"
       },
       "yAxis": [{
         "type": "category",
@@ -1244,7 +1108,7 @@ export class SysMonitorComponent implements OnInit {
         },
         "axisLabel": {
           "textStyle": {
-            "color": "#ffb069"
+            "color": "#808080"
           }
         }
       }],
@@ -1265,10 +1129,11 @@ export class SysMonitorComponent implements OnInit {
       }],
 
       "series": [{
-        "name": "应用使用率",
+        "barWidth":"40%",
+        "name": "Amount",
         "type": "bar",
         "data": appusage_data10,
-        "barCategoryGap": "35%",
+        "barCategoryGap": "20%",
         "label": {
           "normal": {
             "show": true,
@@ -1284,7 +1149,7 @@ export class SysMonitorComponent implements OnInit {
         },
         "itemStyle": {
           "normal": {
-            "color": "rgba(241,89,79,0.50)"
+            "color": "#ff9900"
           }
         }
       }]

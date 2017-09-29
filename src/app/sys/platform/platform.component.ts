@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { PlatformService } from './platform.service';
 
+declare var echarts;
+
 @Component({
   selector: 'platform',
   templateUrl: './platform.component.html',
@@ -67,6 +69,8 @@ export class PlatformComponent implements OnInit {
 
 
   refresh(){
+    let _self = this;
+
     this.platformService.getPlatformInfo({}).subscribe(
         res => {
         res = res.retbody.getPlatformInfo;
@@ -88,13 +92,25 @@ export class PlatformComponent implements OnInit {
         this.memoryPercent = res.Memory.percent;
         this.pageVisit = res.pv.today;
         this.dataVolumn = res.DataVolume;
-          if(this.host.total === '0'){
-            this.host.total = 1;
-          }
+
+
         let option1 = {
           series: [{
             type: 'liquidFill',
-            data: [Number(this.host.usage)/Number(this.host.total)],
+            data: [{
+              value: this.toPoint(this.hostPercent),
+              itemStyle: {
+                normal: {
+                  color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    offset: 0,
+                    color: '#D1E9FA'
+                  }, {
+                    offset: 1,
+                    color: '#1792E5'
+                  }])
+                }
+              }
+            }],
             outline: {
               show: false
             }
@@ -109,21 +125,49 @@ export class PlatformComponent implements OnInit {
         let option2 = {
           series: [{
             type: 'liquidFill',
-            data: [Number(this.cpu.usage)/Number(this.cpu.total)],
+            label: {
+              normal: {
+                color:'#000000'
+              }
+            },
+            data: [{
+              value: this.toPoint(this.cpuPercent),
+              itemStyle: {
+                normal: {
+                  color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    offset: 0,
+                    color: '#D1E9FA'
+                  }, {
+                    offset: 1,
+                    color: '#1792E5'
+                  }])
+                }
+              }
+            }],
             outline: {
               show: false
             }
           }],
         };
         this.chart2 = option2;
-          if(this.memory.total === '0'){
-            this.memory.total = 1;
-          }
 
         let option3 = {
           series: [{
             type: 'liquidFill',
-            data: [Number(this.memory.usage)/Number(this.memory.total)],
+            data: [{
+              value: this.toPoint(this.memoryPercent),
+              itemStyle: {
+                normal: {
+                  color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                    offset: 0,
+                    color: '#D1E9FA'
+                  }, {
+                    offset: 1,
+                    color: '#1792E5'
+                  }])
+                }
+              }
+            }],
             outline: {
               show: false
             },
@@ -132,8 +176,21 @@ export class PlatformComponent implements OnInit {
         };
         this.chart3 = option3;
 
+        let orderNums = res.pv.lastMonth;
+        var orderxAxis = [];
+        var orderSeries = [];
+        orderNums.forEach(function(item){
+          orderSeries.push(item.value.split("'").join(""));
+          var date = _self.platformService.monthInEn(item.date);
+          orderxAxis.push(date);
+        });
 
         this.chart4 = {
+          grid:{
+            left:"5%",
+            top:"20%",
+            height:"60%"
+          },
           title: {
             text: '',
             subtext: '',
@@ -148,7 +205,6 @@ export class PlatformComponent implements OnInit {
             axisTick: {show: false},
             nameTextStyle: {
               //color:'#fff',
-
             },
             /*axisLabel: {
              interval: 0,
@@ -156,7 +212,7 @@ export class PlatformComponent implements OnInit {
              },*/
             type: 'category',
             boundaryGap: false,
-            data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
+            data: orderxAxis
             //data:arr3
           },
 
@@ -176,23 +232,29 @@ export class PlatformComponent implements OnInit {
           ],
           series: [
             {
-              name: '访问量',
+              name: 'Page Visit',
               type: 'line',
-              data: [11, 11, 15, 13, 12, 13, 10,123,100,99,66,199]
+              lineStyle:{
+                normal:{
+                  color:'#8bc9f2'
+                }
+              },
+              data: orderSeries,
+              symbol: 'none'
             }
 
           ]
         };
-
-
-
-
-
-
       },
         error => {
-        console.log('22222');
         console.log(error); }
     );
+  }
+
+  // 百分数转成小数
+  toPoint(percent){
+      var str=percent.replace("%","");
+      str= str/100;
+      return str;
   }
 }

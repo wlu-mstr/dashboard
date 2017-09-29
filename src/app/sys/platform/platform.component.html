@@ -2,18 +2,18 @@
   <div class="first-line">
     <div class="first-line-layout">
       <div class="left">
-          <div class="title">Host</div>
-          <div class="text1">{{hostPercent}}</div>
-          <div class="text2">Total</div>
-          <div class="text3">{{hostTotal}} Set</div>
-          <echart *ngIf="hasBarChart"  [chartType]="chart1" class="chart"></echart>
+        <div class="title">Host</div>
+        <!--<div class="text1">{{hostPercent}}</div>-->
+        <div class="text2">Total</div>
+        <div class="text3">{{hostTotal}} Set</div>
+        <echart *ngIf="hasBarChart"  [chartType]="chart1" class="chart"></echart>
 
 
       </div>
       <div class="right">
         <div class="text-up">
           {{hostCur}}
-          </div>
+        </div>
         <div class="text-down">
           Set
         </div>
@@ -23,7 +23,7 @@
     <div class="first-line-layout">
       <div class="left">
         <div class="title">CPU</div>
-        <div class="text1">{{cpuPercent}}</div>
+        <!--<div class="text1">{{cpuPercent}}</div>-->
         <div class="text2">Total</div>
         <div class="text3">{{cpuTotal}} Core</div>
         <echart *ngIf="hasBarChart"  [chartType]="chart2" class="chart"></echart>
@@ -41,7 +41,7 @@
     <div class="first-line-layout">
       <div class="left">
         <div class="title">Memory</div>
-        <div class="text1">{{memoryPercent}}</div>
+        <!-- <div class="text1">{{memoryPercent}}</div> -->
         <div class="text2">Total</div>
         <div class="text3">{{memoryTotal}} PB</div>
         <echart *ngIf="hasBarChart"  [chartType]="chart3" class="chart"></echart>
@@ -61,16 +61,20 @@
   <div class="bottom">
     <div class="bottom-left-layout">
       <div class="title">Page Visit</div>
+      <div class="title2">Today</div>
       <div class="bottom-left-layout1">
         <div class="today-data-volumn">{{pageVisit}}</div>
+        <div class="data-pcs">Page</div>
       </div>
       <div class="bottom-left-layout2">
+        <div class="title3">Recent One Month</div>
         <echart *ngIf="hasLineChart"  [chartType]="chart4" class="chart"></echart>
       </div>
     </div>
     <div class="bottom-right-layout">
-      <div class="title">Data Volumn</div>
+      <div class="title">Data Volume</div>
       <div class="data-volumn">{{dataVolumn}}</div>
+      <div class="data-pcs">PB</div>
     </div>
   </div>
 </div>
