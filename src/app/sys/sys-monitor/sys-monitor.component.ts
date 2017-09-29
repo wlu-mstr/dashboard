@@ -771,6 +771,42 @@ export class SysMonitorComponent implements OnInit {
               },
               position: 'top',
               show: true
+            }
+          },
+          itemStyle: {
+            normal: {
+              color: '#fff',
+            }
+          }
+        },
+        {
+          name: '',
+          type: 'scatter',
+          coordinateSystem: 'geo',
+          data: convertData(data),
+          symbolSize: function (val) {
+            if(val[3]===1 ){
+              return 60/2;
+            } else if(val[3]===2){
+              return 34/2;
+            }else if(val[3]===3){
+              return 24/2;
+            }else if(val[3]===4){
+              return 14/2;
+            } else {
+              return 0.001;
+            }
+            //return 0.1;
+          },
+          hoverAnimation: true,
+          label: {
+            normal: {
+              formatter: function (params) {
+                return params.value[2];
+              },
+              position: 'center',
+              show: true,
+              color:'#9d9d9d'
             },
             emphasis: {
               show: true
