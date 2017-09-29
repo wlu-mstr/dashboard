@@ -97,15 +97,12 @@ export class PlatformComponent implements OnInit {
         let option1 = {
           series: [{
             type: 'liquidFill',
-<<<<<<< HEAD
-=======
             label: {
               normal: {
                 color:'#000000',
                 fontSize: 30
               }
             },
->>>>>>> 757ac43aeab31ce588affcbc2b6558dfc02aa968
             data: [{
               value: this.toPoint(this.hostPercent),
               itemStyle: {
@@ -131,17 +128,10 @@ export class PlatformComponent implements OnInit {
         let option2 = {
           series: [{
             type: 'liquidFill',
-<<<<<<< HEAD
-            label: {
-              normal: {
-                color:'#000000'
-=======
-
             label: {
               normal: {
                 color:'#000000',
                 fontSize: 30
->>>>>>> 757ac43aeab31ce588affcbc2b6558dfc02aa968
               }
             },
             data: [{
@@ -168,15 +158,12 @@ export class PlatformComponent implements OnInit {
         let option3 = {
           series: [{
             type: 'liquidFill',
-<<<<<<< HEAD
-=======
             label: {
               normal: {
                 color:'#000000',
                 fontSize: 30
               }
             },
->>>>>>> 757ac43aeab31ce588affcbc2b6558dfc02aa968
             data: [{
               value: this.toPoint(this.memoryPercent),
               itemStyle: {
@@ -210,14 +197,9 @@ export class PlatformComponent implements OnInit {
 
         this.chart4 = {
           grid:{
-<<<<<<< HEAD
             left:"5%",
             top:"20%",
             height:"50%"
-=======
-            x:100,
-            top:100
->>>>>>> 757ac43aeab31ce588affcbc2b6558dfc02aa968
           },
           title: {
             text: '',
