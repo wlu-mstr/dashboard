@@ -498,8 +498,9 @@ export class SysMonitorComponent implements OnInit {
         })
         this.line7Chart = {
           grid:{
-            x:"20%",
-            top:"45%"
+            x:"4%",
+            top:"45%",
+            containLabel:true
           },
           tooltip: {
             trigger: 'axis'
@@ -557,8 +558,9 @@ export class SysMonitorComponent implements OnInit {
         })
         this.line9Chart = {
           grid:{
-            x:"20%",
-            top:"45%"
+            x:"4%",
+            top:"45%",
+            containLabel:true
           },
           tooltip: {
             trigger: 'axis'
@@ -897,9 +899,10 @@ export class SysMonitorComponent implements OnInit {
         }
       },
       "grid": {
-        "left": "25%",
+        "left": "4%",
         "top":"30%",
-        "width":"50%"
+        "width":"70%",
+        "containLabel":true,
       },
       "yAxis": [{
         "type": "category",
@@ -995,9 +998,10 @@ export class SysMonitorComponent implements OnInit {
         }
       },
       "grid": {
-        "left": "25%",
+        "left": "4%",
         "top":"30%",
-        "width":"50%"
+        "width":"70%",
+        "containLabel":true,
       },
       "yAxis": [{
         "type": "category",
