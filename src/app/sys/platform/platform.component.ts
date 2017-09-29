@@ -97,6 +97,12 @@ export class PlatformComponent implements OnInit {
         let option1 = {
           series: [{
             type: 'liquidFill',
+            label: {
+              normal: {
+                color:'#000000',
+                fontSize: 30
+              }
+            },
             data: [{
               value: this.toPoint(this.hostPercent),
               itemStyle: {
@@ -119,15 +125,13 @@ export class PlatformComponent implements OnInit {
         };
         this.chart1 = option1;
 
-          if(this.cpu.total === '0'){
-            this.cpu.total = 1;
-          }
         let option2 = {
           series: [{
             type: 'liquidFill',
             label: {
               normal: {
-                color:'#000000'
+                color:'#000000',
+                fontSize: 30
               }
             },
             data: [{
@@ -154,6 +158,12 @@ export class PlatformComponent implements OnInit {
         let option3 = {
           series: [{
             type: 'liquidFill',
+            label: {
+              normal: {
+                color:'#000000',
+                fontSize: 30
+              }
+            },
             data: [{
               value: this.toPoint(this.memoryPercent),
               itemStyle: {
