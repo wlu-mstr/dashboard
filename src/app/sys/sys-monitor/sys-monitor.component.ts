@@ -130,7 +130,7 @@ export class SysMonitorComponent implements OnInit {
               name: 'User',
               type: 'pie',
               radius: '50%',
-              center: ['27%', '55%'],
+              center: ['23%', '55%'],
               data: [
                 {
                   value: userQty[0],
@@ -214,7 +214,7 @@ export class SysMonitorComponent implements OnInit {
               name: 'User',
               type: 'pie',
               radius: '50%',
-              center: ['27%', '55%'],
+              center: ['23%', '55%'],
               data: [
                 {
                   value: userQty[1],
@@ -295,7 +295,7 @@ export class SysMonitorComponent implements OnInit {
               name: 'User',
               type: 'pie',
               radius: '50%',
-              center: ['27%', '55%'],
+              center: ['23%', '55%'],
               data: [
                 {
                   value: userQty[2],
