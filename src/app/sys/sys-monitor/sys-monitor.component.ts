@@ -104,9 +104,6 @@ export class SysMonitorComponent implements OnInit {
           textStyle: {
             color: 'rgba(255, 255, 255, 0.3)'
           },
-          /*lineStyle: {
-           color: 'rgba(255, 255, 255, 0.3)'
-           },*/
           labelLine: {
             normal: {
               lineStyle: {
@@ -122,7 +119,6 @@ export class SysMonitorComponent implements OnInit {
           legend: {
             orient: 'vertical',
             left: 'left',
-            //data: ['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
           },
           series: [
             {
@@ -130,9 +126,7 @@ export class SysMonitorComponent implements OnInit {
               type: 'pie',
               radius: '50%',
               center: ['27%', '55%'],
-              //left: 'left',
               data: [
-
                 {
                   value: userQty[0],
                   name: 'Online User',
@@ -145,13 +139,10 @@ export class SysMonitorComponent implements OnInit {
                       show: false
                     }
                   },
-                  //selected: true,
                   itemStyle: {
                     normal: {
                       // 设置扇形的颜色
                       color: ['#3398DB'],
-                      //color:['#3398DB','#C3C3DB'],
-
                       shadowBlur: 200,
                       shadowColor: 'rgba(0, 0, 0, 0.5)'
                     }
@@ -197,9 +188,6 @@ export class SysMonitorComponent implements OnInit {
           textStyle: {
             color: 'rgba(255, 255, 255, 0.3)'
           },
-          /*lineStyle: {
-           color: 'rgba(255, 255, 255, 0.3)'
-           },*/
           labelLine: {
             normal: {
               lineStyle: {
@@ -215,7 +203,6 @@ export class SysMonitorComponent implements OnInit {
           legend: {
             orient: 'vertical',
             left: 'left',
-            //data: ['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
           },
           series: [
             {
@@ -223,8 +210,6 @@ export class SysMonitorComponent implements OnInit {
               type: 'pie',
               radius: '50%',
               center: ['27%', '55%'],
-              //center: ['15%', '50%'],
-              //left: 'left',
               data: [
                 {
                   value: userQty[1],
@@ -238,13 +223,10 @@ export class SysMonitorComponent implements OnInit {
                       show: false
                     }
                   },
-                  //selected: true,
                   itemStyle: {
                     normal: {
                       // 设置扇形的颜色
                       color: ['#3398DB'],
-                      //color:['#3398DB','#C3C3DB'],
-
                       shadowBlur: 200,
                       shadowColor: 'rgba(0, 0, 0, 0.5)'
                     }
@@ -266,7 +248,6 @@ export class SysMonitorComponent implements OnInit {
                   itemStyle: {
                     normal: {
                       // 设置扇形的颜色
-                      //color:['#3398DB'],
                       color: ['#696969'],
                       shadowBlur: 200,
                       shadowColor: 'rgba(0, 0, 0, 0.5)'
@@ -275,8 +256,6 @@ export class SysMonitorComponent implements OnInit {
                 }
               ],
               itemStyle: {
-
-
                 emphasis: {
                   shadowBlur: 10,
                   shadowOffsetX: 0,
@@ -290,9 +269,6 @@ export class SysMonitorComponent implements OnInit {
           textStyle: {
             color: 'rgba(255, 255, 255, 0.3)'
           },
-          /*lineStyle: {
-           color: 'rgba(255, 255, 255, 0.3)'
-           },*/
           labelLine: {
             normal: {
               lineStyle: {
@@ -302,7 +278,6 @@ export class SysMonitorComponent implements OnInit {
           },
           tooltip: {
             trigger: 'item',
-            //position: ['50%', '50%'],
             position: [10, 10],
             formatter: "{a} <br/>{b} : {c} ({d}%)"
           },
@@ -316,12 +291,7 @@ export class SysMonitorComponent implements OnInit {
               type: 'pie',
               radius: '50%',
               center: ['27%', '55%'],
-              //center: ['15%', '50%'],
-              //left: 'left',
               data: [
-                //{value: 335, name: ''},
-                //{value: 310, name: ''},
-                //{value: 234, name: ''},
                 {
                   value: userQty[2],
                   name: 'Registered User',
@@ -340,8 +310,6 @@ export class SysMonitorComponent implements OnInit {
                     normal: {
                       // 设置扇形的颜色
                       color: ['#3398DB'],
-                      //color:['#3398DB','#C3C3DB'],
-
                       shadowBlur: 200,
                       shadowColor: 'rgba(0, 0, 0, 0.5)'
                     }
@@ -363,7 +331,6 @@ export class SysMonitorComponent implements OnInit {
                   itemStyle: {
                     normal: {
                       // 设置扇形的颜色
-                      //color:['#3398DB'],
                       color: ['#696969'],
                       shadowBlur: 200,
                       shadowColor: 'rgba(0, 0, 0, 0.5)'
@@ -372,8 +339,6 @@ export class SysMonitorComponent implements OnInit {
                 }
               ],
               itemStyle: {
-
-
                 emphasis: {
                   shadowBlur: 10,
                   shadowOffsetX: 0,
@@ -404,17 +369,8 @@ export class SysMonitorComponent implements OnInit {
             axisLabel: {color: '#808080'},
             axisLine: {show: false},
             axisTick: {show: false},
-            nameTextStyle: {
-              //color:'#fff',
-
-            },
-            /*axisLabel: {
-             interval: 0,
-             rotate: 30
-             },*/
             type: 'category',
             boundaryGap: false,
-            //data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
             data:arr1
           },
 
@@ -423,7 +379,6 @@ export class SysMonitorComponent implements OnInit {
               axisLine: {show: false},
               axisTick: {show: false},
               type : 'value',
-              //name : '%',
               axisLabel : {
                 formatter: '{value}',
                 textStyle: {
@@ -436,7 +391,6 @@ export class SysMonitorComponent implements OnInit {
             {
               name: 'Active',
               type: 'line',
-              //data: [0, 1, 15, 13, 12, 13, 10,123,100,99,66,199]
               data: activeUser,
               lineStyle:{
                 normal:{
@@ -472,17 +426,8 @@ export class SysMonitorComponent implements OnInit {
             axisLabel: {color: '#808080'},
             axisLine: {show: false},
             axisTick: {show: false},
-            nameTextStyle: {
-              //color:'#fff',
-
-            },
-            /*axisLabel: {
-             interval: 0,
-             rotate: 30
-             },*/
             type: 'category',
             boundaryGap: false,
-            //data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
             data:line6Xdata
           },
 
@@ -491,7 +436,6 @@ export class SysMonitorComponent implements OnInit {
               axisLine: {show: false},
               axisTick: {show: false},
               type : 'value',
-              //name : '%',
               axisLabel : {
                 formatter: '{value}',
                 textStyle: {
@@ -504,7 +448,6 @@ export class SysMonitorComponent implements OnInit {
             {
               name: 'Registered',
               type: 'line',
-              //data: [0, 1, 15, 13, 12, 13, 10,123,100,99,66,199]
               data: RegisteredUser,
               lineStyle:{
                 normal:{
@@ -551,13 +494,6 @@ export class SysMonitorComponent implements OnInit {
           title: {
             text: 'Today',
             subtext: trade.tradeToday + " ¥",
-            //bottom:['550%'],
-            /* padding: [
-             5,  // 上
-             10, // 右
-             155,  // 下
-             10, // 左
-             ],*/
             subtextStyle: {
               fontSize: [20],
               color: ['#FAFAFA '],
@@ -572,8 +508,8 @@ export class SysMonitorComponent implements OnInit {
             top:30
           },
           grid:{
-            x:70,
-            top:90
+            x:"20%",
+            top:"40%"
           },
           tooltip: {
             trigger: 'axis'
@@ -581,10 +517,6 @@ export class SysMonitorComponent implements OnInit {
           xAxis: {
             axisLine: {show: false},
             axisTick: {show: false},
-            nameTextStyle: {
-              //color:'#fff',
-
-            },
             axisLabel: {
               color: '#808080',
               interval: 3,
@@ -592,7 +524,6 @@ export class SysMonitorComponent implements OnInit {
             },
             type: 'category',
             boundaryGap: false,
-            //data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
             data:tradexAxis
           },
 
@@ -601,7 +532,6 @@ export class SysMonitorComponent implements OnInit {
               axisLine: {show: false},
               axisTick: {show: false},
               type : 'value',
-              //name : '%',
               axisLabel : {
                 formatter: '{value}',
                 textStyle: {
@@ -614,7 +544,6 @@ export class SysMonitorComponent implements OnInit {
             {
               name: 'Trade Amount',
               type: 'line',
-              //data: [0, 0, 0, 0, 0, 1, 1,12,10,9,6,9]
               data: tradeSeries,
               lineStyle:{
                 normal:{
@@ -639,14 +568,6 @@ export class SysMonitorComponent implements OnInit {
           title: {
             text: 'Today',
             subtext: this.tradeOrderInfo.order.orderToday,
-            //subtext:trade.tradeToday,
-            //bottom:['550%'],
-            /* padding: [
-             5,  // 上
-             10, // 右
-             155,  // 下
-             10, // 左
-             ],*/
             subtextStyle: {
               fontSize: [20],
               color: ['#FAFAFA '],
@@ -661,8 +582,8 @@ export class SysMonitorComponent implements OnInit {
             top:30,
           },
           grid:{
-            x:50,
-            top:90
+            x:"15%",
+            top:"40%"
           },
           tooltip: {
             trigger: 'axis'
@@ -670,10 +591,6 @@ export class SysMonitorComponent implements OnInit {
           xAxis: {
             axisLine: {show: false},
             axisTick: {show: false},
-            nameTextStyle: {
-              //color:'#fff',
-
-            },
             axisLabel: {
               color: '#808080',
               interval: 3,
@@ -681,7 +598,6 @@ export class SysMonitorComponent implements OnInit {
             },
             type: 'category',
             boundaryGap: false,
-            //data: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
             data:orderxAxis
           },
 
@@ -690,7 +606,6 @@ export class SysMonitorComponent implements OnInit {
               axisLine: {show: false},
               axisTick: {show: false},
               type : 'value',
-              //name : '%',
               axisLabel : {
                 formatter: '{value}',
                 textStyle: {
@@ -703,8 +618,6 @@ export class SysMonitorComponent implements OnInit {
             {
               name: 'Order Quantity',
               type: 'line',
-              //data: [0, 0, 0, 0, 0, 1, 1,12,10,9,6,9]
-              //data:order.orderNums
               data: orderNums,
               lineStyle:{
                 normal:{
@@ -716,8 +629,6 @@ export class SysMonitorComponent implements OnInit {
 
           ]
         }
-
-
       },
         error => {
         console.log('22222');
@@ -969,9 +880,9 @@ export class SysMonitorComponent implements OnInit {
         "textStyle": {
           "color": "#FFFFFF",
           "fontWeight": "bold",
-          "fontSize": 10
+          "fontSize": 20
         },
-        "top": "4%",
+        "top": "5%",
         "left": 'center'
       },
       "tooltip": {
@@ -981,11 +892,10 @@ export class SysMonitorComponent implements OnInit {
         }
       },
       "grid": {
-        "left": "3%",
-        "right": "10%",
-        "bottom": "12%",
+        "x": "6%",
+        "top":"20%",
         "containLabel": true,
-        "width":"80%"
+        "width":"70%"
       },
       "yAxis": [{
         "type": "category",
@@ -1024,7 +934,7 @@ export class SysMonitorComponent implements OnInit {
         "name": "Amount",
         "type": "bar",
         "data": appusage_data,
-        "barCategoryGap": "20%",
+        "barCategoryGap": "25%",
         "label": {
           "normal": {
             "show": true,
@@ -1080,7 +990,7 @@ export class SysMonitorComponent implements OnInit {
           "fontWeight": "bold",
           "fontSize": 20
         },
-        "top": "4%",
+        "top": "5%",
         "left": 'center'
       },
       "tooltip": {
@@ -1090,11 +1000,10 @@ export class SysMonitorComponent implements OnInit {
         }
       },
       "grid": {
-        "left": "3%",
-        "right": "10%",
-        "bottom": "12%",
+        "x": "6%",
+        "top":"20%",
         "containLabel": true,
-        "width":"80%"
+        "width":"70%"
       },
       "yAxis": [{
         "type": "category",
@@ -1133,7 +1042,7 @@ export class SysMonitorComponent implements OnInit {
         "name": "Amount",
         "type": "bar",
         "data": appusage_data10,
-        "barCategoryGap": "20%",
+        "barCategoryGap": "25%",
         "label": {
           "normal": {
             "show": true,

@@ -189,7 +189,7 @@ export class PlatformComponent implements OnInit {
           grid:{
             left:"5%",
             top:"20%",
-            height:"60%"
+            height:"50%"
           },
           title: {
             text: '',
