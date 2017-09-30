@@ -19,6 +19,8 @@ export class SysComponent implements OnInit {
     } else {
       this.showuser = true;
     }
+
+    
   }
 
   changepage(){

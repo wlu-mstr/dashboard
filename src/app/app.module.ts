@@ -10,6 +10,7 @@ import { SysComponent } from './sys/sys.component';
 import { SysMonitorComponent } from './sys/sys-monitor/sys-monitor.component';
 import { EChartOptionDirective1 } from './sys/sys-monitor/echart-option.directive';
 import { PlatformComponent } from './sys/platform/platform.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { PlatformComponent } from './sys/platform/platform.component';
     SysComponent,
     SysMonitorComponent,
     AppComponent,
-    PlatformComponent
+    PlatformComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

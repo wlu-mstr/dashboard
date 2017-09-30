@@ -1,0 +1,22 @@
+<div class="top">
+  <img src="assets/images/logo.jpg">
+</div>
+<div class="app flex-row align-items-center">
+  <div class="container">
+    <div class="justify-content-center">
+      <div class="login-title">
+        <div class="big-title">BI Dashboard</div>
+        <div class="small-title">Software CoE</div>
+      </div>
+      <p class="text-muted">User name</p>
+      <div class="input-group mb-1">
+        <input type="text" class="form-control" placeholder="Username" #username>
+      </div>
+      <p class="text-muted">Password</p>
+      <div class="input-group mb-2">
+        <input type="password" class="form-control" placeholder="Password" #password>
+      </div>
+      <button type="button" class="btn btn-primary px-4" (click)="login(username.value,password.value)">Login</button>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
 import { SysMonitorService } from './sys-monitor.service';
+import { Router } from '@angular/router';
 
 declare var echarts;
 
@@ -47,7 +47,7 @@ export class SysMonitorComponent implements OnInit {
   public totalPrice:String;
   public totalNum:String;
 
-  constructor(public sysMonitorService: SysMonitorService) {
+  constructor(public sysMonitorService: SysMonitorService,private router: Router) {
   }
 
 
@@ -72,17 +72,21 @@ export class SysMonitorComponent implements OnInit {
     };
     let _this = this;
 
-    this.sysMonitorService.login(param).subscribe(
-        res => {
-        _this.refresh();
-        setInterval(function () {
-          _this.refresh();
-        }, 1000 * 60 * 60);
-      },
-        error => {
-        console.log(error);
-      }
-    );
+    _this.refresh();
+    setInterval(function () {
+      _this.refresh();
+    }, 1000 * 60 * 60);
+    // this.sysMonitorService.login(param).subscribe(
+    //     res => {
+    //     _this.refresh();
+    //     setInterval(function () {
+    //       _this.refresh();
+    //     }, 1000 * 60 * 60);
+    //   },
+    //     error => {
+    //     console.log(error);
+    //   }
+    // );
   }
 
   refresh()
@@ -612,6 +616,7 @@ export class SysMonitorComponent implements OnInit {
         error => {
         console.log('22222');
         console.log(error);
+        this.router.navigate(['login']);
       }
     );
 

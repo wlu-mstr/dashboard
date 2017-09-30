@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
 import { PlatformService } from './platform.service';
+import { Router } from '@angular/router';
 
 declare var echarts;
 
@@ -36,7 +36,7 @@ export class PlatformComponent implements OnInit {
   public hasBarChart: boolean;
   public hasLineChart: boolean;
 
-  constructor(public platformService: PlatformService) {
+  constructor(public platformService: PlatformService, private router: Router) {
   }
 
 
@@ -53,17 +53,21 @@ export class PlatformComponent implements OnInit {
     };
     let _this = this;
 
-    this.platformService.login(param).subscribe(
-        res => {
-        _this.refresh();
-        setInterval(function () {
-          _this.refresh();
-        }, 1000 * 60 * 60);
-      },
-        error => {
-        console.log(error);
-      }
-    );
+    _this.refresh();
+    setInterval(function () {
+      _this.refresh();
+    }, 1000 * 60 * 60);
+    // this.platformService.login(param).subscribe(
+    //     res => {
+    //     _this.refresh();
+    //     setInterval(function () {
+    //       _this.refresh();
+    //     }, 1000 * 60 * 60);
+    //   },
+    //     error => {
+    //     console.log(error);
+    //   }
+    // );
 
   }
 
@@ -247,7 +251,9 @@ export class PlatformComponent implements OnInit {
         };
       },
         error => {
-        console.log(error); }
+        console.log(error); 
+        this.router.navigate(['login']);
+      }
     );
   }
 
