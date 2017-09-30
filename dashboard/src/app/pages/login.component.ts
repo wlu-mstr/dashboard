@@ -7,6 +7,7 @@ import * as AppUtil from '../util/app.util';
 
 @Component({
   templateUrl: 'login.component.html',
+  styleUrls:['login.component.scss'],
   providers: [LoginService]
 })
 export class LoginComponent {
