@@ -1,0 +1,39 @@
+.top{
+    img{
+        margin-top: 0.25rem;
+        margin-left: 0.3rem;
+    }
+}
+.justify-content-center{
+    margin-top: 0.8rem;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%,0);
+    input{
+        background: #4e4d4d;
+        border: 1px solid #387a9d;
+        color: #fff;
+    }
+    button{
+        background: #26a5ea;
+        width: 100%;
+        margin-top: 0.3rem;
+        border-radius: 0;
+    }
+}
+.login-title{
+    text-align: center;
+    .big-title{
+        font-size: 0.24rem;
+        font-family:HoneywellSans-Extrabold;
+        color:#f0f0f0;
+    }
+    .small-title{
+        font-size: 0.15rem;
+        color:#777;
+    }
+}
+.text-muted {
+    color: #777;
+    margin: 0.15rem 0 0.01rem 0;
+}
