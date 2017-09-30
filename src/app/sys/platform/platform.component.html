@@ -43,7 +43,7 @@
         <div class="title">Memory</div>
         <!-- <div class="text1">{{memoryPercent}}</div> -->
         <div class="text2">Total</div>
-        <div class="text3">{{memoryTotal}} PB</div>
+        <div class="text3">{{memoryTotal}} GB</div>
         <echart *ngIf="hasBarChart"  [chartType]="chart3" class="chart"></echart>
       </div>
       <div class="right">
@@ -51,7 +51,7 @@
           {{memoryCur}}
         </div>
         <div class="text-down">
-          PB
+          B
         </div>
       </div>
     </div>
@@ -74,7 +74,7 @@
     <div class="bottom-right-layout">
       <div class="title">Data Volume</div>
       <div class="data-volumn">{{dataVolumn}}</div>
-      <div class="data-pcs">PB</div>
+      <div class="data-pcs">B</div>
     </div>
   </div>
 </div>
