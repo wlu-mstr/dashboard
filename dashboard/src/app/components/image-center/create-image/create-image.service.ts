@@ -7,7 +7,7 @@ import * as AppUtil from '../../../util/app.util';
 import { SellerResponse } from '../model/response/seller.response';
 
 @Injectable()
-export class SellerBussinessService {
+export class CreateImageService {
 
   constructor(private http: Http) { }
 
@@ -22,10 +22,4 @@ export class SellerBussinessService {
     });
   }
 
-  downloadTabel(query: any): Observable<any> {
-    return this.http.get(AppUtil.BACKEND_API_ROOT_URL + '/export/exportWholeCount'+query).map((res: Response) => {
-    }).catch((error: Response) => {
-      return Observable.throw('下载失败');
-    });
-  }
 }

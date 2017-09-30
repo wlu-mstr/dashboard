@@ -1,13 +1,14 @@
 import { Routes, RouterModule }  from '@angular/router';
 import { FullLayoutComponent } from './layouts/full-layout.component';
 
-import { SellerBusinessComponent } from './components/seller-business/seller-business.component';
+import { MyImageComponent } from './components/image-center/my-image.component';
+import { CreateImageComponent } from './components/image-center/create-image/create-image.component';
 import { CanActivateGuard } from './shared/routerControl/can-activate-guard';
-import { PhoneDetailsComponent } from './components/phone-details/phone-details.component';
-import { SearchDetailsComponent } from './components/search-details/search-details.component';
+import { BaseImageComponent } from './components/image-center/base-image.component';
+import { ConfigManagerComponent } from './components/cluster-center/config-manager.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { LoadBalanceComponent } from './components/load-balance/loadbalance.component';
-import { MyClusterComponent } from './components/my-cluster/my-cluster.component';
+import { LoadBalanceComponent } from './components/cluster-center/loadbalance.component';
+import { MyClusterComponent } from './components/cluster-center/my-cluster.component';
 
 import { IndexComponent } from './index/index.component';
 import { LoginComponent } from './pages/login.component';
@@ -37,28 +38,33 @@ const rootRouterConfig: Routes = [
         component: DashboardComponent
       },
       {
-        path: 'mymirror', //我的镜像
-        component: SellerBusinessComponent,
+        path: 'myImage', //我的镜像
+        component: MyImageComponent,
+        canActivate: [CanActivateGuard],
+      },
+      {
+        path: 'createImage', //我的镜像-- 创建新镜像
+        component: CreateImageComponent,
         canActivate: [CanActivateGuard],
       }
       ,
       {
-        path: 'basemirror', //基础镜像
-        component: PhoneDetailsComponent,
+        path: 'baseImage', //基础镜像
+        component: BaseImageComponent,
         canActivate: [CanActivateGuard],
       },
       {
-        path: 'configmanager',
-        component: SearchDetailsComponent,
+        path: 'configManager',  //配置管理
+        component: ConfigManagerComponent,
         canActivate: [CanActivateGuard],
       },
       {
-        path: 'mycluster',
+        path: 'myCluster',  //我的集群
         component: MyClusterComponent,
         canActivate: [CanActivateGuard],
       },
       {
-        path: 'loadbalance',
+        path: 'loadBalance', //负载均衡
         component: LoadBalanceComponent,
         canActivate: [CanActivateGuard],
       }

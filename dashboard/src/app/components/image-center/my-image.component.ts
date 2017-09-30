@@ -1,16 +1,15 @@
 import {Component, OnInit, ViewChild, AfterViewInit, Inject} from '@angular/core';
-import {SellerBussinessService} from './service/seller-bussiness.service';
+import {MyImageService} from './my-image.service';
 import {Router} from '@angular/router';
-import { StoreService } from './service/store.service';
 import * as $ from 'jquery';
 
 @Component({
-  selector: 'app-seller-business',
-  templateUrl: './seller-business.component.html',
-  styleUrls: ['./seller-business.component.scss'],
-  providers: [SellerBussinessService, StoreService]
+  selector: 'app-my-image',
+  templateUrl: './my-image.component.html',
+  styleUrls: ['./my-image.component.scss'],
+  providers: [MyImageService]
 })
-export class SellerBusinessComponent implements OnInit,AfterViewInit {
+export class MyImageComponent implements OnInit,AfterViewInit {
   // @ViewChild('status') status;
   objs: any = [];
   alertMessage: string;
@@ -28,7 +27,7 @@ export class SellerBusinessComponent implements OnInit,AfterViewInit {
   zh: any;
 
 
-  constructor(private sellerBussinessService: SellerBussinessService, private router: Router, private storeService: StoreService,@Inject('help') private helpService) {
+  constructor(private sellerBussinessService: MyImageService, private router: Router,@Inject('help') private helpService) {
   }
 
   ngOnInit() {

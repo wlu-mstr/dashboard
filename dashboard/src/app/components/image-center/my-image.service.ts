@@ -3,28 +3,29 @@ import { Http, Response, Headers } from '@angular/http';
 import {Observable} from 'rxjs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import * as AppUtil from '../../../util/app.util';
+import * as AppUtil from '../../util/app.util';
+import { SellerResponse } from './model/response/seller.response';
+
 @Injectable()
-export class PhoneDetailsService {
+export class MyImageService {
 
-  constructor(private http:Http) { }
+  constructor(private http: Http) { }
 
-  getList(query: any): Observable<any>{
+  getList(query: any): Observable<any[]>{
     const headers = new Headers();
     headers.set('Content-Type', 'application/json');
-    return this.http.get(AppUtil.BACKEND_API_ROOT_URL + '/report/callDetail'+query).map((res: Response) => {
+    return this.http.get(AppUtil.BACKEND_API_ROOT_URL + '/report/wholeCount'+query).map((res: Response) => {
       console.log(res.json() as any[]);
-      return res.json();
+      return res.json().data;
     }).catch((error: Response) => {
-      return Observable.throw('获取列失败');
+      return Observable.throw('获取列表失败');
     });
   }
 
   downloadTabel(query: any): Observable<any> {
-    return this.http.get(AppUtil.BACKEND_API_ROOT_URL + '/export/exportCallDetail'+query).map((res: Response) => {
+    return this.http.get(AppUtil.BACKEND_API_ROOT_URL + '/export/exportWholeCount'+query).map((res: Response) => {
     }).catch((error: Response) => {
       return Observable.throw('下载失败');
     });
   }
-
 }

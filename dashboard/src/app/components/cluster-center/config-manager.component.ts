@@ -1,13 +1,13 @@
 import { Component, OnInit,Inject } from '@angular/core';
-import { SearchDetailsService } from './service/search-details.service';
+import { ConfigManagerService } from './service/config-manager.service';
 
 @Component({
-  selector: 'app-search-details',
-  templateUrl: './search-details.component.html',
-  styleUrls: ['./search-details.component.scss'],
-  providers:[SearchDetailsService]
+  selector: 'app-config-manager',
+  templateUrl: './config-manager.component.html',
+  styleUrls: ['./config-manager.component.scss'],
+  providers:[ConfigManagerService]
 })
-export class SearchDetailsComponent implements OnInit {
+export class ConfigManagerComponent implements OnInit {
 
   objs: any = [];
   alertMessage: string;
@@ -32,7 +32,7 @@ export class SearchDetailsComponent implements OnInit {
 
   displayDialog: boolean;
   zh:any;
-  constructor(private searchDetailsService:SearchDetailsService,@Inject('help') private helpService) { }
+  constructor(private searchDetailsService:ConfigManagerService,@Inject('help') private helpService) { }
 
   ngOnInit() {
     this.zh = {

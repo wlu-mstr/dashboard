@@ -1,13 +1,13 @@
 import { Component, OnInit,Inject } from '@angular/core';
-import { PhoneDetailsService } from './service/phone-details.service';
+import { BaseImageService } from './service/base-image.service';
 
 @Component({
-  selector: 'app-my-cluster',
-  templateUrl: './my-cluster.component.html',
-  styleUrls: ['./my-cluster.component.scss'],
-  providers:[PhoneDetailsService]
+  selector: 'app-base-image',
+  templateUrl: './base-image.component.html',
+  styleUrls: ['./base-image.component.scss'],
+  providers:[BaseImageService]
 })
-export class MyClusterComponent implements OnInit {
+export class  BaseImageComponent implements OnInit {
 
   objs: any = [];
   alertMessage: string;
@@ -27,7 +27,7 @@ export class MyClusterComponent implements OnInit {
 
   query: any;
   zh:any;
-  constructor(private phoneDetailsService:PhoneDetailsService,@Inject('help') private helpService) { }
+  constructor(private phoneDetailsService:BaseImageService,@Inject('help') private helpService) { }
 
   ngOnInit() {
     this.zh = {
