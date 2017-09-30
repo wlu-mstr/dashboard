@@ -9,6 +9,8 @@ import { ConfigManagerComponent } from './components/cluster-center/config-manag
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoadBalanceComponent } from './components/cluster-center/load-balance/loadbalance.component';
 import { MyClusterComponent } from './components/cluster-center/my-cluster/my-cluster.component';
+import { CreateConfigComponent } from './components/cluster-center/create-config/create-config.component';
+
 
 import { IndexComponent } from './index/index.component';
 import { LoginComponent } from './pages/login.component';
@@ -56,6 +58,11 @@ const rootRouterConfig: Routes = [
       {
         path: 'configManager',  //配置管理
         component: ConfigManagerComponent,
+        canActivate: [CanActivateGuard],
+      },
+      {
+        path: 'createConfig',  //配置管理--创建新配置
+        component: CreateConfigComponent,
         canActivate: [CanActivateGuard],
       },
       {
