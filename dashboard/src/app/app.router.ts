@@ -1,11 +1,12 @@
 import { Routes, RouterModule }  from '@angular/router';
 import { FullLayoutComponent } from './layouts/full-layout.component';
+
 import { SellerBusinessComponent } from './components/seller-business/seller-business.component';
 import { CanActivateGuard } from './shared/routerControl/can-activate-guard';
 import { PhoneDetailsComponent } from './components/phone-details/phone-details.component';
 import { SearchDetailsComponent } from './components/search-details/search-details.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-
+import { LoadBalanceComponent } from './components/load-balance/loadbalance.component';
 import { MyClusterComponent } from './components/my-cluster/my-cluster.component';
 
 import { IndexComponent } from './index/index.component';
