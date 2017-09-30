@@ -38,7 +38,7 @@ import { AlertComponent } from './shared/alert/alert.component';
 import { CanActivateGuard } from './shared/routerControl/can-activate-guard';
 import { PhoneDetailsComponent } from './components/phone-details/phone-details.component';
 import { SearchDetailsComponent } from './components/search-details/search-details.component';
-import { WelcomeComponent } from './components/welcome/welcome.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MyClusterComponent } from './components/my-cluster/my-cluster.component';
 import { IndexComponent } from './index/index.component';
 import { LoginComponent } from './pages/login.component';
@@ -64,10 +64,11 @@ import { LoginComponent } from './pages/login.component';
     FormatPhonePipe,
     IndexComponent,
     LoginComponent,
-    WelcomeComponent,
+    DashboardComponent,
     PhoneDetailsComponent,
     SearchDetailsComponent,
-    MyClusterComponent
+    MyClusterComponent,
+    LoadBalanceComponent
   ],
   imports: [
     BrowserModule,

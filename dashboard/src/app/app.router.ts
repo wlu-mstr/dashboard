@@ -4,7 +4,7 @@ import { SellerBusinessComponent } from './components/seller-business/seller-bus
 import { CanActivateGuard } from './shared/routerControl/can-activate-guard';
 import { PhoneDetailsComponent } from './components/phone-details/phone-details.component';
 import { SearchDetailsComponent } from './components/search-details/search-details.component';
-import { WelcomeComponent } from './components/welcome/welcome.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 import { MyClusterComponent } from './components/my-cluster/my-cluster.component';
 
@@ -32,28 +32,33 @@ const rootRouterConfig: Routes = [
     canActivate: [CanActivateGuard],
     children: [
       {
-        path: '',
-        component: WelcomeComponent
+        path: '', //  总揽
+        component: DashboardComponent
       },
       {
-        path: 'sellerList',
+        path: 'mymirror', //我的镜像
         component: SellerBusinessComponent,
         canActivate: [CanActivateGuard],
       }
       ,
       {
-        path: 'phoneDetails',
+        path: 'basemirror', //基础镜像
         component: PhoneDetailsComponent,
         canActivate: [CanActivateGuard],
       },
       {
-        path: 'SearchDetails',
+        path: 'configmanager',
         component: SearchDetailsComponent,
         canActivate: [CanActivateGuard],
       },
       {
         path: 'mycluster',
         component: MyClusterComponent,
+        canActivate: [CanActivateGuard],
+      },
+      {
+        path: 'loadbalance',
+        component: LoadBalanceComponent,
         canActivate: [CanActivateGuard],
       }
     ]
