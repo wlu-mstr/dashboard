@@ -43,7 +43,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MyClusterComponent } from './components/cluster-center/my-cluster/my-cluster.component';
 import { LoadBalanceComponent } from './components/cluster-center/load-balance/loadbalance.component';
 import { CreateConfigComponent } from './components/cluster-center/create-config/create-config.component';
-
+import { DeployNewClusterComponent } from './components/cluster-center/deploy-new-cluster/deploy-new-cluster.component';
 
 import { IndexComponent } from './index/index.component';
 import { LoginComponent } from './pages/login.component';
@@ -74,7 +74,8 @@ import { LoginComponent } from './pages/login.component';
     MyClusterComponent,
     LoadBalanceComponent,
     CreateImageComponent,
-    CreateConfigComponent
+    CreateConfigComponent,
+    DeployNewClusterComponent
   ],
   imports: [
     BrowserModule,

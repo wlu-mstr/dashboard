@@ -10,7 +10,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoadBalanceComponent } from './components/cluster-center/load-balance/loadbalance.component';
 import { MyClusterComponent } from './components/cluster-center/my-cluster/my-cluster.component';
 import { CreateConfigComponent } from './components/cluster-center/create-config/create-config.component';
-
+import { DeployNewClusterComponent } from './components/cluster-center/deploy-new-cluster/deploy-new-cluster.component';
 
 import { IndexComponent } from './index/index.component';
 import { LoginComponent } from './pages/login.component';
@@ -70,6 +70,12 @@ const rootRouterConfig: Routes = [
         component: MyClusterComponent,
         canActivate: [CanActivateGuard],
       },
+      {
+        path: 'deployCluster',  //我的集群－－部署新集群
+        component: DeployNewClusterComponent,
+        canActivate: [CanActivateGuard],
+      },
+
       {
         path: 'loadBalance', //负载均衡
         component: LoadBalanceComponent,
