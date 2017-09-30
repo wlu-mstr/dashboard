@@ -1,13 +1,13 @@
 import { Component, OnInit,Inject } from '@angular/core';
-import { PhoneDetailsService } from './service/phone-details.service';
+import { ConfigManagerService } from '../service/config-manager.service';
 
 @Component({
-  selector: 'app-create-cluster',
-  templateUrl: './create-cluster.component.html',
-  styleUrls: ['./create-cluster.component.scss'],
-  providers:[PhoneDetailsService]
+  selector: 'app-config-manager',
+  templateUrl: './config-manager.component.html',
+  styleUrls: ['./config-manager.component.scss'],
+  providers:[ConfigManagerService]
 })
-export class CreateClusterComponent implements OnInit {
+export class ConfigManagerComponent implements OnInit {
 
   objs: any = [];
   alertMessage: string;
@@ -17,17 +17,22 @@ export class CreateClusterComponent implements OnInit {
   endTime:Date;
   manualFlag:string = '';
   incomeNumber:string = '';
-  serviceType:string = '';
+  searchCountNum:number;
   totalItems: number = 1;
   currentPage: number = 1;
+  itemsPerPage:number=20;
   //判定alert输入值变化
   alertNumber = 1;
   //蒙层显隐
   showModal = false;
 
   query: any;
+
+  selectedPhones: any;
+
+  displayDialog: boolean;
   zh:any;
-  constructor(private phoneDetailsService:PhoneDetailsService,@Inject('help') private helpService) { }
+  constructor(private searchDetailsService:ConfigManagerService,@Inject('help') private helpService) { }
 
   ngOnInit() {
     this.zh = {
@@ -43,27 +48,25 @@ export class CreateClusterComponent implements OnInit {
 
   //获取列表
   getSellerList() {
-    this.showModal = true;
+    this.showModal = true
     this.query = {
       startTime: this.helpService._dateFormatNoSe("yyyy-MM-dd hh:mm:ss",this.startTime),
       endTime: this.helpService._dateFormatNoSe("yyyy-MM-dd hh:mm:ss",this.endTime),
-      manualFlag:this.manualFlag,
       incomeNumber:this.incomeNumber,
-      serviceType:this.serviceType,
+      searchCountNum:this.searchCountNum,
       pageSize:10,
       pageNumber:this.currentPage
     };
     if(this.query.startTime.length > 0 && this.query.endTime.length > 0){
       const queryString = this.helpService._queryObjToString(this.query);
       console.log('query:' + queryString);
-      this.phoneDetailsService.getList(queryString).subscribe((result) => {
+      this.searchDetailsService.getList(queryString).subscribe((result) => {
         this.showModal = false;
         if(result.code == '200'){
           this.objs = result.data;
           this.currentPage = result.pageNumber;
           this.totalItems = result.totalCount
         }
-
       }, (error) => {
         this.showModal = false;
         this.alertNumber++;
@@ -87,6 +90,15 @@ export class CreateClusterComponent implements OnInit {
     this.getSellerList();
   }
 
+  phoneDetails(phones: any) {
+    this.selectedPhones = phones;
+    this.displayDialog = true;
+  }
+
+  onDialogHide() {
+    this.selectedPhones = null;
+  }
+
   //下载表格
   downloadTable() {
     this.showModal = true
@@ -97,7 +109,7 @@ export class CreateClusterComponent implements OnInit {
     if(this.query.startTime.length > 0 && this.query.endTime.length > 0){
       const queryString = this.helpService._queryObjToString(this.query);
       console.log('query:' + queryString);
-      this.phoneDetailsService.downloadTabel(queryString).subscribe((result) => {
+      this.searchDetailsService.downloadTabel(queryString).subscribe((result) => {
         this.showModal = false;
         if(result.code != 200){
           this.alertNumber++;
@@ -117,7 +129,5 @@ export class CreateClusterComponent implements OnInit {
       this.alertType = 'danger';
     }
   }
-
-
 
 }

@@ -32,16 +32,16 @@ import { SelectContactPipe } from './shared/pipe/select-contact.pipe';
 import { FormatPhonePipe } from './shared/pipe/format-phone.pipe';
 
 
-import { MyImageComponent } from './components/image-center/my-image.component';
+import { MyImageComponent } from './components/image-center/my-image/my-image.component';
 import { CreateImageComponent } from './components/image-center/create-image/create-image.component';
 import { AlertComponent } from './shared/alert/alert.component';
 
 import { CanActivateGuard } from './shared/routerControl/can-activate-guard';
-import { BaseImageComponent } from './components/image-center/base-image.component';
-import { ConfigManagerComponent } from './components/cluster-center/config-manager.component';
+import { BaseImageComponent } from './components/image-center/base-image/base-image.component';
+import { ConfigManagerComponent } from './components/cluster-center/config-manager/config-manager.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { MyClusterComponent } from './components/cluster-center/my-cluster.component';
-import { LoadBalanceComponent } from './components/cluster-center/loadbalance.component';
+import { MyClusterComponent } from './components/cluster-center/my-cluster/my-cluster.component';
+import { LoadBalanceComponent } from './components/cluster-center/load-balance/loadbalance.component';
 
 
 import { IndexComponent } from './index/index.component';

@@ -1,14 +1,14 @@
 import { Routes, RouterModule }  from '@angular/router';
 import { FullLayoutComponent } from './layouts/full-layout.component';
 
-import { MyImageComponent } from './components/image-center/my-image.component';
+import { MyImageComponent } from './components/image-center/my-image/my-image.component';
 import { CreateImageComponent } from './components/image-center/create-image/create-image.component';
 import { CanActivateGuard } from './shared/routerControl/can-activate-guard';
-import { BaseImageComponent } from './components/image-center/base-image.component';
-import { ConfigManagerComponent } from './components/cluster-center/config-manager.component';
+import { BaseImageComponent } from './components/image-center/base-image/base-image.component';
+import { ConfigManagerComponent } from './components/cluster-center/config-manager/config-manager.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { LoadBalanceComponent } from './components/cluster-center/loadbalance.component';
-import { MyClusterComponent } from './components/cluster-center/my-cluster.component';
+import { LoadBalanceComponent } from './components/cluster-center/load-balance/loadbalance.component';
+import { MyClusterComponent } from './components/cluster-center/my-cluster/my-cluster.component';
 
 import { IndexComponent } from './index/index.component';
 import { LoginComponent } from './pages/login.component';

@@ -1,5 +1,5 @@
 import { Component, OnInit,Inject } from '@angular/core';
-import { BaseImageService } from './service/base-image.service';
+import { BaseImageService } from '../service/base-image.service';
 
 @Component({
   selector: 'app-base-image',
