@@ -14,7 +14,7 @@ export class LoginService {
   }
 
   login(loginRequest): Observable<Response>{
-    return this.http.post(AppUtils.BACKEND_API_ROOT_URL + 'auth/console/login', loginRequest).map((res: Response) => {
+    return this.http.post(AppUtils.BACKEND_API_ROOT_URL + '/dashboard/usercentre/login', JSON.stringify(loginRequest)).map((res: Response) => {
         // console.log('登录成功');
         return res;
     }).catch((error: Response) => {

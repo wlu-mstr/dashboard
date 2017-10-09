@@ -20,18 +20,19 @@ export class LoginComponent {
     console.log(username + '<<<' + password);
     console.log();
     this.loginRequest = {
-      userName: username,
-      password: password
+      username: username,
+      userpasswd: password
     };
 
     localStorage.setItem('User', JSON.stringify(this.loginRequest));
 
     //写死用户名和密码
-    if(this.loginRequest.userName === 'admin' && this.loginRequest.password === 'admin'){
+    if(this.loginRequest.username === 'admin' && this.loginRequest.userpasswd === 'admin'){
       this.router.navigate(['/content']);
     }else{
       alert('用户名或密码错误');
     }
+    // this.loginService.login(this.loginRequest).subscribe( res => this.router.navigateByUrl('/content'));
   }
 
 }
