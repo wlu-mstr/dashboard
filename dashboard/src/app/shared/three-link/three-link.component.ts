@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ThreeLinkService } from './service/three-link.service';
-import * as AppUtils from '../../util/app.util';
+import * as AppUtils from '../../config/const';
 import {URLSearchParams} from '@angular/http';
 
 @Component({

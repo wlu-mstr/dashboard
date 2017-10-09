@@ -7,7 +7,7 @@ import * as AppUtil from '../../../config/const';
 import { SellerResponse } from '../model/response/seller.response';
 
 @Injectable()
-export class MyImageService {
+export class BaseImageService {
 
   constructor(private http: Http) { }
 

@@ -3,7 +3,7 @@ import { Http, Response, Headers } from '@angular/http';
 import {Observable} from 'rxjs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import * as AppUtil from '../../../util/app.util';
+import * as AppUtil from '../../../config/const';
 import { SellerResponse } from '../model/response/seller.response';
 
 @Injectable()

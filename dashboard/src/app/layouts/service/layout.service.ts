@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Http, Response} from '@angular/http';
-import * as AppUtil from '../../util/app.util';
+import * as AppUtil from '../../config/const';
 import {Observable} from 'rxjs';
 
 
