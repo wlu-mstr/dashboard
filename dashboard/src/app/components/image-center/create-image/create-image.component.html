@@ -25,23 +25,23 @@
                   构建<strong>新镜像</strong>
                 </div>
                 <div class="card-block">
-                  <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                  <form method="post" enctype="multipart/form-data" class="form-horizontal" (ngSubmit)="onSubmit()" #creatImgForm="ngForm">
                     <div class="form-group row">
                       <label class="col-md-3 form-control-label" for="text-input">镜像名称</label>
                       <div class="col-md-9">
-                        <input type="text" id="text-input" name="text-input" class="form-control" placeholder="镜像名">
+                        <input type="text" id="text-input" name="image_name" class="form-control" placeholder="镜像名">
                       </div>
                     </div>
                     <div class="form-group row">
                       <label class="col-md-3 form-control-label" for="text-input">镜像描述</label>
                       <div class="col-md-9">
-                        <input type="text" id="text-input" name="text-input" class="form-control" placeholder="image description">
+                        <input type="text" id="text-input" name="image_description" class="form-control" placeholder="image description">
                       </div>
                     </div>
                     <div class="form-group row">
                       <label class="col-md-3 form-control-label" for="select">基础镜像</label>
                       <div class="col-md-9">
-                        <select id="select" name="select" class="form-control" size="1">
+                        <select id="select" name="basic_image" class="form-control" size="1">
                           <option value="0">jdk 6 centos</option>
                           <option value="1">jdk 8 centos</option>
                           <option value="2">debian</option>
@@ -52,14 +52,18 @@
                     <div class="form-group row">
                       <label class="col-md-3 form-control-label" for="file-input">上传已编译好的应用</label>
                       <div class="col-md-9">
-                        <input type="file" id="file-input" name="file-input">
+                        <input type="file" id="file-input" name="app_filename">
                       </div>
                     </div>
                     <div class="form-group row">
                       <label class="col-md-3 form-control-label" for="text-input">指定应用存放路径</label>
                       <div class="col-md-9">
-                        <input type="text" id="text-input" name="text-input" class="form-control" placeholder="默认路径为/opt/app">
+                        <input type="text" id="text-input" name="store_path" class="form-control" placeholder="默认路径为/opt/app">
                       </div>
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> 开始构建</button>
+                        <!-- <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button> -->
                     </div>
                     <!-- <div class="form-group row">
                         <label class="col-md-3 form-control-label" for="email-input">Email Input</label>
@@ -230,10 +234,7 @@
                     </div> -->
                   </form>
                 </div>
-                <div class="card-footer">
-                  <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> 开始构建</button>
-                  <!-- <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button> -->
-                </div>
+                
               </div>
             </div>
           </div>

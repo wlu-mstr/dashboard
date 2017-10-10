@@ -29,6 +29,7 @@ export class FullLayoutComponent implements OnInit {
 
   layout() {
     this.layoutService.layout().subscribe(() => {
+      localStorage.removeItem('token');
       this.router.navigateByUrl('/login');
     }, (error) => {
       console.log(error);

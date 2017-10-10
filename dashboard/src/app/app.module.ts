@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { RootRouterModule } from './app.router';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { HelpService } from './shared/help.service';
+import { LoginService } from './pages/service/login.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // import { PagesModule }  from './pages/pages.module';
@@ -102,7 +103,7 @@ import { LoginComponent } from './pages/login.component';
   }, CanActivateGuard,{
     provide:'help',
     useClass:HelpService
-  }],
+  },LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

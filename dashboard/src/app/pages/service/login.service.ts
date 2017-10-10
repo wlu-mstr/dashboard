@@ -4,6 +4,7 @@ import * as AppUtils from '../../util/app.util';
 import {Observable} from 'rxjs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import { tokenNotExpired } from 'angular2-jwt';
 
 @Injectable()
 export class LoginService {
@@ -15,12 +16,15 @@ export class LoginService {
 
   login(loginRequest): Observable<Response>{
     return this.http.post(AppUtils.BACKEND_API_ROOT_URL + '/dashboard/usercentre/login', JSON.stringify(loginRequest)).map((res: Response) => {
-        // console.log('登录成功');
-        return res;
+        return res.json();
     }).catch((error: Response) => {
+        alert(error.json().detail);
         return Observable.throw('登录失败');
     });
   }
 
+  loggedIn(){
+    return tokenNotExpired();
+  }
 
 }

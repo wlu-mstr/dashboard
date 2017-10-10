@@ -27,11 +27,4 @@ export class BaseImageService {
     });
   }
 
-  createImage(json: string): Observable<any> {
-    return this.http.post(AppUtil.BACKEND_API_ROOT_URL + '/' , json).map((res: Response) => {
-      return res;
-    }).catch((error: Response )=> {
-      return Observable.throw('构建新镜像失败')
-    });
-  }
 }

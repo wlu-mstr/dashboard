@@ -27,7 +27,7 @@ export class CreateImageComponent implements OnInit,AfterViewInit {
   zh: any;
 
 
-  constructor(private sellerBussinessService: CreateImageService, private router: Router,@Inject('help') private helpService) {
+  constructor(private createImageService: CreateImageService, private router: Router,@Inject('help') private helpService) {
   }
 
   ngOnInit() {
@@ -46,4 +46,14 @@ export class CreateImageComponent implements OnInit,AfterViewInit {
     // $(this.status.nativeElement).addClass('active');
   }
 
+  //提交表单，构建新镜像
+  onSubmit(){
+    this.createImageService.createImg({}).subscribe((res: any) =>{
+      if(res.code === "0"){
+        alert("构建新镜像成功");
+      }else{
+        alert("构建新镜像失败");
+      }
+    });
+  }
 }
