@@ -4787,6 +4787,33 @@ app.put('/api/:storeId/bankCard/:accountNumber/check/manual/:result', function (
   res.json(info);
 })
 
+//登录
+app.post('/dashboard/usercentre/login',function(req, res){
+  var result = {
+      "code": 0,  
+      "detail": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MDc4ODY2MTksIm5hbWUiOiJ6aGFuZ3lvbmdfbmV3IiwidXNlcl9pZCI6MX0.bOr8EL8gZJ3Wqa_PLnvfuG-U5CHoCTWaDcFwgDLk1eU" 
+  }
+  res.json(result);
+})
+
+//登出
+app.post('/dashboard/usercentre/logout',function(req, res){
+  var result = {
+    "code": 0,  
+    "detail": "logout success"
+  }
+  res.json(result);
+})
+
+//创建新镜像
+app.post('/dashboard/imagecentre/myimages/newimage/build',function(req, res){
+  var result = {
+    "code": 0,  
+    "detail": "build image started" 
+  }
+  res.json(result);
+})
+
 app.use(function (req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;

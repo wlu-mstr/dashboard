@@ -6,6 +6,7 @@ import { RootRouterModule } from './app.router';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { HelpService } from './shared/help.service';
 import { LoginService } from './pages/service/login.service';
+import { AuthHttp, AuthConfig, AUTH_PROVIDERS, provideAuth } from 'angular2-jwt';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // import { PagesModule }  from './pages/pages.module';
@@ -103,7 +104,8 @@ import { LoginComponent } from './pages/login.component';
   }, CanActivateGuard,{
     provide:'help',
     useClass:HelpService
-  },LoginService],
+  },LoginService,
+    AuthHttp],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
