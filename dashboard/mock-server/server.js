@@ -16,18 +16,28 @@ app.use('/*', function (req, res, next) {
   next();
 })
 
-app.get('/api/showcase/resources/data/countries',function(req,res){
-  var countries = [
+app.get('/getDashboardInfo',function(req,res){
+  var res =
     {
-      id:1,
-      name:'南京'
-    },
-    {
-      id:2,
-      name:'上海'
+      str1:'str1',
+      str2:'str2',
+      str3:'str3',
+      str4:'str4',
+      str5:'str5',
+      str6:'str6',
+      str7:'str7',
+      str8:'str8',
+      str9:'str9',
+      str10:'str10',
+      str11:'str11',
+      str12:'str12',
+      str13:'str13',
+      str14:'str14',
+      str15:'str15',
+      str16:'str16'
     }
-  ];
-  res.json(countries);
+  ;
+  res.json(res);
 });
 
 

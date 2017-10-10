@@ -21,7 +21,7 @@
         <div class="left-user">
           <echart *ngIf="hasP3Chart" [chartType]="p3Chart" class="chart"></echart>
           <div class="right-info">
-            <div class="txt">Registered User</div>
+            <div class="txt">Subscriber</div>
             <div class="num">{{userQty3}}</div>
           </div>
         </div>
@@ -50,7 +50,7 @@
 
   <div class="bottom">
     <div class="bottom-layout">
-      <div class="title">Trade Amount</div>
+      <div class="title">Trading Volume</div>
       <div class="echarts-head">
         <div class="txt">Today</div>
         <div class="num">{{tradeToday}}<span class="currency">¥</span></div>

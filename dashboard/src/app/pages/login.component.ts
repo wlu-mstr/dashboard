@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { LoginService } from './service/login.service';
 import { LoginRequest  } from './model/login.request';
 import { Router } from '@angular/router';
-import * as AppUtil from '../util/app.util';
+import * as AppUtil from '../config/const';
 
 
 @Component({
