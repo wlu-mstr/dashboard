@@ -15,7 +15,6 @@ export class CreateImageComponent implements OnInit,AfterViewInit {
   imageDescription:string;
   basicImage:string;
   storePath:string;
-  appFilename:string;
   appFile: File;
 
   constructor(private createImageService: CreateImageService, private router: Router,@Inject('help') private helpService) {
@@ -37,8 +36,7 @@ export class CreateImageComponent implements OnInit,AfterViewInit {
     formData.append("image_description",this.imageDescription);
     formData.append("basic_image",this.basicImage);
     formData.append("store_path",this.storePath);
-    formData.append("app_filename",this.appFilename);
-    formData.append("file",this.appFile);
+    formData.append("app_filename",this.appFile);
 
     this.createImageService.createImg(formData).subscribe((res: any) =>{
       if(res.code === 0){
@@ -52,6 +50,5 @@ export class CreateImageComponent implements OnInit,AfterViewInit {
   fileChange(e){
     let fileList: FileList = e.target.files;
     this.appFile = fileList[0];
-    this.appFilename = this.appFile.name;
   }
 }

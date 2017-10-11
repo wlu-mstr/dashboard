@@ -1,4 +1,5 @@
 import { Component, OnInit,Inject } from '@angular/core';
+import { DeployNewClusterService } from './deploy-new-cluster.service';
 
 @Component({
   selector: 'app-deploy-new-cluster',
